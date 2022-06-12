@@ -13,7 +13,7 @@ participant "SonicHost API\n(API-Gateway)" as api
 
 ' シーケンス
 ' Webサイト編
-user -> device ++ :
+user -> device ++ 
 device -> site ++ : サイト参照
 device <-- site -- : サイト表示
 user -> device : 「登録」押下
