@@ -1,0 +1,9 @@
+@startuml ドメイン変更フロー
+title ドメイン変更フロー
+
+actor "ユーザ" as user
+participant "端末" as device
+participant "SONIC HOST API" as api
+
+
+@enduml
