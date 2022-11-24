@@ -1,0 +1,24 @@
+@startuml ブログ生成
+title ジョブ登録
+
+' アクター定義
+participant "Cron管理\n(CloudWatch)" as cron
+participant "ジョブ設定Lambda" as jobLambda
+participant "バッチサーバー" as batch
+participant "バッチ設定テーブル\n(Dynamo)" as batchSeting
+
+' ジョブ群の登録
+cron -> jobLambda ++ : ジョブ実行開始要求\n(１時間ごと)
+jobLambda  -> batchSeting ++ : 実行するべきジョブの取得
+batchSeting -> batchSeting : 日時より一覧を検索
+jobLambda <- batchSeting -- : 実行する一覧を返却
+rnote right of jobLambda #Yellow
+    １サイト毎に以下の情報を返却
+    * サイトドメイン
+    * PHPVersion
+    * WordPressVersion
+end note
+jobLambda -> batch ++ : ジョブ群の起動（非同期）
+cron <- jobLambda --
+
+@enduml

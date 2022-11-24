@@ -1,0 +1,21 @@
+@startuml 本番適用
+title 本番適用
+
+
+' アクター定義
+participant "配布用静的資材管理バケット\n(S3)" as static
+participant "配布用資材一時管理バケット\n(S3)" as tmp
+participant "バッチサーバー" as batch
+participant "CDN\n(CloudFront or CloudFlare)" as cdn
+
+' 本番適用
+activate batch
+batch -> tmp ++ : 全資材取得
+batch <- tmp --
+batch -> static ++ : 取得した資材を保管
+batch <- static --
+batch -> tmp : 全資材削除
+batch -> cdn ++ : キャッシュクリア
+batch <- cdn --
+
+@enduml
