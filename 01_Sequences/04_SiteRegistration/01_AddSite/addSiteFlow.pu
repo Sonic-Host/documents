@@ -4,11 +4,7 @@ title サイト追加
 ' アクター定義
 actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
-participant "Webサーバ" as site
-participant "認証基盤\n(Cognito)" as cognito
-participant "CDN\n(CloudFront)" as cdn
-participant "SPA資材格納\n(S3)" as spa
-participant "SonicHost API\n(API-Gateway)" as api
+participant "SonicHost API\n(CDN/API-Gateway)" as api
 
 
 user -> device ++: HOME画面表示
