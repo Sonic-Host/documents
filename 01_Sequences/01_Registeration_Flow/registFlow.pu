@@ -33,24 +33,6 @@ device -> cognito ++ : ユーザ名・パスワード登録依頼
 user <-- cognito -- : 登録完了画面
 user -> device : 「早速使ってみる」を押下
 
-' 管理画面取得編
-device -> cdn ++ : SPA資材（React）要求\n管理画面資材要求 
-cdn -> spa ++ : SPA資材要求
-cdn <-- spa -- : SPA資材
-device <-- cdn -- : 管理画面表示
-device -> cognito ++ : トークン用公開鍵要求
-device <-- cognito -- : 公開鍵
-device -> device : トークンチェック
-alt トークンチェック失敗
-    device -> device : ログイン画面
-    device -> cognito ++ : ログイン確立要求\n(Initiate Auth)
-    device <-- cognito -- : session等
-    user -> device : ユーザ名・パスワード入力
-    device -> cognito ++ : 認証(トークン発行依頼)\n(Responed to Auth Challenge)
-    device <-- cognito -- : トークン
-    device -> device : トークンチェック
-end
-
 rnote right of device #GreenYellow
     ログインフローを参照
     ログイン周りの処理をここで実施

@@ -18,6 +18,8 @@ cdn -> spa ++ : バンドル資材要求
 cdn <- spa --
 device <- cdn --
 device ->device : バンドル資材読み込み
+device -> cognito ++ : トークンチェック用公開鍵要求
+device <- cognito --
 device -> device: トークンチェック
 ' トークンチェック
 alt トークン取得失敗 or トークンチェック失敗
@@ -37,6 +39,8 @@ alt トークン取得失敗 or トークンチェック失敗
     device <-- cognito -- : session等
     user -> device : ユーザ名・パスワード入力
     device -> cognito ++ : 認証(トークン発行依頼)\n(Responed to Auth Challenge)
+    device -> cognito ++ : トークンチェック用公開鍵要求
+    device <- cognito --
     device <-- cognito -- : トークン
     device -> device : トークンチェック
 end 
