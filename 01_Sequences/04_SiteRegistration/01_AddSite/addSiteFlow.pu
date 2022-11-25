@@ -11,7 +11,7 @@ participant "SPA資材格納\n(S3)" as spa
 participant "SonicHost API\n(API-Gateway)" as api
 
 
-user -> device : HOME画面表示
+user -> device ++: HOME画面表示
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
