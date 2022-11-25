@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1152px" preserveAspectRatio="none" style="width:744px;height:1152px;background:#FFFFFF;" version="1.1" viewBox="0 0 744 1152" width="744px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="120" x="313.5" y="27.9951">コンテンツ最適化</text><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="399.75"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="500.1484"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="574.4141"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="674.8125"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="782.2109"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="939.875"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="990.0078"/><rect fill="#FFFFFF" height="992.3828" style="stroke:#181818;stroke-width:1.0;" width="10" x="370" y="99.8906"/><rect fill="#FFFFFF" height="971.25" style="stroke:#181818;stroke-width:1.0;" width="10" x="588" y="121.0234"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="695.5" y="1062.2734"/><rect fill="none" height="855.7188" style="stroke:#000000;stroke-width:1.5;" width="728" x="10" y="228.5547"/><rect fill="none" height="160.6641" style="stroke:#000000;stroke-width:1.5;" width="482" x="20" y="361.4844"/><rect fill="none" height="160.6641" style="stroke:#000000;stroke-width:1.5;" width="457" x="20" y="536.1484"/><rect fill="none" height="251.0625" style="stroke:#000000;stroke-width:1.5;" width="573" x="20" y="710.8125"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="128" x2="128" y1="89.8906" y2="1101.2734"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="375" x2="375" y1="89.8906" y2="1101.2734"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="593" x2="593" y1="89.8906" y2="1101.2734"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="700" x2="700" y1="89.8906" y2="1101.2734"/><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="196" x="30" y="42.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="37" y="62.292">配布用資材一時管理バケット</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="114" y="78.5889">(S3)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="196" x="30" y="1100.2734"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="37" y="1120.2686">配布用資材一時管理バケット</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="114" y="1136.5654">(S3)</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112" x="319" y="58.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="326" y="78.5889">バッチサーバー</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112" x="319" y="1100.2734"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="326" y="1120.2686">バッチサーバー</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="140" x="523" y="42.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="530" y="62.292">バッチ設定テーブル</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="558.5" y="78.5889">(Dynamo)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="140" x="523" y="1100.2734"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="530" y="1120.2686">バッチ設定テーブル</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="558.5" y="1136.5654">(Dynamo)</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="55" x="673" y="58.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="41" x="680" y="78.5889">static</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="55" x="673" y="1100.2734"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="41" x="680" y="1120.2686">static</text><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="399.75"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="500.1484"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="574.4141"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="674.8125"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="782.2109"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="939.875"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="123" y="990.0078"/><rect fill="#FFFFFF" height="992.3828" style="stroke:#181818;stroke-width:1.0;" width="10" x="370" y="99.8906"/><rect fill="#FFFFFF" height="971.25" style="stroke:#181818;stroke-width:1.0;" width="10" x="588" y="121.0234"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="695.5" y="1062.2734"/><polygon fill="#181818" points="576,117.0234,586,121.0234,576,125.0234,580,121.0234" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="380" x2="582" y1="121.0234" y2="121.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="387" y="115.9575">バッチ設定情報取得</text><polygon fill="#181818" points="391,131.0234,381,135.0234,391,139.0234,387,135.0234" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="385" x2="587" y1="135.0234" y2="135.0234"/><rect fill="#FFFF00" height="68" style="stroke:#181818;stroke-width:0.5;" width="135" x="385" y="148.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="389" y="164.0903">以下の情報を返却</text><ellipse cx="394.5" cy="174.7891" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="77" x="401" y="179.2231">CSS削除設定</text><ellipse cx="394.5" cy="189.9219" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="401" y="194.356">画像圧縮設定</text><ellipse cx="394.5" cy="205.0547" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="401" y="209.4888">HTML/CSS圧縮設定</text><path d="M10,228.5547 L88,228.5547 L88,235.6875 L78,245.6875 L10,245.6875 L10,228.5547 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="855.7188" style="stroke:#000000;stroke-width:1.5;" width="728" x="10" y="228.5547"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="25" y="241.6216">loop</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="109" x="103" y="240.7651">[デバイス毎にループ]</text><rect fill="#87CEEB" height="98" style="stroke:#181818;stroke-width:0.5;" width="242" x="385" y="250.6875"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="234" x="389" y="266.7544">以下のデバイス毎にループするイメージ</text><ellipse cx="394.5" cy="277.4531" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="17" x="401" y="281.8872">PC</text><ellipse cx="394.5" cy="292.5859" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="118" x="401" y="297.02">Android タブレット</text><ellipse cx="394.5" cy="307.7188" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="401" y="312.1528">iOS タブレット</text><ellipse cx="394.5" cy="322.8516" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="92" x="401" y="327.2856">Android スマホ</text><ellipse cx="394.5" cy="337.9844" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="401" y="342.4185">iOS スマホ</text><path d="M20,361.4844 L86,361.4844 L86,368.6172 L76,378.6172 L20,378.6172 L20,361.4844 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="160.6641" style="stroke:#000000;stroke-width:1.5;" width="482" x="20" y="361.4844"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="35" y="374.5513">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="134" x="101" y="373.6948">[CSS削除設定ありの場合]</text><polygon fill="#181818" points="144,395.75,134,399.75,144,403.75,140,399.75" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="369" y1="399.75" y2="399.75"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="150" y="394.6841">HTML/CSSを全要求</text><polygon fill="#181818" points="358,409.75,368,413.75,358,417.75,362,413.75" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128" x2="364" y1="413.75" y2="413.75"/><line style="stroke:#181818;stroke-width:1.0;" x1="380" x2="422" y1="458.0156" y2="458.0156"/><line style="stroke:#181818;stroke-width:1.0;" x1="422" x2="422" y1="458.0156" y2="471.0156"/><line style="stroke:#181818;stroke-width:1.0;" x1="381" x2="422" y1="471.0156" y2="471.0156"/><polygon fill="#181818" points="391,467.0156,381,471.0156,391,475.0156,387,471.0156" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="101" x="387" y="437.8169">PurgeCSSにより</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="103" x="387" y="452.9497">不要なCSSを削除</text><polygon fill="#181818" points="144,496.1484,134,500.1484,144,504.1484,140,500.1484" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="369" y1="500.1484" y2="500.1484"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="150" y="495.0825">HTML/CSSを置き換え</text><polygon fill="#181818" points="358,510.1484,368,514.1484,358,518.1484,362,514.1484" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128" x2="364" y1="514.1484" y2="514.1484"/><path d="M20,536.1484 L86,536.1484 L86,543.2813 L76,553.2813 L20,553.2813 L20,536.1484 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="160.6641" style="stroke:#000000;stroke-width:1.5;" width="457" x="20" y="536.1484"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="35" y="549.2153">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="131" x="101" y="548.3589">[画像圧縮設定ありの場合]</text><polygon fill="#181818" points="144,570.4141,134,574.4141,144,578.4141,140,574.4141" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="369" y1="574.4141" y2="574.4141"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="150" y="569.3481">画像を全要求</text><polygon fill="#181818" points="358,584.4141,368,588.4141,358,592.4141,362,588.4141" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128" x2="364" y1="588.4141" y2="588.4141"/><line style="stroke:#181818;stroke-width:1.0;" x1="380" x2="422" y1="632.6797" y2="632.6797"/><line style="stroke:#181818;stroke-width:1.0;" x1="422" x2="422" y1="632.6797" y2="645.6797"/><line style="stroke:#181818;stroke-width:1.0;" x1="381" x2="422" y1="645.6797" y2="645.6797"/><polygon fill="#181818" points="391,641.6797,381,645.6797,391,649.6797,387,645.6797" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="387" y="612.481">〇〇により、</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65" x="387" y="627.6138">画像を圧縮</text><polygon fill="#181818" points="144,670.8125,134,674.8125,144,678.8125,140,674.8125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="369" y1="674.8125" y2="674.8125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="150" y="669.7466">画像を置き換え</text><polygon fill="#181818" points="358,684.8125,368,688.8125,358,692.8125,362,688.8125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128" x2="364" y1="688.8125" y2="688.8125"/><path d="M20,710.8125 L86,710.8125 L86,717.9453 L76,727.9453 L20,727.9453 L20,710.8125 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="251.0625" style="stroke:#000000;stroke-width:1.5;" width="573" x="20" y="710.8125"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="35" y="723.8794">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="119" x="101" y="723.0229">[HTML/CSS圧縮設定]</text><rect fill="#87CEEB" height="23" style="stroke:#181818;stroke-width:0.5;" width="190" x="385" y="732.9453"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182" x="389" y="749.0122">これはそもそも実現可能か不明</text><polygon fill="#181818" points="144,778.2109,134,782.2109,144,786.2109,140,782.2109" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="369" y1="782.2109" y2="782.2109"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="150" y="777.145">HTML/CSSを全要求</text><polygon fill="#181818" points="358,792.2109,368,796.2109,358,800.2109,362,796.2109" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128" x2="364" y1="796.2109" y2="796.2109"/><line style="stroke:#181818;stroke-width:1.0;" x1="380" x2="422" y1="840.4766" y2="840.4766"/><line style="stroke:#181818;stroke-width:1.0;" x1="422" x2="422" y1="840.4766" y2="853.4766"/><line style="stroke:#181818;stroke-width:1.0;" x1="381" x2="422" y1="853.4766" y2="853.4766"/><polygon fill="#181818" points="391,849.4766,381,853.4766,391,857.4766,387,853.4766" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65" x="387" y="820.2778">〇〇により</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="194" x="387" y="835.4106">HTML/CSSのクラス属性をminify</text><line style="stroke:#181818;stroke-width:1.0;" x1="380" x2="422" y1="897.7422" y2="897.7422"/><line style="stroke:#181818;stroke-width:1.0;" x1="422" x2="422" y1="897.7422" y2="910.7422"/><line style="stroke:#181818;stroke-width:1.0;" x1="381" x2="422" y1="910.7422" y2="910.7422"/><polygon fill="#181818" points="391,906.7422,381,910.7422,391,914.7422,387,910.7422" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65" x="387" y="877.5435">〇〇により</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="141" x="387" y="892.6763">HTML/CSSの改行等削除</text><polygon fill="#181818" points="144,935.875,134,939.875,144,943.875,140,939.875" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="369" y1="939.875" y2="939.875"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="128" x="150" y="934.8091">HTML/CSSを置き換え</text><polygon fill="#181818" points="358,949.875,368,953.875,358,957.875,362,953.875" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128" x2="364" y1="953.875" y2="953.875"/><polygon fill="#181818" points="144,986.0078,134,990.0078,144,994.0078,140,990.0078" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="369" y1="990.0078" y2="990.0078"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="150" y="984.9419">全資材を取得</text><polygon fill="#181818" points="358,1000.0078,368,1004.0078,358,1008.0078,362,1004.0078" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128" x2="364" y1="1004.0078" y2="1004.0078"/><polygon fill="#181818" points="139,1029.1406,129,1033.1406,139,1037.1406,135,1033.1406" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="133" x2="369" y1="1033.1406" y2="1033.1406"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="218" x="145" y="1028.0747">全資材削除(デバイス単位なのに注意)</text><polygon fill="#181818" points="683.5,1058.2734,693.5,1062.2734,683.5,1066.2734,687.5,1062.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="380" x2="689.5" y1="1062.2734" y2="1062.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169" x="387" y="1057.2075">取得した資材をアップロード</text><polygon fill="#181818" points="391,1072.2734,381,1076.2734,391,1080.2734,387,1076.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="385" x2="699.5" y1="1076.2734" y2="1076.2734"/><!--MD5=[d64b5425d75b41cfc9e88bb7989699f0]
+@startuml
+title コンテンツ最適化
+
+
+' アクター定義
+participant "配布用資材一時管理バケット\n(S3)" as tmp
+participant "バッチサーバー" as batch
+participant "バッチ設定テーブル\n(Dynamo)" as batchSeting
+
+' 最適化
+activate batch
+batch -> batchSeting ++ : バッチ設定情報取得
+batch <- batchSeting
+rnote right of batch #Yellow
+    以下の情報を返却
+    * CSS削除設定
+    * 画像圧縮設定
+    * HTML/CSS圧縮設定
+end note
+loop  デバイス毎にループ
+    rnote right of batch #SkyBlue
+    以下のデバイス毎にループするイメージ
+    * PC
+    * Android タブレット
+    * iOS タブレット
+    * Android スマホ
+    * iOS スマホ
+    end note
+    alt CSS削除設定ありの場合
+        batch -> tmp ++ : HTML/CSSを全要求
+        batch <- tmp - -
+        batch -> batch : PurgeCSSにより\n不要なCSSを削除
+        batch -> tmp ++ : HTML/CSSを置き換え
+        batch <- tmp - -
+    end 
+    alt 画像圧縮設定ありの場合
+        batch -> tmp ++ : 画像を全要求
+        batch <- tmp - -
+        batch -> batch : 〇〇により、\n画像を圧縮
+        batch -> tmp ++ : 画像を置き換え
+        batch <- tmp - -
+    end 
+    alt HTML/CSS圧縮設定
+    rnote right of batch #SkyBlue
+        これはそもそも実現可能か不明
+    end note
+    batch -> tmp ++ : HTML/CSSを全要求
+    batch <- tmp - -
+    batch -> batch : 〇〇により\nHTML/CSSのクラス属性をminify
+    batch -> batch : 〇〇により\nHTML/CSSの改行等削除
+    batch -> tmp ++ : HTML/CSSを置き換え
+    batch <- tmp - -
+    end 
+    batch -> tmp ++ : 全資材を取得
+    batch <- tmp - -
+    batch -> tmp : 全資材削除(デバイス単位なのに注意)
+    batch -> static ++ : 取得した資材をアップロード
+    batch <- static - -
+end
+@enduml
+
+@startuml
+title コンテンツ最適化
+
+
+participant "配布用資材一時管理バケット\n(S3)" as tmp
+participant "バッチサーバー" as batch
+participant "バッチ設定テーブル\n(Dynamo)" as batchSeting
+
+activate batch
+batch -> batchSeting ++ : バッチ設定情報取得
+batch <- batchSeting
+rnote right of batch #Yellow
+    以下の情報を返却
+    * CSS削除設定
+    * 画像圧縮設定
+    * HTML/CSS圧縮設定
+end note
+loop  デバイス毎にループ
+    rnote right of batch #SkyBlue
+    以下のデバイス毎にループするイメージ
+    * PC
+    * Android タブレット
+    * iOS タブレット
+    * Android スマホ
+    * iOS スマホ
+    end note
+    alt CSS削除設定ありの場合
+        batch -> tmp ++ : HTML/CSSを全要求
+        batch <- tmp - -
+        batch -> batch : PurgeCSSにより\n不要なCSSを削除
+        batch -> tmp ++ : HTML/CSSを置き換え
+        batch <- tmp - -
+    end 
+    alt 画像圧縮設定ありの場合
+        batch -> tmp ++ : 画像を全要求
+        batch <- tmp - -
+        batch -> batch : 〇〇により、\n画像を圧縮
+        batch -> tmp ++ : 画像を置き換え
+        batch <- tmp - -
+    end 
+    alt HTML/CSS圧縮設定
+    rnote right of batch #SkyBlue
+        これはそもそも実現可能か不明
+    end note
+    batch -> tmp ++ : HTML/CSSを全要求
+    batch <- tmp - -
+    batch -> batch : 〇〇により\nHTML/CSSのクラス属性をminify
+    batch -> batch : 〇〇により\nHTML/CSSの改行等削除
+    batch -> tmp ++ : HTML/CSSを置き換え
+    batch <- tmp - -
+    end 
+    batch -> tmp ++ : 全資材を取得
+    batch <- tmp - -
+    batch -> tmp : 全資材削除(デバイス単位なのに注意)
+    batch -> static ++ : 取得した資材をアップロード
+    batch <- static - -
+end
+@enduml
+
+PlantUML version 1.2022.13beta8(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

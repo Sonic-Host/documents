@@ -1,0 +1,57 @@
+@startuml コンテンツ取得
+title コンテンツ取得
+
+
+' アクター定義
+participant "配布用資材一時管理バケット\n(S3)" as tmp
+participant "バッチサーバー" as batch
+participant "サイト用インスタンス\n(Docker)" as docker
+participant "ページ参照用キュー" as  queue
+participant "ページ参照用リスト\n(Set)" as  set
+
+' 資材の取得
+activate batch
+activate docker
+batch -> batch : デバイス情報のリストを作成
+rnote right of batch #SkyBlue
+    以下のユーザエージェントを持つデバイスでリスト作成
+    * PC
+    * Android タブレット
+    * iOS タブレット
+    * Android スマホ
+    * iOS スマホ
+end note
+loop デバイス情報のリストをループ
+    batch -> queue  ++ : ページ参照キュー生成
+    batch -> set ++ : ページ参照リストを作成
+    batch -> queue : 見開きページを登録
+    batch -> set : 見開きページを登録
+    batch -> batch : ヘッドレスブラウザ起動\n(タブ数：１０)\nユーザエージェントはデバイス指定
+    loop キューのページ数が０になるまで
+        batch -> queue : ページ情報要求
+        queue -> queue : ページ情報取得\n&削除
+        batch <- queue : ページ情報
+        batch -> docker : ブラウザで表示
+        batch <- docker
+        alt  取得した資材のURLがサイトドメインである場合
+            batch -> tmp ++ : 取得した資材を全部格納
+            batch <- tmp --
+        end
+        batch -> batch : ページから\nリンクを全抽出
+        batch -> set : リストに該当のリンク先を存在チェック
+        batch <- set : 存在チェック結果
+        alt リンク先がリストに存在しない場合
+            batch -> queue : リンク先を登録
+            batch -> set : リンク先を登録
+        end 
+    end
+    batch -> batch : ヘッドレスブラウザ削除
+    batch -> queue  : ページ参照キューを削除
+    deactivate queue
+    batch -> set  : ページ参照リストを削除
+    deactivate set
+end
+batch -> docker : Docker停止
+deactivate docker
+
+@enduml
