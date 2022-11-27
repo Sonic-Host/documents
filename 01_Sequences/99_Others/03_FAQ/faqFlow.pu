@@ -1,0 +1,38 @@
+@startuml  FAQ
+title FAQ
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+participant "FAQ管理\n(Dynamo)" as dynamo
+participant "管理画面" as adminApp
+actor "管理者" as adminUser
+
+adminUser -> adminApp ++ : 管理画面起動
+adminUser -> adminApp : ログイン＆FAQ表示
+adminUser -> adminApp : 新規FAQ追加押下
+adminApp -> adminApp : FAQ追加画面表示
+adminUser -> adminApp : FAQ情報入力
+adminUser -> adminApp : 確認ボタン押下
+adminApp -> adminApp : FAQ確認画面表示
+adminUser -> adminApp : 確定ボタンを押下
+adminApp -> dynamo ++ : FAQ追加
+adminApp <- dynamo --
+adminApp -> adminApp : FAQ追加完了画面表示
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : その他を選択
+device -> device : メニュー一覧画面を表示
+user -> device : FAQを選択
+device -> device : FAQ画面を表示
+device -> api ++ : FAQ一覧取得API打鍵
+api -> dynamo ++ : FAQ一覧取得
+api <- dynamo --
+device <- api --
+user -> device : カテゴリを選択 or \n 検索
+device -> device : 結果を表示
