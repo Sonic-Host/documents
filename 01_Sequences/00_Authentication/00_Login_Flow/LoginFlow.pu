@@ -45,6 +45,19 @@ alt トークン取得失敗 or トークンチェック失敗
     device -> device : トークンチェック
 end 
 ' 規約確認
+rnote right of device #SkyBlue
+    ログイン直後は以下のAPIを打鍵してグローバルな情報を取り込む
+    * ユーザ情報取得API
+    * サイト情報取得API
+end note 
+device -> cdn ++ : ユーザ情報取得API
+cdn -> api ++ 
+cdn <- api --
+device <- cdn --
+device -> cdn ++ : サイト情報取得API
+cdn -> api ++
+cdn <- api --
+device <- cdn -- 
 device -> cdn ++ : 規約チェックAPI
 cdn -> api ++
 rnote right of cdn #SkyBlue
