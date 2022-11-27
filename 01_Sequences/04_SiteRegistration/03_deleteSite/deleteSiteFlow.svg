@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="999px" preserveAspectRatio="none" style="width:571px;height:999px;background:#FFFFFF;" version="1.1" viewBox="0 0 571 999" width="571px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="75" x="250" y="27.9951">サイト削除</text><rect fill="#FFFFFF" height="759.7891" style="stroke:#181818;stroke-width:1.0;" width="10" x="170" y="149.7266"/><rect fill="#FFFFFF" height="182.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="389" y="503.1875"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="389" y="786.1172"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="389" y="829.25"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="29" x2="29" y1="118.5938" y2="918.5156"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="174.5" x2="174.5" y1="118.5938" y2="918.5156"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="393.5" x2="393.5" y1="118.5938" y2="918.5156"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="5" y="115.292">ユーザ</text><ellipse cx="29" cy="50.7969" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M29,58.7969 L29,85.7969 M16,66.7969 L42,66.7969 M29,85.7969 L16,100.7969 M29,85.7969 L42,100.7969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="5" y="930.5107">ユーザ</text><ellipse cx="29" cy="942.3125" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M29,950.3125 L29,977.3125 M16,958.3125 L42,958.3125 M29,977.3125 L16,992.3125 M29,977.3125 L42,992.3125 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="127" x="111.5" y="71"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="119" y="90.9951">クライアント端末</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="118.5" y="107.292">(PCまたはスマホ)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="127" x="111.5" y="917.5156"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="119" y="937.5107">クライアント端末</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="118.5" y="953.8076">(PCまたはスマホ)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="318.5" y="71"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="344.5" y="90.9951">SonicHost API</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="325.5" y="107.292">(CDN/API-Gateway)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="318.5" y="917.5156"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="344.5" y="937.5107">SonicHost API</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="325.5" y="953.8076">(CDN/API-Gateway)</text><rect fill="#FFFFFF" height="759.7891" style="stroke:#181818;stroke-width:1.0;" width="10" x="170" y="149.7266"/><rect fill="#FFFFFF" height="182.5313" style="stroke:#181818;stroke-width:1.0;" width="10" x="389" y="503.1875"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="389" y="786.1172"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="389" y="829.25"/><polygon fill="#181818" points="158,145.7266,168,149.7266,158,153.7266,162,149.7266" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="164" y1="149.7266" y2="149.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89" x="36" y="144.6606">HOME画面表示</text><rect fill="#ADFF2F" height="23" style="stroke:#181818;stroke-width:0.5;" width="138" x="185" y="162.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="189" y="178.7935">ログインフローを参照</text><polygon fill="#181818" points="158,207.9922,168,211.9922,158,215.9922,162,211.9922" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="164" y1="211.9922" y2="211.9922"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="36" y="206.9263">サイト設定確認選択</text><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="222" y1="241.125" y2="241.125"/><line style="stroke:#181818;stroke-width:1.0;" x1="222" x2="222" y1="241.125" y2="254.125"/><line style="stroke:#181818;stroke-width:1.0;" x1="181" x2="222" y1="254.125" y2="254.125"/><polygon fill="#181818" points="191,250.125,181,254.125,191,258.125,187,254.125" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="187" y="236.0591">サイト設定情報画面表示</text><rect fill="#87CEEB" height="38" style="stroke:#181818;stroke-width:0.5;" width="255" x="185" y="267.125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="247" x="189" y="283.1919">１つしかサイトない場合は「削除」非表示</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="208" x="189" y="298.3247">サイトを削除する場合は解約させる</text><polygon fill="#181818" points="158,327.5234,168,331.5234,158,335.5234,162,331.5234" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="164" y1="331.5234" y2="331.5234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="36" y="326.4575">「サイト削除」押下</text><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="222" y1="360.6563" y2="360.6563"/><line style="stroke:#181818;stroke-width:1.0;" x1="222" x2="222" y1="360.6563" y2="373.6563"/><line style="stroke:#181818;stroke-width:1.0;" x1="181" x2="222" y1="373.6563" y2="373.6563"/><polygon fill="#181818" points="191,369.6563,181,373.6563,191,377.6563,187,373.6563" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="187" y="355.5903">サイト削除確認画面表示</text><polygon fill="#181818" points="158,398.7891,168,402.7891,158,406.7891,162,402.7891" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="164" y1="402.7891" y2="402.7891"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="36" y="397.7231">「確認」押下</text><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="222" y1="431.9219" y2="431.9219"/><line style="stroke:#181818;stroke-width:1.0;" x1="222" x2="222" y1="431.9219" y2="444.9219"/><line style="stroke:#181818;stroke-width:1.0;" x1="181" x2="222" y1="444.9219" y2="444.9219"/><polygon fill="#181818" points="191,440.9219,181,444.9219,191,448.9219,187,444.9219" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="156" x="187" y="426.856">サイト削除再確認画面表示</text><polygon fill="#181818" points="158,470.0547,168,474.0547,158,478.0547,162,474.0547" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="164" y1="474.0547" y2="474.0547"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="36" y="468.9888">削除押下</text><polygon fill="#181818" points="377,499.1875,387,503.1875,377,507.1875,381,503.1875" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="383" y1="503.1875" y2="503.1875"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="85" x="187" y="498.1216">サイト削除API</text><line style="stroke:#181818;stroke-width:1.0;" x1="399" x2="441" y1="532.3203" y2="532.3203"/><line style="stroke:#181818;stroke-width:1.0;" x1="441" x2="441" y1="532.3203" y2="545.3203"/><line style="stroke:#181818;stroke-width:1.0;" x1="400" x2="441" y1="545.3203" y2="545.3203"/><polygon fill="#181818" points="410,541.3203,400,545.3203,410,549.3203,406,545.3203" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="107" x="406" y="527.2544">S3コンテンツ削除</text><line style="stroke:#181818;stroke-width:1.0;" x1="399" x2="441" y1="574.4531" y2="574.4531"/><line style="stroke:#181818;stroke-width:1.0;" x1="441" x2="441" y1="574.4531" y2="587.4531"/><line style="stroke:#181818;stroke-width:1.0;" x1="400" x2="441" y1="587.4531" y2="587.4531"/><polygon fill="#181818" points="410,583.4531,400,587.4531,410,591.4531,406,587.4531" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="133" x="406" y="569.3872">Dynamo登録情報削除</text><line style="stroke:#181818;stroke-width:1.0;" x1="399" x2="441" y1="616.5859" y2="616.5859"/><line style="stroke:#181818;stroke-width:1.0;" x1="441" x2="441" y1="616.5859" y2="629.5859"/><line style="stroke:#181818;stroke-width:1.0;" x1="400" x2="441" y1="629.5859" y2="629.5859"/><polygon fill="#181818" points="410,625.5859,400,629.5859,410,633.5859,406,629.5859" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="158" x="406" y="611.52">CDNドメイン設定情報削除</text><line style="stroke:#181818;stroke-width:1.0;" x1="399" x2="441" y1="658.7188" y2="658.7188"/><line style="stroke:#181818;stroke-width:1.0;" x1="441" x2="441" y1="658.7188" y2="671.7188"/><line style="stroke:#181818;stroke-width:1.0;" x1="400" x2="441" y1="671.7188" y2="671.7188"/><polygon fill="#181818" points="410,667.7188,400,671.7188,410,675.7188,406,671.7188" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="406" y="653.6528">設定金額情報変更</text><polygon fill="#181818" points="191,681.7188,181,685.7188,191,689.7188,187,685.7188" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="185" x2="393" y1="685.7188" y2="685.7188"/><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="222" y1="714.8516" y2="714.8516"/><line style="stroke:#181818;stroke-width:1.0;" x1="222" x2="222" y1="714.8516" y2="727.8516"/><line style="stroke:#181818;stroke-width:1.0;" x1="181" x2="222" y1="727.8516" y2="727.8516"/><polygon fill="#181818" points="191,723.8516,181,727.8516,191,731.8516,187,727.8516" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="187" y="709.7856">サイト情報削除完了画面</text><polygon fill="#181818" points="158,752.9844,168,756.9844,158,760.9844,162,756.9844" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="164" y1="756.9844" y2="756.9844"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="36" y="751.9185">確認押下</text><polygon fill="#181818" points="377,782.1172,387,786.1172,377,790.1172,381,786.1172" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="383" y1="786.1172" y2="786.1172"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="111" x="187" y="781.0513">ユーザ情報取得API</text><polygon fill="#181818" points="191,796.1172,181,800.1172,191,804.1172,187,800.1172" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="185" x2="393" y1="800.1172" y2="800.1172"/><polygon fill="#181818" points="377,825.25,387,829.25,377,833.25,381,829.25" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="383" y1="829.25" y2="829.25"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="111" x="187" y="824.1841">サイト情報取得API</text><polygon fill="#181818" points="191,839.25,181,843.25,191,847.25,187,843.25" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="185" x2="393" y1="843.25" y2="843.25"/><line style="stroke:#181818;stroke-width:1.0;" x1="180" x2="222" y1="887.5156" y2="887.5156"/><line style="stroke:#181818;stroke-width:1.0;" x1="222" x2="222" y1="887.5156" y2="900.5156"/><line style="stroke:#181818;stroke-width:1.0;" x1="181" x2="222" y1="900.5156" y2="900.5156"/><polygon fill="#181818" points="191,896.5156,181,900.5156,191,904.5156,187,900.5156" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="195" x="187" y="867.3169">最初に登録したサイトに切り替え</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89" x="187" y="882.4497">HOME画面表示</text><!--MD5=[35729029e222c16ba43b445c3bfa2899]
+@startuml
+title サイト削除
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : サイト設定確認選択
+device -> device : サイト設定情報画面表示
+rnote right of device #SkyBlue
+    １つしかサイトない場合は「削除」非表示
+    サイトを削除する場合は解約させる
+end note
+user -> device : 「サイト削除」押下
+device -> device : サイト削除確認画面表示
+user -> device : 「確認」押下
+device -> device : サイト削除再確認画面表示
+user -> device : 削除押下
+device -> api ++ : サイト削除API
+api -> api : S3コンテンツ削除
+api -> api : Dynamo登録情報削除
+api -> api : CDNドメイン設定情報削除
+api -> api : 設定金額情報変更
+device <- api - -
+device -> device : サイト情報削除完了画面
+user -> device : 確認押下
+device -> api ++ : ユーザ情報取得API
+device <- api - -
+device -> api ++ : サイト情報取得API
+device <- api - -
+device -> device : 最初に登録したサイトに切り替え\nHOME画面表示
+@enduml
+
+@startuml
+title サイト削除
+
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : サイト設定確認選択
+device -> device : サイト設定情報画面表示
+rnote right of device #SkyBlue
+    １つしかサイトない場合は「削除」非表示
+    サイトを削除する場合は解約させる
+end note
+user -> device : 「サイト削除」押下
+device -> device : サイト削除確認画面表示
+user -> device : 「確認」押下
+device -> device : サイト削除再確認画面表示
+user -> device : 削除押下
+device -> api ++ : サイト削除API
+api -> api : S3コンテンツ削除
+api -> api : Dynamo登録情報削除
+api -> api : CDNドメイン設定情報削除
+api -> api : 設定金額情報変更
+device <- api - -
+device -> device : サイト情報削除完了画面
+user -> device : 確認押下
+device -> api ++ : ユーザ情報取得API
+device <- api - -
+device -> api ++ : サイト情報取得API
+device <- api - -
+device -> device : 最初に登録したサイトに切り替え\nHOME画面表示
+@enduml
+
+PlantUML version 1.2022.14beta4(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
