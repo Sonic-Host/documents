@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1131px" preserveAspectRatio="none" style="width:955px;height:1131px;background:#FFFFFF;" version="1.1" viewBox="0 0 955 1131" width="955px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="105" x="426.5" y="27.9951">コンテンツ取得</text><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="133" y="691.9453"/><rect fill="#FFFFFF" height="970.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="305" y="99.8906"/><rect fill="#FFFFFF" height="961.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="537" y="99.8906"/><rect fill="#FFFFFF" height="700.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="694" y="296.0859"/><rect fill="#FFFFFF" height="700.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="844" y="325.2188"/><rect fill="none" height="775.4531" style="stroke:#000000;stroke-width:1.5;" width="939" x="10" y="257.8203"/><rect fill="none" height="454.9922" style="stroke:#000000;stroke-width:1.5;" width="919" x="20" y="470.8828"/><rect fill="none" height="60.2656" style="stroke:#000000;stroke-width:1.5;" width="346" x="30" y="653.6797"/><rect fill="none" height="75.3984" style="stroke:#000000;stroke-width:1.5;" width="685" x="244" y="843.4766"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="138" x2="138" y1="89.8906" y2="1079.4063"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="310" x2="310" y1="89.8906" y2="1079.4063"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="542" x2="542" y1="89.8906" y2="1079.4063"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="699" x2="699" y1="89.8906" y2="1079.4063"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="849" x2="849" y1="89.8906" y2="1079.4063"/><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="196" x="40" y="42.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="47" y="62.292">配布用資材一時管理バケット</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="124" y="78.5889">(S3)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="196" x="40" y="1078.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="47" y="1098.4014">配布用資材一時管理バケット</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="28" x="124" y="1114.6982">(S3)</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112" x="254" y="58.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="261" y="78.5889">バッチサーバー</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="112" x="254" y="1078.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="98" x="261" y="1098.4014">バッチサーバー</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="154" x="465" y="42.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="472" y="62.292">サイト用インスタンス</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="511" y="78.5889">(Docker)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="154" x="465" y="1078.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="472" y="1098.4014">サイト用インスタンス</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="511" y="1114.6982">(Docker)</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="140" x="629" y="58.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="636" y="78.5889">ページ参照用キュー</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="140" x="629" y="1078.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="636" y="1098.4014">ページ参照用キュー</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="140" x="779" y="42.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="786" y="62.292">ページ参照用リスト</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="831.5" y="78.5889">(Set)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="140" x="779" y="1078.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="786" y="1098.4014">ページ参照用リスト</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="831.5" y="1114.6982">(Set)</text><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="133" y="691.9453"/><rect fill="#FFFFFF" height="970.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="305" y="99.8906"/><rect fill="#FFFFFF" height="961.5156" style="stroke:#181818;stroke-width:1.0;" width="10" x="537" y="99.8906"/><rect fill="#FFFFFF" height="700.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="694" y="296.0859"/><rect fill="#FFFFFF" height="700.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="844" y="325.2188"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="357" y1="121.0234" y2="121.0234"/><line style="stroke:#181818;stroke-width:1.0;" x1="357" x2="357" y1="121.0234" y2="134.0234"/><line style="stroke:#181818;stroke-width:1.0;" x1="316" x2="357" y1="134.0234" y2="134.0234"/><polygon fill="#181818" points="326,130.0234,316,134.0234,326,138.0234,322,134.0234" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="169" x="322" y="115.9575">デバイス情報のリストを作成</text><rect fill="#87CEEB" height="98" style="stroke:#181818;stroke-width:0.5;" width="333" x="320" y="147.0234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="325" x="324" y="163.0903">以下のユーザエージェントを持つデバイスでリスト作成</text><ellipse cx="329.5" cy="173.7891" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="17" x="336" y="178.2231">PC</text><ellipse cx="329.5" cy="188.9219" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="118" x="336" y="193.356">Android タブレット</text><ellipse cx="329.5" cy="204.0547" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="90" x="336" y="208.4888">iOS タブレット</text><ellipse cx="329.5" cy="219.1875" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="92" x="336" y="223.6216">Android スマホ</text><ellipse cx="329.5" cy="234.3203" fill="#000000" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:0.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="64" x="336" y="238.7544">iOS スマホ</text><path d="M10,257.8203 L88,257.8203 L88,264.9531 L78,274.9531 L10,274.9531 L10,257.8203 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="775.4531" style="stroke:#000000;stroke-width:1.5;" width="939" x="10" y="257.8203"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="25" y="270.8872">loop</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="164" x="103" y="270.0308">[デバイス情報のリストをループ]</text><polygon fill="#181818" points="682,292.0859,692,296.0859,682,300.0859,686,296.0859" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="688" y1="296.0859" y2="296.0859"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="322" y="291.02">ページ参照キュー生成</text><polygon fill="#181818" points="832,321.2188,842,325.2188,832,329.2188,836,325.2188" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="838" y1="325.2188" y2="325.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="322" y="320.1528">ページ参照リストを作成</text><polygon fill="#181818" points="682,350.3516,692,354.3516,682,358.3516,686,354.3516" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="688" y1="354.3516" y2="354.3516"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="322" y="349.2856">見開きページを登録</text><polygon fill="#181818" points="832,379.4844,842,383.4844,832,387.4844,836,383.4844" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="838" y1="383.4844" y2="383.4844"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="117" x="322" y="378.4185">見開きページを登録</text><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="357" y1="442.8828" y2="442.8828"/><line style="stroke:#181818;stroke-width:1.0;" x1="357" x2="357" y1="442.8828" y2="455.8828"/><line style="stroke:#181818;stroke-width:1.0;" x1="316" x2="357" y1="455.8828" y2="455.8828"/><polygon fill="#181818" points="326,451.8828,316,455.8828,326,459.8828,322,455.8828" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="322" y="407.5513">ヘッドレスブラウザ起動</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="88" x="322" y="422.6841">(タブ数：１０)</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="208" x="322" y="437.8169">ユーザエージェントはデバイス指定</text><path d="M20,470.8828 L98,470.8828 L98,478.0156 L88,488.0156 L20,488.0156 L20,470.8828 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="454.9922" style="stroke:#000000;stroke-width:1.5;" width="919" x="20" y="470.8828"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="33" x="35" y="483.9497">loop</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="175" x="113" y="483.0933">[キューのページ数が０になるまで]</text><polygon fill="#181818" points="682,505.1484,692,509.1484,682,513.1484,686,509.1484" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="688" y1="509.1484" y2="509.1484"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="322" y="504.0825">ページ情報要求</text><line style="stroke:#181818;stroke-width:1.0;" x1="704" x2="746" y1="553.4141" y2="553.4141"/><line style="stroke:#181818;stroke-width:1.0;" x1="746" x2="746" y1="553.4141" y2="566.4141"/><line style="stroke:#181818;stroke-width:1.0;" x1="705" x2="746" y1="566.4141" y2="566.4141"/><polygon fill="#181818" points="715,562.4141,705,566.4141,715,570.4141,711,566.4141" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="711" y="533.2153">ページ情報取得</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="711" y="548.3481">&amp;削除</text><polygon fill="#181818" points="326,591.5469,316,595.5469,326,599.5469,322,595.5469" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="320" x2="693" y1="595.5469" y2="595.5469"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65" x="332" y="590.481">ページ情報</text><polygon fill="#181818" points="525,620.6797,535,624.6797,525,628.6797,529,624.6797" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="531" y1="624.6797" y2="624.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="322" y="619.6138">ブラウザで表示</text><polygon fill="#181818" points="326,634.6797,316,638.6797,326,642.6797,322,638.6797" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="320" x2="536" y1="638.6797" y2="638.6797"/><path d="M30,653.6797 L96,653.6797 L96,660.8125 L86,670.8125 L30,670.8125 L30,653.6797 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="60.2656" style="stroke:#000000;stroke-width:1.5;" width="346" x="30" y="653.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="45" y="666.7466">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="254" x="111" y="665.8901">[取得した資材のURLがサイトドメインである場合]</text><polygon fill="#181818" points="154,687.9453,144,691.9453,154,695.9453,150,691.9453" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="148" x2="304" y1="691.9453" y2="691.9453"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="160" y="686.8794">取得した資材を全部格納</text><polygon fill="#181818" points="293,701.9453,303,705.9453,293,709.9453,297,705.9453" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="138" x2="299" y1="705.9453" y2="705.9453"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="357" y1="757.2109" y2="757.2109"/><line style="stroke:#181818;stroke-width:1.0;" x1="357" x2="357" y1="757.2109" y2="770.2109"/><line style="stroke:#181818;stroke-width:1.0;" x1="316" x2="357" y1="770.2109" y2="770.2109"/><polygon fill="#181818" points="326,766.2109,316,770.2109,326,774.2109,322,770.2109" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="65" x="322" y="737.0122">ページから</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="322" y="752.145">リンクを全抽出</text><polygon fill="#181818" points="832,795.3438,842,799.3438,832,803.3438,836,799.3438" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="838" y1="799.3438" y2="799.3438"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="234" x="322" y="794.2778">リストに該当のリンク先を存在チェック</text><polygon fill="#181818" points="326,824.4766,316,828.4766,326,832.4766,322,828.4766" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="320" x2="843" y1="828.4766" y2="828.4766"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="332" y="823.4106">存在チェック結果</text><path d="M244,843.4766 L310,843.4766 L310,850.6094 L300,860.6094 L244,860.6094 L244,843.4766 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="75.3984" style="stroke:#000000;stroke-width:1.5;" width="685" x="244" y="843.4766"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="259" y="856.5435">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="186" x="325" y="855.687">[リンク先がリストに存在しない場合]</text><polygon fill="#181818" points="682,877.7422,692,881.7422,682,885.7422,686,881.7422" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="688" y1="881.7422" y2="881.7422"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="322" y="876.6763">リンク先を登録</text><polygon fill="#181818" points="832,906.875,842,910.875,832,914.875,836,910.875" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="838" y1="910.875" y2="910.875"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="322" y="905.8091">リンク先を登録</text><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="357" y1="954.0078" y2="954.0078"/><line style="stroke:#181818;stroke-width:1.0;" x1="357" x2="357" y1="954.0078" y2="967.0078"/><line style="stroke:#181818;stroke-width:1.0;" x1="316" x2="357" y1="967.0078" y2="967.0078"/><polygon fill="#181818" points="326,963.0078,316,967.0078,326,971.0078,322,967.0078" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="322" y="948.9419">ヘッドレスブラウザ削除</text><polygon fill="#181818" points="687,992.1406,697,996.1406,687,1000.1406,691,996.1406" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="693" y1="996.1406" y2="996.1406"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="322" y="991.0747">ページ参照キューを削除</text><polygon fill="#181818" points="837,1021.2734,847,1025.2734,837,1029.2734,841,1025.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="843" y1="1025.2734" y2="1025.2734"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="143" x="322" y="1020.2075">ページ参照リストを削除</text><polygon fill="#181818" points="530,1057.4063,540,1061.4063,530,1065.4063,534,1061.4063" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="315" x2="536" y1="1061.4063" y2="1061.4063"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="322" y="1056.3403">Docker停止</text><!--MD5=[dea0df0c73aedbc397316be672804c04]
+@startuml
+title コンテンツ取得
+
+
+' アクター定義
+participant "配布用資材一時管理バケット\n(S3)" as tmp
+participant "バッチサーバー" as batch
+participant "サイト用インスタンス\n(Docker)" as docker
+participant "ページ参照用キュー" as  queue
+participant "ページ参照用リスト\n(Set)" as  set
+
+' 資材の取得
+activate batch
+activate docker
+batch -> batch : デバイス情報のリストを作成
+rnote right of batch #SkyBlue
+    以下のユーザエージェントを持つデバイスでリスト作成
+    * PC
+    * Android タブレット
+    * iOS タブレット
+    * Android スマホ
+    * iOS スマホ
+end note
+loop デバイス情報のリストをループ
+    batch -> queue  ++ : ページ参照キュー生成
+    batch -> set ++ : ページ参照リストを作成
+    batch -> queue : 見開きページを登録
+    batch -> set : 見開きページを登録
+    batch -> batch : ヘッドレスブラウザ起動\n(タブ数：１０)\nユーザエージェントはデバイス指定
+    loop キューのページ数が０になるまで
+        batch -> queue : ページ情報要求
+        queue -> queue : ページ情報取得\n&削除
+        batch <- queue : ページ情報
+        batch -> docker : ブラウザで表示
+        batch <- docker
+        alt  取得した資材のURLがサイトドメインである場合
+            batch -> tmp ++ : 取得した資材を全部格納
+            batch <- tmp - -
+        end
+        batch -> batch : ページから\nリンクを全抽出
+        batch -> set : リストに該当のリンク先を存在チェック
+        batch <- set : 存在チェック結果
+        alt リンク先がリストに存在しない場合
+            batch -> queue : リンク先を登録
+            batch -> set : リンク先を登録
+        end 
+    end
+    batch -> batch : ヘッドレスブラウザ削除
+    batch -> queue  : ページ参照キューを削除
+    deactivate queue
+    batch -> set  : ページ参照リストを削除
+    deactivate set
+end
+batch -> docker : Docker停止
+deactivate docker
+@enduml
+
+@startuml
+title コンテンツ取得
+
+
+participant "配布用資材一時管理バケット\n(S3)" as tmp
+participant "バッチサーバー" as batch
+participant "サイト用インスタンス\n(Docker)" as docker
+participant "ページ参照用キュー" as  queue
+participant "ページ参照用リスト\n(Set)" as  set
+
+activate batch
+activate docker
+batch -> batch : デバイス情報のリストを作成
+rnote right of batch #SkyBlue
+    以下のユーザエージェントを持つデバイスでリスト作成
+    * PC
+    * Android タブレット
+    * iOS タブレット
+    * Android スマホ
+    * iOS スマホ
+end note
+loop デバイス情報のリストをループ
+    batch -> queue  ++ : ページ参照キュー生成
+    batch -> set ++ : ページ参照リストを作成
+    batch -> queue : 見開きページを登録
+    batch -> set : 見開きページを登録
+    batch -> batch : ヘッドレスブラウザ起動\n(タブ数：１０)\nユーザエージェントはデバイス指定
+    loop キューのページ数が０になるまで
+        batch -> queue : ページ情報要求
+        queue -> queue : ページ情報取得\n&削除
+        batch <- queue : ページ情報
+        batch -> docker : ブラウザで表示
+        batch <- docker
+        alt  取得した資材のURLがサイトドメインである場合
+            batch -> tmp ++ : 取得した資材を全部格納
+            batch <- tmp - -
+        end
+        batch -> batch : ページから\nリンクを全抽出
+        batch -> set : リストに該当のリンク先を存在チェック
+        batch <- set : 存在チェック結果
+        alt リンク先がリストに存在しない場合
+            batch -> queue : リンク先を登録
+            batch -> set : リンク先を登録
+        end 
+    end
+    batch -> batch : ヘッドレスブラウザ削除
+    batch -> queue  : ページ参照キューを削除
+    deactivate queue
+    batch -> set  : ページ参照リストを削除
+    deactivate set
+end
+batch -> docker : Docker停止
+deactivate docker
+@enduml
+
+PlantUML version 1.2022.14beta4(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
