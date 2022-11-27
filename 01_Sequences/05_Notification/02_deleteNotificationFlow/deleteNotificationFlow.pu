@@ -1,0 +1,26 @@
+@startuml  お知らせ削除
+title お知らせ削除
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : お知らせアイコン押下
+device -> device : お知らせ一覧表示
+user -> device : お知らせ押下
+device -> device : お知らせ内容表示
+alt ユーザが未読のお知らせの場合
+    device -> api ++ : お知らせ既読API
+    device <- api --
+end
+user -> device : お知らせ削除押下
+device -> device : お知らせ削除確認画面表示
+user -> device : 削除押下
+device -> api ++ : お知らせ削除API
+device <- api --
+device -> device : お知らせ一覧画面表示

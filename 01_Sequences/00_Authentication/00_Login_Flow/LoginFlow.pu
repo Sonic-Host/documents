@@ -49,6 +49,7 @@ rnote right of device #SkyBlue
     ログイン直後は以下のAPIを打鍵してグローバルな情報を取り込む
     * ユーザ情報取得API
     * サイト情報取得API
+    * お知らせ一覧取得API
 end note 
 device -> cdn ++ : ユーザ情報取得API
 cdn -> api ++ 
@@ -56,6 +57,10 @@ cdn <- api --
 device <- cdn --
 device -> cdn ++ : サイト情報取得API
 cdn -> api ++
+cdn <- api --
+device <- cdn --
+device -> cdn ++ : お知らせ一覧取得API
+cdn -> api ++ 
 cdn <- api --
 device <- cdn -- 
 device -> cdn ++ : 規約チェックAPI

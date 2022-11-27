@@ -6,10 +6,7 @@ actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
 participant "Webサーバ" as site
 participant "認証基盤\n(Cognito)" as cognito
-participant "CDN\n(CloudFront)" as cdn
-participant "SPA資材格納\n(S3)" as spa
-participant "SonicHost API\n(API-Gateway)" as api
-
+participant "SonicHost\n(Lambda)" as lambda
 
 ' シーケンス
 ' Webサイト編
@@ -30,8 +27,16 @@ device -> cognito ++ : 承認によるリダイレクト
 device <-- cognito -- : ユーザ名・パスワード入力画面表示
 user -> device :ユーザ名・パスワード入力
 device -> cognito ++ : ユーザ名・パスワード登録依頼
-user <-- cognito -- : 登録完了画面
+cognito -> lambda ++ : ユーザ登録実行
+lambda -> lambda : お知らせ情報登録
+rnote right of lambda #SkyBlue  
+    有効期限内のお知らせを
+    ユーザごとのお知らせ一覧に登録
+    （DynamoDB）
+end note
+cognito <-- lambda --
 user -> device : 「早速使ってみる」を押下
+user <-- cognito -- : 登録完了画面
 
 rnote right of device #GreenYellow
     サイト追加フローを参照
