@@ -1,0 +1,98 @@
+@startuml  お問い合わせ
+title お問い合わせ
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+participant "バッチサーバ\n(CloudWatchとLambda?)" as batch
+
+participant "お問い合わせ管理テーブル\n(Dynamo)" as dynamo
+participant "管理画面" as adminApp
+actor "管理者" as adminUser
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : その他を選択
+device -> device : メニュー一覧画面を表示
+user -> device : お問い合わせを選択
+device -> device : お問い合わせ画面を表示
+user -> device : 新規お問い合わせを押下
+device -> device : お問い合わせ入力画面を表示
+user -> device : お問い合わせ内容を入力
+user -> device : 確認押下
+device -> device : お問い合わせ確認画面を表示
+user -> device : 送信を押下
+device -> api ++ : お問い合わせ送信API
+api -> dynamo ++ : お問い合わせを追加
+api <- dynamo --
+device <- api --
+device -> device : お問い合わせ送信完了画面を表示
+user -> device : 確認押下
+device -> device : お問い合わせ画面を表示
+
+== しばらく経過 ==
+
+adminUser -> adminApp ++ : 管理画面起動
+adminUser -> adminApp : ログイン＆お問い合わせ表示
+adminApp -> adminApp : お問い合わせ管理画面を表示
+adminUser -> adminApp : お問い合わせ選択
+adminApp -> adminApp : お問い合わせ詳細画面表示
+adminUser -> adminApp : お問い合わせ返信入力
+adminUser -> adminApp : 確認押下
+adminApp -> adminApp : お問い合わせ返信確認画面表示
+adminUser -> adminApp : 送信押下
+adminApp -> dynamo ++ : お問い合わせ返信追加
+adminApp <- dynamo -- 
+adminApp -> adminApp : お問い合わせ返信完了画面表示
+
+== しばらく経過 ==
+
+user -> device : お問い合わせ選択
+device -> device : お問い合わせ画面表示
+user -> device : お問い合わせ選択
+device -> device : お問い合わせ詳細画面表示
+alt 追加で返信したい場合
+    user -> device : 返信押下
+    device -> device : お問い合わせ入力画面表示
+    user -> device : 返信内容入力
+    user -> device : 確認ボタン押下
+    device -> device : お問い合わせ確認画面表示
+    user -> device : 送信ボタン押下
+    device -> api ++ : お問い合わせ送信API
+    api -> dynamo ++ : お問い合わせ返信追加
+    api <- dynamo -- 
+    device <- api --
+    device -> device : お問い合わせ送信完了画面表示
+    user -> device : 確認ボタン押下
+    device -> device : お問い合わせ画面表示
+else お問い合わせを完了する場合
+    user -> device : お問い合わせ完了押下
+    device -> device : お問い合わせ完了確認画面表示
+    rnote right of device #SkyBlue 
+        ここでお問い合わせの対応が
+        どうだったかの結果を入力させたい
+    end note
+    user -> device : 確認完了押下
+    device -> api ++ : お問い合わせ終了API送信
+    api -> dynamo ++ : お問い合わせ終了フラグON
+    api <- dynamo --
+    device <- api --
+    device -> device : お問い合わせ画面表示
+end
+
+== バッチ処理 ==
+rnote right of batch #SkyBlue
+    毎日実施されるバッチ処理
+end note
+activate batch
+batch -> dynamo ++ : 管理者が最後に送信した中から\n１週間経過したものを取得
+batch <- dynamo -- : 対象のお知らせ一覧
+batch -> batch : 一覧を全部完了済みに変更するデータを作成
+batch -> dynamo ++ : お知らせ一覧を全て完了済みに更新
+batch <- dynamo --
+batch -> dynamo ++ : 一覧に対して全部強制終了した\nメッセージを追加
+batch <- dynamo --
