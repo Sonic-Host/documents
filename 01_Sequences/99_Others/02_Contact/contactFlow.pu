@@ -6,6 +6,8 @@ actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
 participant "SonicHost API\n(CDN/API-Gateway)" as api
 
+participant "バッチサーバ\n(CloudWatchとLambda?)" as batch
+
 participant "お問い合わせ管理テーブル\n(Dynamo)" as dynamo
 participant "管理画面" as adminApp
 actor "管理者" as adminUser
@@ -81,3 +83,16 @@ else お問い合わせを完了する場合
     device <- api --
     device -> device : お問い合わせ画面表示
 end
+
+== バッチ処理 ==
+rnote right of batch #SkyBlue
+    毎日実施されるバッチ処理
+end note
+activate batch
+batch -> dynamo ++ : 管理者が最後に送信した中から\n１週間経過したものを取得
+batch <- dynamo -- : 対象のお知らせ一覧
+batch -> batch : 一覧を全部完了済みに変更するデータを作成
+batch -> dynamo ++ : お知らせ一覧を全て完了済みに更新
+batch <- dynamo --
+batch -> dynamo ++ : 一覧に対して全部強制終了した\nメッセージを追加
+batch <- dynamo --
