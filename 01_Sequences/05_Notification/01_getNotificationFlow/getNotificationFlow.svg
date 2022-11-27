@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1049px" preserveAspectRatio="none" style="width:841px;height:1049px;background:#FFFFFF;" version="1.1" viewBox="0 0 841 1049" width="841px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="90" x="377.25" y="27.9951">お知らせ取得</text><rect fill="#FFFFFF" height="436.5938" style="stroke:#181818;stroke-width:1.0;" width="10" x="183" y="523.1875"/><rect fill="#FFFFFF" height="105.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="336" y="585.4531"/><rect fill="#FFFFFF" height="57.1328" style="stroke:#181818;stroke-width:1.0;" width="10" x="336" y="886.6484"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="480.0547"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="662.8516"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="915.7813"/><rect fill="#FFFFFF" height="810.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="631.5" y="149.7266"/><rect fill="none" height="103.3984" style="stroke:#000000;stroke-width:1.5;" width="476" x="114.5" y="848.3828"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="29" x2="29" y1="118.5938" y2="968.7813"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="187.5" x2="187.5" y1="118.5938" y2="968.7813"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="340.5" x2="340.5" y1="118.5938" y2="968.7813"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="503.5" x2="503.5" y1="118.5938" y2="968.7813"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="636.5" x2="636.5" y1="118.5938" y2="968.7813"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="816.5" x2="816.5" y1="118.5938" y2="968.7813"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="5" y="115.292">ユーザ</text><ellipse cx="29" cy="50.7969" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M29,58.7969 L29,85.7969 M16,66.7969 L42,66.7969 M29,85.7969 L16,100.7969 M29,85.7969 L42,100.7969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="5" y="980.7764">ユーザ</text><ellipse cx="29" cy="992.5781" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M29,1000.5781 L29,1027.5781 M16,1008.5781 L42,1008.5781 M29,1027.5781 L16,1042.5781 M29,1027.5781 L42,1042.5781 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="127" x="124.5" y="71"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="132" y="90.9951">クライアント端末</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="131.5" y="107.292">(PCまたはスマホ)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="127" x="124.5" y="967.7813"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="132" y="987.7764">クライアント端末</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="131.5" y="1004.0732">(PCまたはスマホ)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="265.5" y="71"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="291.5" y="90.9951">SonicHost API</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="272.5" y="107.292">(CDN/API-Gateway)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="151" x="265.5" y="967.7813"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="291.5" y="987.7764">SonicHost API</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="272.5" y="1004.0732">(CDN/API-Gateway)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="154" x="426.5" y="71"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="433.5" y="90.9951">お知らせ管理テーブル</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="469" y="107.292">(Dynamo)</text><rect fill="#E2E2F0" height="46.5938" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="154" x="426.5" y="967.7813"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="433.5" y="987.7764">お知らせ管理テーブル</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="469" y="1004.0732">(Dynamo)</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="70" x="601.5" y="87.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="608.5" y="107.292">管理画面</text><rect fill="#E2E2F0" height="30.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="70" x="601.5" y="967.7813"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="56" x="608.5" y="987.7764">管理画面</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="792.5" y="115.292">管理者</text><ellipse cx="816.5" cy="50.7969" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M816.5,58.7969 L816.5,85.7969 M803.5,66.7969 L829.5,66.7969 M816.5,85.7969 L803.5,100.7969 M816.5,85.7969 L829.5,100.7969 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="792.5" y="980.7764">管理者</text><ellipse cx="816.5" cy="992.5781" fill="#E2E2F0" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M816.5,1000.5781 L816.5,1027.5781 M803.5,1008.5781 L829.5,1008.5781 M816.5,1027.5781 L803.5,1042.5781 M816.5,1027.5781 L829.5,1042.5781 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#FFFFFF" height="436.5938" style="stroke:#181818;stroke-width:1.0;" width="10" x="183" y="523.1875"/><rect fill="#FFFFFF" height="105.3984" style="stroke:#181818;stroke-width:1.0;" width="10" x="336" y="585.4531"/><rect fill="#FFFFFF" height="57.1328" style="stroke:#181818;stroke-width:1.0;" width="10" x="336" y="886.6484"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="480.0547"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="662.8516"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="498.5" y="915.7813"/><rect fill="#FFFFFF" height="810.0547" style="stroke:#181818;stroke-width:1.0;" width="10" x="631.5" y="149.7266"/><polygon fill="#181818" points="652.5,145.7266,642.5,149.7266,652.5,153.7266,648.5,149.7266" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="646.5" x2="815.5" y1="149.7266" y2="149.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="658.5" y="144.6606">管理画面表示</text><polygon fill="#181818" points="652.5,174.8594,642.5,178.8594,652.5,182.8594,648.5,178.8594" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="646.5" x2="815.5" y1="178.8594" y2="178.8594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="658.5" y="173.7935">ログイン</text><polygon fill="#181818" points="652.5,203.9922,642.5,207.9922,652.5,211.9922,648.5,207.9922" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="646.5" x2="815.5" y1="207.9922" y2="207.9922"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="658.5" y="202.9263">お知らせ管理選択</text><line style="stroke:#181818;stroke-width:1.0;" x1="641.5" x2="683.5" y1="237.125" y2="237.125"/><line style="stroke:#181818;stroke-width:1.0;" x1="683.5" x2="683.5" y1="237.125" y2="250.125"/><line style="stroke:#181818;stroke-width:1.0;" x1="642.5" x2="683.5" y1="250.125" y2="250.125"/><polygon fill="#181818" points="652.5,246.125,642.5,250.125,652.5,254.125,648.5,250.125" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="648.5" y="232.0591">お知らせ管理表示</text><polygon fill="#181818" points="652.5,275.2578,642.5,279.2578,652.5,283.2578,648.5,279.2578" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="646.5" x2="815.5" y1="279.2578" y2="279.2578"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="658.5" y="274.1919">お知らせ追加押下</text><line style="stroke:#181818;stroke-width:1.0;" x1="641.5" x2="683.5" y1="308.3906" y2="308.3906"/><line style="stroke:#181818;stroke-width:1.0;" x1="683.5" x2="683.5" y1="308.3906" y2="321.3906"/><line style="stroke:#181818;stroke-width:1.0;" x1="642.5" x2="683.5" y1="321.3906" y2="321.3906"/><polygon fill="#181818" points="652.5,317.3906,642.5,321.3906,652.5,325.3906,648.5,321.3906" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="648.5" y="303.3247">お知らせ追加画面表示</text><polygon fill="#181818" points="652.5,346.5234,642.5,350.5234,652.5,354.5234,648.5,350.5234" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="646.5" x2="815.5" y1="350.5234" y2="350.5234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="658.5" y="345.4575">お知らせ情報入力</text><polygon fill="#181818" points="652.5,375.6563,642.5,379.6563,652.5,383.6563,648.5,379.6563" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="646.5" x2="815.5" y1="379.6563" y2="379.6563"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="52" x="658.5" y="374.5903">確認押下</text><line style="stroke:#181818;stroke-width:1.0;" x1="641.5" x2="683.5" y1="408.7891" y2="408.7891"/><line style="stroke:#181818;stroke-width:1.0;" x1="683.5" x2="683.5" y1="408.7891" y2="421.7891"/><line style="stroke:#181818;stroke-width:1.0;" x1="642.5" x2="683.5" y1="421.7891" y2="421.7891"/><polygon fill="#181818" points="652.5,417.7891,642.5,421.7891,652.5,425.7891,648.5,421.7891" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="156" x="648.5" y="403.7231">お知らせ追加確認画面表示</text><polygon fill="#181818" points="652.5,446.9219,642.5,450.9219,652.5,454.9219,648.5,450.9219" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="646.5" x2="815.5" y1="450.9219" y2="450.9219"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="658.5" y="445.856">確認完了押下</text><polygon fill="#181818" points="519.5,476.0547,509.5,480.0547,519.5,484.0547,515.5,480.0547" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="513.5" x2="630.5" y1="480.0547" y2="480.0547"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="525.5" y="474.9888">お知らせ情報追加</text><polygon fill="#181818" points="619.5,490.0547,629.5,494.0547,619.5,498.0547,623.5,494.0547" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="503.5" x2="625.5" y1="494.0547" y2="494.0547"/><polygon fill="#181818" points="171,519.1875,181,523.1875,171,527.1875,175,523.1875" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="177" y1="523.1875" y2="523.1875"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="89" x="36" y="518.1216">HOME画面表示</text><rect fill="#ADFF2F" height="23" style="stroke:#181818;stroke-width:0.5;" width="138" x="198" y="536.1875"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="202" y="552.2544">ログインフローを参照</text><polygon fill="#181818" points="324,581.4531,334,585.4531,324,589.4531,328,585.4531" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="330" y1="585.4531" y2="585.4531"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="124" x="200" y="580.3872">お知らせ一覧取得API</text><rect fill="#87CEEB" height="38" style="stroke:#181818;stroke-width:0.5;" width="190" x="198" y="598.4531"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182" x="202" y="614.52">ＨＯＭＥ画面表示するたびに、</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="182" x="202" y="629.6528">お知らせ一覧取得ＡＰＩを打鍵</text><polygon fill="#181818" points="486.5,658.8516,496.5,662.8516,486.5,666.8516,490.5,662.8516" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="346" x2="492.5" y1="662.8516" y2="662.8516"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="353" y="657.7856">お知らせ一覧取得</text><polygon fill="#181818" points="357,672.8516,347,676.8516,357,680.8516,353,676.8516" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="351" x2="502.5" y1="676.8516" y2="676.8516"/><polygon fill="#181818" points="204,686.8516,194,690.8516,204,694.8516,200,690.8516" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="198" x2="340" y1="690.8516" y2="690.8516"/><polygon fill="#181818" points="171,715.9844,181,719.9844,171,723.9844,175,719.9844" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="177" y1="719.9844" y2="719.9844"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="36" y="714.9185">お知らせアイコン押下</text><line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="235" y1="749.1172" y2="749.1172"/><line style="stroke:#181818;stroke-width:1.0;" x1="235" x2="235" y1="749.1172" y2="762.1172"/><line style="stroke:#181818;stroke-width:1.0;" x1="194" x2="235" y1="762.1172" y2="762.1172"/><polygon fill="#181818" points="204,758.1172,194,762.1172,204,766.1172,200,762.1172" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="200" y="744.0513">お知らせ一覧表示</text><polygon fill="#181818" points="171,787.25,181,791.25,171,795.25,175,791.25" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="29" x2="177" y1="791.25" y2="791.25"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="36" y="786.1841">お知らせ押下</text><line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="235" y1="820.3828" y2="820.3828"/><line style="stroke:#181818;stroke-width:1.0;" x1="235" x2="235" y1="820.3828" y2="833.3828"/><line style="stroke:#181818;stroke-width:1.0;" x1="194" x2="235" y1="833.3828" y2="833.3828"/><polygon fill="#181818" points="204,829.3828,194,833.3828,204,837.3828,200,833.3828" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="200" y="815.3169">お知らせ内容表示</text><path d="M114.5,848.3828 L180.5,848.3828 L180.5,855.5156 L170.5,865.5156 L114.5,865.5156 L114.5,848.3828 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.5;"/><rect fill="none" height="103.3984" style="stroke:#000000;stroke-width:1.5;" width="476" x="114.5" y="848.3828"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="129.5" y="861.4497">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="164" x="195.5" y="860.5933">[ユーザが未読のお知らせの場合]</text><polygon fill="#181818" points="324,882.6484,334,886.6484,324,890.6484,328,886.6484" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="193" x2="330" y1="886.6484" y2="886.6484"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="200" y="881.5825">お知らせ既読API</text><polygon fill="#181818" points="486.5,911.7813,496.5,915.7813,486.5,919.7813,490.5,915.7813" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="346" x2="492.5" y1="915.7813" y2="915.7813"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="130" x="353" y="910.7153">お知らせを既読に変更</text><polygon fill="#181818" points="357,925.7813,347,929.7813,357,933.7813,353,929.7813" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="351" x2="502.5" y1="929.7813" y2="929.7813"/><polygon fill="#181818" points="204,939.7813,194,943.7813,204,947.7813,200,943.7813" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="198" x2="340" y1="943.7813" y2="943.7813"/><!--MD5=[f38ab2257008b150da02271095c7a364]
+@startuml
+title お知らせ取得
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+participant "お知らせ管理テーブル\n(Dynamo)" as dynamo
+participant "管理画面" as adminApp
+actor "管理者" as adminUser
+
+
+adminUser -> adminApp ++ : 管理画面表示
+adminUser -> adminApp : ログイン
+adminUser -> adminApp : お知らせ管理選択
+adminApp -> adminApp : お知らせ管理表示
+adminUser -> adminApp : お知らせ追加押下
+adminApp -> adminApp : お知らせ追加画面表示
+adminUser -> adminApp : お知らせ情報入力
+adminUser -> adminApp : 確認押下
+adminApp -> adminApp : お知らせ追加確認画面表示
+adminUser -> adminApp : 確認完了押下
+adminApp -> dynamo ++ : お知らせ情報追加
+adminApp <- dynamo - -
+
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+device -> api ++ : お知らせ一覧取得API 
+rnote right of device #SkyBlue
+    ＨＯＭＥ画面表示するたびに、
+    お知らせ一覧取得ＡＰＩを打鍵
+end note
+api -> dynamo ++ : お知らせ一覧取得
+api <- dynamo - -
+device <- api - -
+user -> device : お知らせアイコン押下
+device -> device : お知らせ一覧表示
+user -> device : お知らせ押下
+device -> device : お知らせ内容表示
+alt ユーザが未読のお知らせの場合
+    device -> api ++ : お知らせ既読API
+    api -> dynamo ++ : お知らせを既読に変更
+    api <- dynamo - -
+    device <- api - -
+end
+@enduml
+
+@startuml
+title お知らせ取得
+
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+participant "お知らせ管理テーブル\n(Dynamo)" as dynamo
+participant "管理画面" as adminApp
+actor "管理者" as adminUser
+
+
+adminUser -> adminApp ++ : 管理画面表示
+adminUser -> adminApp : ログイン
+adminUser -> adminApp : お知らせ管理選択
+adminApp -> adminApp : お知らせ管理表示
+adminUser -> adminApp : お知らせ追加押下
+adminApp -> adminApp : お知らせ追加画面表示
+adminUser -> adminApp : お知らせ情報入力
+adminUser -> adminApp : 確認押下
+adminApp -> adminApp : お知らせ追加確認画面表示
+adminUser -> adminApp : 確認完了押下
+adminApp -> dynamo ++ : お知らせ情報追加
+adminApp <- dynamo - -
+
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+device -> api ++ : お知らせ一覧取得API 
+rnote right of device #SkyBlue
+    ＨＯＭＥ画面表示するたびに、
+    お知らせ一覧取得ＡＰＩを打鍵
+end note
+api -> dynamo ++ : お知らせ一覧取得
+api <- dynamo - -
+device <- api - -
+user -> device : お知らせアイコン押下
+device -> device : お知らせ一覧表示
+user -> device : お知らせ押下
+device -> device : お知らせ内容表示
+alt ユーザが未読のお知らせの場合
+    device -> api ++ : お知らせ既読API
+    api -> dynamo ++ : お知らせを既読に変更
+    api <- dynamo - -
+    device <- api - -
+end
+@enduml
+
+PlantUML version 1.2022.14beta4(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
