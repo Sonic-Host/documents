@@ -73,5 +73,9 @@ alt サイト初回登録の場合
     user -> device : 「Homeへ進む」押下
 end 
 device -> device : HOME画面表示
+rnote right of device #SkyBlue
+    ネームサーバ設定確認中の場合は、
+    確認中であることをHOME画面委表示
+end note
 
 @enduml
