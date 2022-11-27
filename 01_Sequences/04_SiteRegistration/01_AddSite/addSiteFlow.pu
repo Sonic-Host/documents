@@ -4,14 +4,10 @@ title サイト追加
 ' アクター定義
 actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
-participant "Webサーバ" as site
-participant "認証基盤\n(Cognito)" as cognito
-participant "CDN\n(CloudFront)" as cdn
-participant "SPA資材格納\n(S3)" as spa
-participant "SonicHost API\n(API-Gateway)" as api
+participant "SonicHost API\n(CDN/API-Gateway)" as api
 
 
-user -> device : HOME画面表示
+user -> device ++: HOME画面表示
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
@@ -77,5 +73,9 @@ alt サイト初回登録の場合
     user -> device : 「Homeへ進む」押下
 end 
 device -> device : HOME画面表示
+rnote right of device #SkyBlue
+    ネームサーバ設定確認中の場合は、
+    確認中であることをHOME画面委表示
+end note
 
 @enduml
