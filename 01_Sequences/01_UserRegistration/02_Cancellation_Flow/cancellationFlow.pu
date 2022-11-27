@@ -1,0 +1,36 @@
+@startuml  サービス解約
+title サービス解約
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+participant "認証基盤\n(Cognito)" as cognito
+
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : ユーザアイコン押下
+device -> device : ユーザメニューを表示
+user -> device : 登録状況を押下
+device -> device : 登録状況画面表示
+user -> device : 解約押下
+device -> device : 解約画面表示
+user -> device : 解約押下
+device -> device : 解約注意画面表示
+user -> device : 「確認した上で解約」押下
+device -> api ++ : 解約API
+loop 登録サイト毎にループ
+    rnote right of api
+        サイト削除フローの
+        サイト削除APIを参考
+    end note
+end
+api -> api : ユーザ登録情報削除
+api -> cognito : ユーザ削除\n(トークン無効化)
+device <- api --
+device -> device : 解約完了画面表示
+user -> device : 「確認完了」押下
+device -> device : ログイン画面表示
