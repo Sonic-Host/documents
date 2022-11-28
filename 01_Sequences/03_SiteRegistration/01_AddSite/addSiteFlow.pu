@@ -11,9 +11,16 @@ user -> device ++: HOME画面表示
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
-user -> device : サイト追加選択
-
-device -> device : プラン選択画面表示
+alt サイト未登録の場合
+    device -> device : プラン選択画面表示
+else サイト登録済みの場合
+    device -> device : ＨＯＭＥ画面表示
+    user -> device : サイト設定確認選択
+    device -> device : サイト設定確認画面表示
+    user -> device : サイト追加押下
+    device -> device : サイト追加押下
+    device -> device : プラン選択画面表示
+end
 device -> api ++ : プラン情報取得API
 device <-- api -- : プラン情報
 user -> device : プラン選択
