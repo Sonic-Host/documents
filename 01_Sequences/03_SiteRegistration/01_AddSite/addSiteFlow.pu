@@ -62,7 +62,7 @@ else Sonic Hostサブドメイン方式の場合
     user -> device : サブドメイン入力
     user -> device : 「次へ」押下
 end 
-device -> device : サブドメインズ入力画面
+device -> device : サービスドメイン入力画面表示
 user -> device : サイトドメイン入力
 user -> device : メールドメイン入力
 user -> device : 「確認」押下
