@@ -29,7 +29,7 @@ opt ドメイン情報を変更したい場合
 else ドメイン以外の除法を更新したい場合
     user -> device : 変更したい項目を入力
     user -> device : 確認ボタンを押下
-    device -> device : サイト情報更新確認画面を表示
+    device -> device : サイト設定更新確認画面を表示
     user -> device : 確定ボタン押下
     device -> api ++ : サイト情報更新API
     device <- api --
