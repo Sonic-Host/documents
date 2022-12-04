@@ -65,14 +65,12 @@ api -> api  : サイト情報を一次登録
 api -> stripe ++ : Stripeで作成するProductsの登録
 api <-- stripe --
 device <-- api -- 
-device -> device : プラン選択画面表示
-device -> api ++ : プラン情報取得API
-device <-- api -- : プラン情報
-user -> device : プラン選択
-device -> api ++ : プラン登録API
-device <-- api -- 
+device -> device : 支払いプラン情報画面表示
+device -> api ++ : 支払いプラン情報取得API
+device <-- api -- : 支払いプラン情報
+user -> device : 支払い情報入力押下
 alt カード情報未入力の場合
-    device -> api ++ : プラン登録開始要求
+    device -> api ++ : 支払い情報登録開始要求
     api -> stripe ++ : プラン情報取得
     api <-- stripe -- : プラン情報
     api -> stripe ++ : セッション生成
