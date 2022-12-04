@@ -5,6 +5,7 @@ title サイト追加
 actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
 participant "SonicHost API\n(CDN/API-Gateway)" as api
+participant "決済サービス\n(Stripe)" as stripe
 
 
 user -> device ++: HOME画面表示
@@ -12,29 +13,15 @@ rnote right of device #GreenYellow
     ログインフローを参照
 end note
 alt サイト未登録の場合
-    device -> device : プラン選択画面表示
+    device -> device : サイト名入力画面表示
 else サイト登録済みの場合
     device -> device : ＨＯＭＥ画面表示
     user -> device : サイト設定確認選択
     device -> device : サイト設定確認画面表示
     user -> device : サイト追加押下
     device -> device : サイト追加押下
-    device -> device : プラン選択画面表示
+    device -> device : サイト名入力画面表示
 end
-device -> api ++ : プラン情報取得API
-device <-- api -- : プラン情報
-user -> device : プラン選択
-device -> api ++ : プラン登録API
-device <-- api -- 
-alt カード情報未入力の場合
-    device -> device : カード登録画面表示：Stripe
-    user -> device : カード情報入力
-    device -> api ++ : stripeAPI
-    device <-- api -- 
-    device -> device : 登録完了画面表示
-    user -> device : 「サイト情報登録」押下
-end 
-device -> device : サイト名入力画面表示
 user -> device : サイト名入力
 device -> device : ドメイン方式選択画面表示
 note right of device 
@@ -73,8 +60,47 @@ rnote right of device #SkyBlue
     押下すると今の画面に戻る
 end note
 user -> device : 「確定」押下
-device -> api ++ : サイト情報更新API
+device -> api ++ : サイト情報仮登録API
+api -> api  : サイト情報を一次登録
+api -> stripe ++ : Stripeで作成するProductsの登録
+api <-- stripe --
 device <-- api -- 
+device -> device : プラン選択画面表示
+device -> api ++ : プラン情報取得API
+device <-- api -- : プラン情報
+user -> device : プラン選択
+device -> api ++ : プラン登録API
+device <-- api -- 
+alt カード情報未入力の場合
+    device -> api ++ : プラン登録開始要求
+    api -> stripe ++ : プラン情報取得
+    api <-- stripe -- : プラン情報
+    api -> stripe ++ : セッション生成
+    api <-- stripe -- : セッション情報\n(セッションとリダイレクトURL)
+    device <-- api -- : リダイレクトURL\n(301)
+    device -> stripe ++ : リダイレクト
+    device <-- stripe -- : プラン登録画面表示
+    user -> device : カード情報入力
+    device -> stripe ++ : プラン登録API
+    device <-- stripe -- 
+    alt プラン登録に成功した場合
+        device -> api ++ : プラン登録結果API
+        api -> api : プラン結果登録\nカード情報（ID）登録
+        api -> api : 仮登録した内容を確定
+        device <-- api -- : 成功画面へのリダイレクト\n(301)
+        device -> device : 登録画面表示\n(実際にはCDNに対してリダイレクト)
+    else プラン登録に失敗した場合
+        device -> api ++ : プラン登録結果API\n(クエリパラメータで失敗を連携)
+        device <-- api -- : 失敗画面へのリダイレクト\n(301)
+        device -> device : 失敗画面表示
+        user -> device : 「再度プランを選択」を押下
+        device -> device : プラン登録画面表示
+        rnote right of device 
+            プラン登録へ戻る
+        end note
+    end 
+    user -> device : 「確認した」押下
+end 
 alt サイト初回登録の場合
     device -> device : Welcome画面表示
     user -> device : 「Homeへ進む」押下
