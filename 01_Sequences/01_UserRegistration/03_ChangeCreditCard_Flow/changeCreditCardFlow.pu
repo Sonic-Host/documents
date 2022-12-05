@@ -1,0 +1,31 @@
+@startuml  支払い方法変更
+title 支払い方法変更
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "決済サーバ\n(Stripe)" as stipe
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : ユーザアイコン押下
+device -> device : ユーザメニューを表示
+user -> device : 支払い方法を押下
+device -> device : Stripe遷移確認画面表示
+user -> device : 確認押下
+device -> stripe ++ : 支払い状況確認画面要求
+device <-- stripe -- : ログイン画面
+user -> device : メールアドレス入力
+device -> stripe ++ : 認証コード発行API
+stripe -> user : メールで認証コード送信
+device <-- stripe -- : 送信完了
+device -> device : 認証コード入力画面表示
+user -> device : 認証コード入力
+device -> stripe ++ : 認証コード検証
+device <-- stripe -- : 検証結果
+device -> device : 照会画面表示
+rnote right of device 
+    あとはStripeの画面に従って決済方法編集
+end note

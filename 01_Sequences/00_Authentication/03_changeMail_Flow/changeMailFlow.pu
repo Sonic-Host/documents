@@ -1,0 +1,28 @@
+@startuml  登録メールアドレス変更
+title 登録メールアドレス変更
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "認証基盤\n(Cognito)" as cognito
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : ユーザアイコン押下
+device -> device : ユーザメニューを表示
+user -> device : セキュリティ確認を押下
+device -> device : セキュリティ設定画面を表示
+user -> device : メールアドレス変更を押下
+device -> device : メールアドレス変更画面を表示 
+user -> device : 新メールアドレスを入力
+user -> device : 「送信」押下
+device -> cognito ++ : ユーザ情報更新API\n（updateUserAttributes）
+cognito -> user : 検証コード付きメールを送信
+device <- cognito --
+user -> device : 検証コード入力
+user -> device : 変更押下
+device -> device : メールアドレス変更完了画面表示
+user -> device : 確認完了押下
+device -> device : HOME画面表示
