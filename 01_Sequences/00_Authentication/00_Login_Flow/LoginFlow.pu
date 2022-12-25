@@ -18,9 +18,9 @@ cdn -> spa ++ : バンドル資材要求
 cdn <- spa --
 device <- cdn --
 device ->device : バンドル資材読み込み
-device -> cognito ++ : トークンチェック用公開鍵要求
-device <- cognito --
-device -> device: トークンチェック
+device -> cognito ++ :  リフレッシュトークンフロー
+device <-- cognito -- : トークン情報
+device -> device : トークンチェック
 ' トークンチェック
 alt トークン取得失敗 or トークンチェック失敗
     device -> device : ログイン画面表示
@@ -76,7 +76,7 @@ cdn <- api --
 device <- cdn --
 device -> device : 元々表示しようとしていた画面を表示
 alt 新規の規約未確認状態
-    device -> device : 規約画面表示\n全画面モーダル
+    device -> device : 規約画面表示\n強制再同意
     device -> cdn ++ : 規約情報取得
     cdn -> static ++ 
     cdn <- static --
@@ -87,7 +87,7 @@ alt 新規の規約未確認状態
     cdn -> api ++ 
     cdn <- api --
     device <- cdn --
-    device -> device : 規約画面のモーダルを閉じる
+    device -> device : 規約画面を閉じる
 end
 
 
