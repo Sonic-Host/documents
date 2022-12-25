@@ -20,7 +20,7 @@ user -> device : 新メールアドレスを入力
 user -> device : 「送信」押下
 device -> cognito ++ : ユーザ情報更新API\n（updateUserAttributes）
 cognito -> user : 検証コード付きメールを送信
-device <- cognito --
+device <-- cognito --
 user -> device : 検証コード入力
 user -> device : 変更押下
 device -> device : メールアドレス変更完了画面表示

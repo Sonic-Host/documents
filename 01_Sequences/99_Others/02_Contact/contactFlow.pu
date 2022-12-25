@@ -46,7 +46,7 @@ adminUser -> adminApp : 確認押下
 adminApp -> adminApp : お問い合わせ返信確認画面表示
 adminUser -> adminApp : 送信押下
 adminApp -> dynamo ++ : お問い合わせ返信追加
-adminApp <- dynamo -- 
+adminApp <-- dynamo -- 
 adminApp -> adminApp : お問い合わせ返信完了画面表示
 
 == しばらく経過 ==
@@ -64,8 +64,8 @@ alt 追加で返信したい場合
     user -> device : 送信ボタン押下
     device -> api ++ : お問い合わせ送信API
     api -> dynamo ++ : お問い合わせ返信追加
-    api <- dynamo -- 
-    device <- api --
+    api <-- dynamo -- 
+    device <-- api --
     device -> device : お問い合わせ送信完了画面表示
     user -> device : 確認ボタン押下
     device -> device : お問い合わせ画面表示
@@ -79,8 +79,8 @@ else お問い合わせを完了する場合
     user -> device : 確認完了押下
     device -> api ++ : お問い合わせ終了API送信
     api -> dynamo ++ : お問い合わせ終了フラグON
-    api <- dynamo --
-    device <- api --
+    api <-- dynamo --
+    device <-- api --
     device -> device : お問い合わせ画面表示
 end
 
@@ -90,9 +90,9 @@ rnote right of batch #SkyBlue
 end note
 activate batch
 batch -> dynamo ++ : 管理者が最後に送信した中から\n１週間経過したものを取得
-batch <- dynamo -- : 対象のお知らせ一覧
+batch <-- dynamo -- : 対象のお知らせ一覧
 batch -> batch : 一覧を全部完了済みに変更するデータを作成
 batch -> dynamo ++ : お知らせ一覧を全て完了済みに更新
-batch <- dynamo --
+batch <-- dynamo --
 batch -> dynamo ++ : 一覧に対して全部強制終了した\nメッセージを追加
-batch <- dynamo --
+batch <-- dynamo --

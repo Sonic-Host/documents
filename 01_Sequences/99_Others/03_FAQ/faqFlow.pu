@@ -19,7 +19,7 @@ adminUser -> adminApp : 確認ボタン押下
 adminApp -> adminApp : FAQ確認画面表示
 adminUser -> adminApp : 確定ボタンを押下
 adminApp -> dynamo ++ : FAQ追加
-adminApp <- dynamo --
+adminApp <-- dynamo --
 adminApp -> adminApp : FAQ追加完了画面表示
 
 user -> device ++: HOME画面表示
@@ -32,7 +32,7 @@ user -> device : FAQを選択
 device -> device : FAQ画面を表示
 device -> api ++ : FAQ一覧取得API打鍵
 api -> dynamo ++ : FAQ一覧取得
-api <- dynamo --
-device <- api --
+api <-- dynamo --
+device <-- api --
 user -> device : カテゴリを選択 or \n 検索
 device -> device : 結果を表示

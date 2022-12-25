@@ -15,4 +15,4 @@ device -> device : メニュー一覧画面を表示
 user -> device : 利用規約を選択
 device -> device : 利用規約画面を表示
 device -> cdn ++: 利用規約取得
-device <- cdn -- : 利用規約
+device <-- cdn -- : 利用規約

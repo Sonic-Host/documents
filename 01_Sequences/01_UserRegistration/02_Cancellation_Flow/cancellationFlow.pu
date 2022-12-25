@@ -30,7 +30,7 @@ loop 登録サイト毎にループ
 end
 api -> api : ユーザ登録情報削除
 api -> cognito : ユーザ削除\n(トークン無効化)
-device <- api --
+device <-- api --
 device -> device : 解約完了画面表示
 user -> device : 「確認完了」押下
 device -> device : ログイン画面表示

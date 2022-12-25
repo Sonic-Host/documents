@@ -18,11 +18,11 @@ device -> device : HOME画面を表示
 user -> device : ドラッグ＆ドロップ　or ファイル選択\n WordPressのBackUpファイル
 device -> cdn ++ : アップロード用一時認証取得API
 cdn -> api ++ 
-cdn <- api --
-device <- cdn -- : STS取得
+cdn <-- api --
+device <-- cdn -- : STS取得
 device -> s3 ++ : WordPressのバックアップファイルをアップロード
 s3 -> s3 : 資材保管\nサイトドメインごとにキーを設定
-device <- s3 --
+device <-- s3 --
 device -> device : アップロード完了モーダル表示
 user -> device : 「OK」押下
 device -> device : モーダル閉じる
