@@ -15,12 +15,12 @@ participant "静的コンテンツ格納\n(S3)" as static
 user -> device ++ : 管理画面起動
 device -> cdn ++
 cdn -> spa ++ : バンドル資材要求
-cdn <- spa --
+cdn <-- spa --
 device <- cdn --
 device ->device : バンドル資材読み込み
-device -> cognito ++ : トークンチェック用公開鍵要求
-device <- cognito --
-device -> device: トークンチェック
+device -> cognito ++ :  リフレッシュトークンフロー
+device <-- cognito -- : トークン情報
+device -> device : トークンチェック
 ' トークンチェック
 alt トークン取得失敗 or トークンチェック失敗
     device -> device : ログイン画面表示
@@ -40,7 +40,7 @@ alt トークン取得失敗 or トークンチェック失敗
     user -> device : ユーザ名・パスワード入力
     device -> cognito ++ : 認証(トークン発行依頼)\n(Responed to Auth Challenge)
     device -> cognito ++ : トークンチェック用公開鍵要求
-    device <- cognito --
+    device <-- cognito --
     device <-- cognito -- : トークン
     device -> device : トークンチェック
 end 
@@ -53,16 +53,16 @@ rnote right of device #SkyBlue
 end note 
 device -> cdn ++ : ユーザ情報取得API
 cdn -> api ++ 
-cdn <- api --
-device <- cdn --
+cdn <-- api --
+device <-- cdn --
 device -> cdn ++ : サイト情報取得API
 cdn -> api ++
-cdn <- api --
-device <- cdn --
+cdn <-- api --
+device <-- cdn --
 device -> cdn ++ : お知らせ一覧取得API
 cdn -> api ++ 
-cdn <- api --
-device <- cdn -- 
+cdn <-- api --
+device <-- cdn -- 
 device -> cdn ++ : 規約チェックAPI
 cdn -> api ++
 rnote right of cdn #SkyBlue
@@ -72,22 +72,22 @@ rnote right of cdn #SkyBlue
 end note
 api -> api : トークンチェック
 api -> api : ユーザの規約\n状態を確認
-cdn <- api --
-device <- cdn --
+cdn <-- api --
+device <-- cdn --
 device -> device : 元々表示しようとしていた画面を表示
 alt 新規の規約未確認状態
-    device -> device : 規約画面表示\n全画面モーダル
+    device -> device : 規約画面表示\n強制再同意
     device -> cdn ++ : 規約情報取得
     cdn -> static ++ 
-    cdn <- static --
-    device <- cdn --
+    cdn <-- static --
+    device <-- cdn --
     user -> device : 規約同意\nチェックボックス押下
     user -> device : 「確認した」ボタン押下
     device -> cdn ++ : 規約同意日時更新API
     cdn -> api ++ 
-    cdn <- api --
-    device <- cdn --
-    device -> device : 規約画面のモーダルを閉じる
+    cdn <-- api --
+    device <-- cdn --
+    device -> device : 規約画面を閉じる
 end
 
 

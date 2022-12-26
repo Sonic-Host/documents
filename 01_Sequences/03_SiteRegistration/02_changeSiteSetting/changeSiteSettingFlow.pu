@@ -6,32 +6,26 @@ actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
 participant "SonicHost API\n(CDN/API-Gateway)" as api
 
-user -> device ++: HOME画面表示
+user -> device ++: コンテンツ更新画面表示
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
-user -> device : サイト設定確認選択
-device -> device : サイト設定情報画面表示
-user -> device : 「更新」押下
-device -> device : サイト設定更新画面表示
+user -> device : サイト情報選択\nサイドメニューより選択
+device -> device : サイト設定確認画面表示
 
 opt ドメイン情報を変更したい場合
     user -> device : ドメイン変更を押下
     device -> api ++ : ドメイン情報取得API
-    device <- api --
+    device <-- api --
     device -> device : ドメイン変更画面を表示
     user -> device : 変更したい項目を入力
-    user -> device : 確認ボタン押下
-    device -> device : ドメイン変更確認画面表示
-    user -> device : 確定ボタン押下
+    user -> device : 変更ボタン押下
     device -> api ++ : ドメイン情報更新API
-    device <- api --
-else ドメイン以外の除法を更新したい場合
+    device <-- api --
+else ドメイン以外の情報を更新したい場合
     user -> device : 変更したい項目を入力
-    user -> device : 確認ボタンを押下
-    device -> device : サイト設定更新確認画面を表示
-    user -> device : 確定ボタン押下
+    user -> device : 変更ボタン押下
     device -> api ++ : サイト情報更新API
-    device <- api --
+    device <-- api --
 end
-device -> device : サイト設定情報画面表示
+device -> device : サイト設定確認画面表示

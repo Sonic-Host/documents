@@ -11,11 +11,11 @@ participant "CDN\n(CloudFront or CloudFlare)" as cdn
 ' 本番適用
 activate batch
 batch -> tmp ++ : 全資材取得
-batch <- tmp --
+batch <-- tmp --
 batch -> static ++ : 取得した資材を保管
-batch <- static --
+batch <-- static --
 batch -> tmp : 全資材削除
 batch -> cdn ++ : キャッシュクリア
-batch <- cdn --
+batch <-- cdn --
 
 @enduml

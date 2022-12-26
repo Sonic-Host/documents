@@ -11,13 +11,13 @@ participant "SonicHost\n(Lambda)" as lambda
 ' シーケンス
 ' Webサイト編
 user -> device ++ 
-device -> site ++ : サイト参照
-device <-- site -- : サイト表示
+device -> site ++ : 広告サイト参照
+device <-- site -- : 広告サイト表示
 user -> device : 「登録」押下
 
 ' Cognito登録編（ユーザ登録）
 device -> cognito ++ : ユーザ登録画面要求
-device <-- cognito -- : 登録画面表示\nメールアドレス入力画面
+device <-- cognito -- : 登録画面表示\nユーザ登録用メール入力
 user -> device : メールアドレス入力
 user -> device : 「メール送信」押下
 device -> cognito ++ : メール送信依頼
@@ -36,7 +36,7 @@ rnote right of lambda #SkyBlue
 end note
 cognito <-- lambda --
 user -> device : 「早速使ってみる」を押下
-user <-- cognito -- : 登録完了画面
+user <-- cognito -- : ユーザ登録完了画面
 
 rnote right of device #GreenYellow
     サイト追加フローを参照

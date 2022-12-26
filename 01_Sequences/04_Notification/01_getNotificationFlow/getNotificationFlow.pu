@@ -22,28 +22,24 @@ adminUser -> adminApp : 確認押下
 adminApp -> adminApp : お知らせ追加確認画面表示
 adminUser -> adminApp : 確認完了押下
 adminApp -> dynamo ++ : お知らせ情報追加
-adminApp <- dynamo --
+adminApp <-- dynamo --
 
 
-user -> device ++: HOME画面表示
+user -> device ++: コンテンツ更新画面表示
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
-device -> api ++ : お知らせ一覧取得API 
-rnote right of device #SkyBlue
-    ＨＯＭＥ画面表示するたびに、
-    お知らせ一覧取得ＡＰＩを打鍵
-end note
-api -> dynamo ++ : お知らせ一覧取得
-api <- dynamo --
-device <- api --
 user -> device : お知らせアイコン押下
 device -> device : お知らせ一覧表示
+device -> api ++ : お知らせ一覧取得API
+api -> dynamo ++ : お知らせ一覧取得
+api <-- dynamo --
+device <-- api --
 user -> device : お知らせ押下
-device -> device : お知らせ内容表示
+device -> device : お知らせ内容表示\n(アコーディオン表示)
 alt ユーザが未読のお知らせの場合
     device -> api ++ : お知らせ既読API
     api -> dynamo ++ : お知らせを既読に変更
-    api <- dynamo --
-    device <- api --
+    api <-- dynamo --
+    device <-- api --
 end

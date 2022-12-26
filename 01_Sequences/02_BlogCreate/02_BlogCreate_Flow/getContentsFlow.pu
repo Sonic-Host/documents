@@ -30,16 +30,16 @@ loop デバイス情報のリストをループ
     loop キューのページ数が０になるまで
         batch -> queue : ページ情報要求
         queue -> queue : ページ情報取得\n&削除
-        batch <- queue : ページ情報
+        batch <-- queue : ページ情報
         batch -> docker : ブラウザで表示
-        batch <- docker
+        batch <-- docker
         alt  取得した資材のURLがサイトドメインである場合
             batch -> tmp ++ : 取得した資材を全部格納
-            batch <- tmp --
+            batch <-- tmp --
         end
         batch -> batch : ページから\nリンクを全抽出
         batch -> set : リストに該当のリンク先を存在チェック
-        batch <- set : 存在チェック結果
+        batch <-- set : 存在チェック結果
         alt リンク先がリストに存在しない場合
             batch -> queue : リンク先を登録
             batch -> set : リンク先を登録

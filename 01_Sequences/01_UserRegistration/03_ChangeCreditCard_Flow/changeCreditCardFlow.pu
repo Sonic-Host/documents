@@ -12,11 +12,11 @@ rnote right of device #GreenYellow
 end note
 user -> device : ユーザアイコン押下
 device -> device : ユーザメニューを表示
-user -> device : 支払い方法を押下
-device -> device : Stripe遷移確認画面表示
-user -> device : 確認押下
+user -> device : ユーザ登録状況を押下
+device -> device : ユーザ登録状況画面を表示
+user -> device : クレジットカードの登録状況押下
 device -> stripe ++ : 支払い状況確認画面要求
-device <-- stripe -- : ログイン画面
+device <-- stripe ++-- : ログイン画面
 user -> device : メールアドレス入力
 device -> stripe ++ : 認証コード発行API
 stripe -> user : メールで認証コード送信

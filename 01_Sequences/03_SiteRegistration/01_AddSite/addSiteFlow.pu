@@ -8,22 +8,20 @@ participant "SonicHost API\n(CDN/API-Gateway)" as api
 participant "決済サービス\n(Stripe)" as stripe
 
 
-user -> device ++: HOME画面表示
+user -> device ++: コンテンツ更新画面表示
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
 alt サイト未登録の場合
-    device -> device : サイト名入力画面表示
+    device -> device : サイト情報入力画面表示
 else サイト登録済みの場合
-    device -> device : ＨＯＭＥ画面表示
-    user -> device : サイト設定確認選択
-    device -> device : サイト設定確認画面表示
-    user -> device : サイト追加押下
-    device -> device : サイト追加押下
-    device -> device : サイト名入力画面表示
+    device -> device : コンテンツ更新画面表示
+    user -> device : ユーザメニュー押下
+    user -> device : サイトを追加押下
+    device -> device : サイト情報入力画面表示
 end
 user -> device : サイト名入力
-device -> device : ドメイン方式選択画面表示
+user -> device : ドメイン方式選択
 note right of device 
     ドメイン方式は以下から選択
     * 自分で取得したドメイン
@@ -31,37 +29,22 @@ note right of device
     金額かえる？
     なら、カード入力のタイミング考慮要
 end note
-user -> device : ドメイン方式選択
 alt 自前ドメイン方式の場合
-    device -> device :ドメイン入力画面表示
     user -> device : ドメイン名入力
-    user -> device : 「確定」押下
-    device -> api ++ : ドメイン仮登録API
-    device <-- api -- 
-    device -> device : ネームサーバ表示画面
-    user -> device : 確認
-    user -> device : 「次へ」押下
 else Sonic Hostサブドメイン方式の場合
     device -> api ++ : ドメイン一覧取得API
     device <-- api -- 
-    device -> device : ドメイン選択・入力画面表示
     user -> device : ドメイン選択
     user -> device : サブドメイン入力
-    user -> device : 「次へ」押下
 end 
-device -> device : サービスドメイン入力画面表示
 user -> device : サイトドメイン入力
 user -> device : メールドメイン入力
-user -> device : 「確認」押下
+user -> device : 「確認へ」押下
 device -> device : 入力内容確認画面表示
-rnote right of device #SkyBlue
-    変更したい項目があれば「変更」ボタンを押下。
-    外套の変更画面に遷移し、「確認」ボタンを
-    押下すると今の画面に戻る
-end note
-user -> device : 「確定」押下
+
+user -> device : 「確定して次へ」押下
 device -> api ++ : サイト情報仮登録API
-api -> api  : サイト情報を一次登録
+api -> api  : サイト情報を一時登録
 api -> stripe ++ : Stripeで作成するProductsの登録
 api <-- stripe --
 device <-- api -- 
@@ -76,7 +59,7 @@ api -> stripe ++ : セッション生成
 api <-- stripe -- : セッション情報\n(セッションとリダイレクトURL)
 device <-- api -- : リダイレクトURL\n(301)
 device -> stripe ++ : リダイレクト
-device <-- stripe -- : プラン登録画面表示
+device <-- stripe ++-- : プラン登録画面表示
 user -> device : カード情報入力
 device -> stripe ++ : プラン登録API
 device <-- stripe -- 
@@ -97,15 +80,10 @@ else プラン登録に失敗した場合
     end note
 end 
 user -> device : 「確認した」押下
-
-alt サイト初回登録の場合
-    device -> device : Welcome画面表示
-    user -> device : 「Homeへ進む」押下
-end 
-device -> device : HOME画面表示
+device -> device : コンテンツ更新画面表示
 rnote right of device #SkyBlue
     ネームサーバ設定確認中の場合は、
-    確認中であることをHOME画面委表示
+    確認中であることをコンテンツ更新画面で表示
 end note
 
 @enduml
