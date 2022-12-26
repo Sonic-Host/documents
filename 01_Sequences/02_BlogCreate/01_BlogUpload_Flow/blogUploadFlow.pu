@@ -14,7 +14,7 @@ user -> device ++ : HOME画面を起動
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
-device -> device : HOME画面を表示
+device -> device : コンテンツ更新画面を表示
 user -> device : ドラッグ＆ドロップ　or ファイル選択\n WordPressのBackUpファイル
 device -> cdn ++ : アップロード用一時認証取得API
 cdn -> api ++ 
@@ -23,9 +23,7 @@ device <-- cdn -- : STS取得
 device -> s3 ++ : WordPressのバックアップファイルをアップロード
 s3 -> s3 : 資材保管\nサイトドメインごとにキーを設定
 device <-- s3 --
-device -> device : アップロード完了モーダル表示
-user -> device : 「OK」押下
-device -> device : モーダル閉じる
+device -> device : アップロード完了メッセージ表示
 rnote right of device #GreenYellow
     続きのバッチ処理は
     ブログ生成フローを参照

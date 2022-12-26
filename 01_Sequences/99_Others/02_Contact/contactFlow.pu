@@ -12,26 +12,24 @@ participant "お問い合わせ管理テーブル\n(Dynamo)" as dynamo
 participant "管理画面" as adminApp
 actor "管理者" as adminUser
 
-user -> device ++: HOME画面表示
+user -> device ++: コンテンツ更新画面表示
 rnote right of device #GreenYellow
     ログインフローを参照
 end note
-user -> device : その他を選択
-device -> device : メニュー一覧画面を表示
-user -> device : お問い合わせを選択
+user -> device : 設定・その他を選択\nサイドメニューより
+device -> device : 設定・その他画面を表示
+user -> device : お問い合わせへ遷移を選択
 device -> device : お問い合わせ画面を表示
-user -> device : 新規お問い合わせを押下
+user -> device : お問い合わせを追加を押下
 device -> device : お問い合わせ入力画面を表示
-user -> device : お問い合わせ内容を入力
-user -> device : 確認押下
-device -> device : お問い合わせ確認画面を表示
-user -> device : 送信を押下
+user -> device : 問い合わせカテゴリ\nお問い合わせ内容を入力
+user -> device : 送信押下
 device -> api ++ : お問い合わせ送信API
 api -> dynamo ++ : お問い合わせを追加
 api <- dynamo --
 device <- api --
-device -> device : お問い合わせ送信完了画面を表示
-user -> device : 確認押下
+device -> device : お問い合わせ詳細画面を表示
+user -> device : 戻る押下
 device -> device : お問い合わせ画面を表示
 
 == しばらく経過 ==
@@ -54,29 +52,25 @@ adminApp -> adminApp : お問い合わせ返信完了画面表示
 user -> device : お問い合わせ選択
 device -> device : お問い合わせ画面表示
 user -> device : お問い合わせ選択
-device -> device : お問い合わせ詳細画面表示
+device -> device : お問い合わせ詳細表示\n(アコーディオン開く)
 alt 追加で返信したい場合
-    user -> device : 返信押下
-    device -> device : お問い合わせ入力画面表示
-    user -> device : 返信内容入力
-    user -> device : 確認ボタン押下
-    device -> device : お問い合わせ確認画面表示
+    user -> device : 全部見る押下
+    device -> device : お問い合わせ詳細画面表示
+    user -> device : 返信する押下
+    user -> device : 返信内容入力   
     user -> device : 送信ボタン押下
     device -> api ++ : お問い合わせ送信API
     api -> dynamo ++ : お問い合わせ返信追加
     api <-- dynamo -- 
     device <-- api --
-    device -> device : お問い合わせ送信完了画面表示
-    user -> device : 確認ボタン押下
-    device -> device : お問い合わせ画面表示
-else お問い合わせを完了する場合
-    user -> device : お問い合わせ完了押下
-    device -> device : お問い合わせ完了確認画面表示
+else お問い合わせを削除する場合
+    user -> device : 削除押下
+    device -> device : お問い合わせ削除確認画面表示
     rnote right of device #SkyBlue 
-        ここでお問い合わせの対応が
+        どこかでお問い合わせの対応が
         どうだったかの結果を入力させたい
     end note
-    user -> device : 確認完了押下
+    user -> device : OK押下
     device -> api ++ : お問い合わせ終了API送信
     api -> dynamo ++ : お問い合わせ終了フラグON
     api <-- dynamo --
