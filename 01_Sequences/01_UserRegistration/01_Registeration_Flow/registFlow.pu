@@ -1,0 +1,47 @@
+@startuml  会員登録フロー
+title 会員登録フロー
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "Webサーバ" as site
+participant "認証基盤\n(Cognito)" as cognito
+participant "SonicHost\n(Lambda)" as lambda
+
+' シーケンス
+' Webサイト編
+user -> device ++ 
+device -> site ++ : 広告サイト参照
+device <-- site -- : 広告サイト表示
+user -> device : 「登録」押下
+
+' Cognito登録編（ユーザ登録）
+device -> cognito ++ : ユーザ登録画面要求
+device <-- cognito -- : 登録画面表示\nユーザ登録用メール入力
+user -> device : メールアドレス入力
+user -> device : 「メール送信」押下
+device -> cognito ++ : メール送信依頼
+device <-- cognito -- : メール送信
+user -> device : メール承認
+device -> cognito ++ : 承認によるリダイレクト
+device <-- cognito -- : ユーザ名・パスワード入力画面表示
+user -> device :ユーザ名・パスワード入力
+device -> cognito ++ : ユーザ名・パスワード登録依頼
+cognito -> lambda ++ : ユーザ登録実行
+lambda -> lambda : お知らせ情報登録
+rnote right of lambda #SkyBlue  
+    有効期限内のお知らせを
+    ユーザごとのお知らせ一覧に登録
+    （DynamoDB）
+end note
+cognito <-- lambda --
+user -> device : 「早速使ってみる」を押下
+user <-- cognito -- : ユーザ登録完了画面
+
+rnote right of device #GreenYellow
+    サイト追加フローを参照
+    ログイン周りの処理もここで実施
+end note
+
+
+@enduml

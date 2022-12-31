@@ -1,0 +1,61 @@
+@startuml コンテンツ最適化
+title コンテンツ最適化
+
+
+' アクター定義
+participant "配布用資材一時管理バケット\n(S3)" as tmp
+participant "バッチサーバー" as batch
+participant "バッチ設定テーブル\n(Dynamo)" as batchSeting
+
+' 最適化
+activate batch
+batch -> batchSeting ++ : バッチ設定情報取得
+batch <-- batchSeting
+rnote right of batch #Yellow
+    以下の情報を返却
+    * CSS削除設定
+    * 画像圧縮設定
+    * HTML/CSS圧縮設定
+end note
+loop  デバイス毎にループ
+    rnote right of batch #SkyBlue
+    以下のデバイス毎にループするイメージ
+    * PC
+    * Android タブレット
+    * iOS タブレット
+    * Android スマホ
+    * iOS スマホ
+    end note
+    alt CSS削除設定ありの場合
+        batch -> tmp ++ : HTML/CSSを全要求
+        batch <-- tmp --
+        batch -> batch : PurgeCSSにより\n不要なCSSを削除
+        batch -> tmp ++ : HTML/CSSを置き換え
+        batch <-- tmp --
+    end 
+    alt 画像圧縮設定ありの場合
+        batch -> tmp ++ : 画像を全要求
+        batch <-- tmp --
+        batch -> batch : 〇〇により、\n画像を圧縮
+        batch -> tmp ++ : 画像を置き換え
+        batch <-- tmp --
+    end 
+    alt HTML/CSS圧縮設定
+    rnote right of batch #SkyBlue
+        これはそもそも実現可能か不明
+    end note
+    batch -> tmp ++ : HTML/CSSを全要求
+    batch <-- tmp --
+    batch -> batch : 〇〇により\nHTML/CSSのクラス属性をminify
+    batch -> batch : 〇〇により\nHTML/CSSの改行等削除
+    batch -> tmp ++ : HTML/CSSを置き換え
+    batch <-- tmp --
+    end 
+    batch -> tmp ++ : 全資材を取得
+    batch <-- tmp --
+    batch -> tmp : 全資材削除(デバイス単位なのに注意)
+    batch -> static ++ : 取得した資材をアップロード
+    batch <-- static --
+end
+
+@enduml

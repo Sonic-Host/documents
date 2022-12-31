@@ -1,0 +1,89 @@
+@startuml  サイト追加
+title サイト追加
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+participant "決済サービス\n(Stripe)" as stripe
+
+
+user -> device ++: コンテンツ更新画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+alt サイト未登録の場合
+    device -> device : サイト情報入力画面表示
+else サイト登録済みの場合
+    device -> device : コンテンツ更新画面表示
+    user -> device : ユーザメニュー押下
+    user -> device : サイトを追加押下
+    device -> device : サイト情報入力画面表示
+end
+user -> device : サイト名入力
+user -> device : ドメイン方式選択
+note right of device 
+    ドメイン方式は以下から選択
+    * 自分で取得したドメイン
+    * Sonic Host提供のサブドメイン
+    金額かえる？
+    なら、カード入力のタイミング考慮要
+end note
+alt 自前ドメイン方式の場合
+    user -> device : ドメイン名入力
+else Sonic Hostサブドメイン方式の場合
+    device -> api ++ : ドメイン一覧取得API
+    device <-- api -- 
+    user -> device : ドメイン選択
+    user -> device : サブドメイン入力
+end 
+user -> device : サイトドメイン入力
+user -> device : メールドメイン入力
+user -> device : 「確認へ」押下
+device -> device : 入力内容確認画面表示
+
+user -> device : 「確定して次へ」押下
+device -> api ++ : サイト情報仮登録API
+api -> api  : サイト情報を一時登録
+api -> stripe ++ : Stripeで作成するProductsの登録
+api <-- stripe --
+device <-- api -- 
+device -> device : 支払いプラン情報画面表示
+device -> api ++ : 支払いプラン情報取得API
+device <-- api -- : 支払いプラン情報
+user -> device : 支払い情報入力押下
+device -> api ++ : 支払い情報登録開始要求
+api -> stripe ++ : プラン情報取得
+api <-- stripe -- : プラン情報
+api -> stripe ++ : セッション生成
+api <-- stripe -- : セッション情報\n(セッションとリダイレクトURL)
+device <-- api -- : リダイレクトURL\n(301)
+device -> stripe ++ : リダイレクト
+device <-- stripe ++-- : プラン登録画面表示
+user -> device : カード情報入力
+device -> stripe ++ : プラン登録API
+device <-- stripe -- 
+alt プラン登録に成功した場合
+    device -> api ++ : プラン登録結果API
+    api -> api : プラン結果登録\nカード情報（ID）登録
+    api -> api : 仮登録した内容を確定
+    device <-- api -- : 成功画面へのリダイレクト\n(301)
+    device -> device : プラン登録成功画面表示\n(実際にはCDNに対してリダイレクト)
+else プラン登録に失敗した場合
+    device -> api ++ : プラン登録結果API\n(クエリパラメータで失敗を連携)
+    device <-- api -- : 失敗画面へのリダイレクト\n(301)
+    device -> device : プラン登録失敗画面表示
+    user -> device : 「再度プランを選択」を押下
+    device -> device : プラン登録画面表示
+    rnote right of device 
+        プラン登録へ戻る
+    end note
+end 
+user -> device : 「確認した」押下
+device -> device : コンテンツ更新画面表示
+rnote right of device #SkyBlue
+    ネームサーバ設定確認中の場合は、
+    確認中であることをコンテンツ更新画面で表示
+end note
+
+@enduml

@@ -7,10 +7,10 @@
 
 - シーケンス図（PlantUML）
 - API 仕様書（Swagger）
-- 画面遷移図（Figma）
+- 画面遷移図（draw.io）
 - AWS 構成図（draw.io を予定）
 
-## シーケンス図について
+## シーケンス図
 
 PlantUML については [workFlow](./.github/workflows/plantuml-diagram.yaml) で自動的に SVG が作成される。
 そのため、下記にて記載される手順にてシーケンスを作成することが推奨される。
@@ -26,3 +26,12 @@ PlantUML については [workFlow](./.github/workflows/plantuml-diagram.yaml) �
 ### サンプル
 
 会員登録フローのサンプルは[こちら](./01_Sequences/01_Registeration_Flow/Readme.md)を参照
+
+## 画面遷移図
+
+[draw.io](https://app.diagrams.net/)で作成した SVG ファイルを画面遷移図とする。  
+生成した SVG ファイルを Readme に貼り付けることで Github 上でも参照可能にする。
+
+### サンプル
+
+クライアントアプリの画面遷移図は[こちら](./02_screenTransition/01_clientApplication/Readme.md)

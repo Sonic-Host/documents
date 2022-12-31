@@ -1,0 +1,18 @@
+@startuml  利用規約表示フロー
+title 利用規約表示フロー
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "CDN\n(CloudFront)" as cdn
+
+user -> device ++: コンテンツ画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : 設定・その他を選択\n(サイドメニューより)
+device -> device : 画面を表示
+user -> device : 規約へ遷移選択
+device -> device : 利用規約画面を表示
+device -> cdn ++: 利用規約取得
+device <-- cdn -- : 利用規約

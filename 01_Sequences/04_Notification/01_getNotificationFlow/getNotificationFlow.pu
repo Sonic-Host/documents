@@ -1,0 +1,45 @@
+@startuml  お知らせ取得
+title お知らせ取得
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+participant "お知らせ管理テーブル\n(Dynamo)" as dynamo
+participant "管理画面" as adminApp
+actor "管理者" as adminUser
+
+
+adminUser -> adminApp ++ : 管理画面表示
+adminUser -> adminApp : ログイン
+adminUser -> adminApp : お知らせ管理選択
+adminApp -> adminApp : お知らせ管理表示
+adminUser -> adminApp : お知らせ追加押下
+adminApp -> adminApp : お知らせ追加画面表示
+adminUser -> adminApp : お知らせ情報入力
+adminUser -> adminApp : 確認押下
+adminApp -> adminApp : お知らせ追加確認画面表示
+adminUser -> adminApp : 確認完了押下
+adminApp -> dynamo ++ : お知らせ情報追加
+adminApp <-- dynamo --
+
+
+user -> device ++: コンテンツ更新画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : お知らせアイコン押下
+device -> device : お知らせ一覧表示
+device -> api ++ : お知らせ一覧取得API
+api -> dynamo ++ : お知らせ一覧取得
+api <-- dynamo --
+device <-- api --
+user -> device : お知らせ押下
+device -> device : お知らせ内容表示\n(アコーディオン表示)
+alt ユーザが未読のお知らせの場合
+    device -> api ++ : お知らせ既読API
+    api -> dynamo ++ : お知らせを既読に変更
+    api <-- dynamo --
+    device <-- api --
+end

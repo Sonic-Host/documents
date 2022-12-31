@@ -1,0 +1,19 @@
+@startuml Docker生成
+title Docker生成
+
+' アクター定義
+participant "WordPress管理バケット\n(S3)" as wp
+participant "バッチサーバー" as batch
+participant "Dockerリポジトリ\n(DockerHub or ECR)" as dockerHub
+participant "サイト用インスタンス\n(Docker)" as docker
+
+' Dockerの起動
+activate batch
+batch -> dockerHub ++ : バージョンに応じた\nイメージの取得
+batch <-- dockerHub -- : DockerImage
+batch -> wp ++ : 対象のバックアップファイルを要求
+batch <-- wp -- : バックアップファイル
+batch -> docker ++ : Dockerの起動
+batch -> docker : バックアップファイル\nのインポート
+
+@enduml

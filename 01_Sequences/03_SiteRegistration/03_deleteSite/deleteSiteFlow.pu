@@ -1,0 +1,34 @@
+@startuml  サイト削除
+title サイト削除
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "SonicHost API\n(CDN/API-Gateway)" as api
+
+user -> device ++: HOME画面表示
+rnote right of device #GreenYellow
+    ログインフローを参照
+end note
+user -> device : サイト情報選択\nサイドメニューより
+device -> device : サイト設定確認画面表示
+rnote right of device #SkyBlue
+    １つしかサイトない場合は「削除」非表示
+    サイトを削除する場合は解約させる
+end note
+user -> device : 「サイトの削除」押下
+device -> device : サイト削除確認画面表示
+user -> device : 「確認」押下
+device -> api ++ : サイト削除API
+api -> api : S3コンテンツ削除
+api -> api : Dynamo登録情報削除
+api -> api : CDNドメイン設定情報削除
+api -> api : 設定金額情報変更
+device <-- api --
+device -> device : サイト削除完了画面
+user -> device : OK押下
+device -> api ++ : ユーザ情報取得API
+device <-- api --
+device -> api ++ : サイト情報取得API
+device <-- api --
+device -> device : 最初に登録したサイトに切り替え\nHOME画面表示
