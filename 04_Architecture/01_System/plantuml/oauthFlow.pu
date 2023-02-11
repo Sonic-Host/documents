@@ -1,0 +1,22 @@
+@startuml 認証認可
+title 認証認可
+
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "認証基盤\n(Cognito)" as cognito
+
+' 起動
+user -> device ++ : ログイン画面起動
+device -> device : ログイン画面表示
+device -> cognito ++ : ログイン確立要求\n(Initiate Auth)
+device <-- cognito -- : session等
+user -> device : ユーザ名・パスワード入力
+device -> cognito ++ : 認証(トークン発行依頼)\n(Responed to Auth Challenge)
+device -> cognito ++ : トークンチェック用公開鍵要求
+device <-- cognito --
+device <-- cognito -- : トークン
+device -> device : トークンチェック
+
+@enduml

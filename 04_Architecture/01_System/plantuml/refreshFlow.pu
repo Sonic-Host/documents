@@ -1,0 +1,24 @@
+@startuml リフレッシュフロー
+title リフレッシュフロー
+
+
+' アクター定義
+actor "ユーザ" as user
+participant "クライアント端末\n(PCまたはスマホ)" as device
+participant "認証基盤\n(Cognito)" as cognito
+participant "SonicHost API\n(API-Gateway)" as api
+
+' 起動
+user -> device ++ : 画面起動
+device -> device : 何かしらの画面表示
+device -> api ++ : 何かしらのAPI
+api -> api : トークンチェック\n有効期限切れ判定
+device <-- api -- : トークン有効期限切れエラー
+device -> cognito ++ : トークンリフレッシュ
+device <-- cognito -- : トークン情報
+device -> device : トークンチェック
+device -> api ++ : 失敗したAPIを自動的に再度打鍵
+api -> api : トークンチェック\n成功判定
+device <-- api -- : API処理結果
+
+@enduml
