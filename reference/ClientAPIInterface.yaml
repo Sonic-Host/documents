@@ -1,0 +1,298 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 6d5nscjmqjk1e
+info:
+  title: Sonic-Host  クライアントアプリ用API
+  version: '1.0'
+  description: |-
+    Sonic-Hostのクライアントアプリから使用できるAPIの一覧を管理。
+    ユーザがサイトを管理するためのクライアント管理画面から打たれるAPIの一覧となる。
+  contact:
+    name: Hayato Takahashi
+    email: hayato.takahashi.b@gmail.com
+servers:
+  - url: 'http://localhost:8000'
+    description: Local
+paths:
+  /notifications:
+    get:
+      summary: お知らせ通知一覧取得
+      tags: []
+      responses: {}
+      operationId: get-notifications
+      security:
+        - ID-Token: []
+      description: お知らせ詳細の一覧を返却する。
+  '/notifications/{id}':
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        required: true
+        description: お知らせを特定するためのID
+    get:
+      summary: お知らせ通知詳細取得
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Get User Alice Smith:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+          headers: {}
+        '404':
+          description: User Not Found
+      operationId: get-notifications-id
+      description: 管理者から通知されたお知らせなどを取得する。
+      security:
+        - ID-Token: []
+    delete:
+      summary: お知らせ通知詳細削除
+      operationId: delete-notifications-id
+      responses:
+        '200':
+          description: OK
+      security:
+        - ID-Token: []
+      description: ユーザが選択したお知らせ詳細を削除する。
+    put:
+      summary: お知らせ通知詳細更新
+      operationId: put-notifications-id
+      responses:
+        '200':
+          description: OK
+      security:
+        - ID-Token: []
+      description: ユーザが選択したお知らせ詳細情報の既読情報を更新する。
+  /site:
+    get:
+      summary: サイト一覧取得
+      tags: []
+      responses: {}
+      operationId: get-site
+      description: ユーザが登録したサイトのリスト情報を返却する。
+  '/site/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: サイト識別子
+    get:
+      summary: サイト情報取得
+      tags: []
+      responses: {}
+      operationId: get-site-id
+      description: ユーザが登録した特定のサイトに関する詳細情報を取得する。
+      security:
+        - ID-Token: []
+    post:
+      summary: サイト追加
+      operationId: post-site-id
+      responses:
+        '200':
+          description: OK
+      description: ユーザが新たにサイトを登録する。
+      security:
+        - ID-Token: []
+    put:
+      summary: サイト更新
+      operationId: put-site-id
+      responses:
+        '200':
+          description: OK
+      description: ユーザが指定したサイトの情報を更新する。
+      security:
+        - ID-Token: []
+    delete:
+      summary: サイト削除
+      operationId: delete-site-id
+      responses:
+        '200':
+          description: OK
+      security:
+        - ID-Token: []
+      description: ユーザが指定したサイトの情報を削除する。
+  /terms/checkpoint:
+    get:
+      summary: 規約同意日時取得
+      tags: []
+      responses: {}
+      operationId: get-terms-checkpoint
+      description: ユーザが最後に規約を参照して同意した日時を取得する。
+      security:
+        - ID-Token: []
+    post:
+      summary: 規約同意日時追加
+      operationId: post-terms-checkpoint
+      responses:
+        '200':
+          description: OK
+      description: |-
+        ユーザが最後に規約に同意した日時を追加する。
+        ユーザ登録時に打鍵される想定。
+      security:
+        - ID-Token: []
+    put:
+      summary: 規約同意日時更新
+      operationId: put-terms-checkpoint
+      responses:
+        '200':
+          description: OK
+      description: |-
+        ユーザが最後に規約に同意した日時を更新する。
+        規約再同意の画面にて、ユーザが規約に同意した際に打鍵される。
+      security:
+        - ID-Token: []
+  /contacts:
+    get:
+      summary: お問い合わせ一覧取得
+      tags: []
+      responses: {}
+      operationId: get-contacts
+      description: ユーザが出したお問い合わせ情報の一覧を取得する。
+      security:
+        - ID-Token: []
+  '/contacts/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: お問い合わせ識別子
+    get:
+      summary: お問い合わせ詳細取得
+      tags: []
+      responses: {}
+      operationId: get-contacts-id
+      description: ユーザが出したお問い合わせの詳細情報を取得する。
+      security:
+        - ID-Token: []
+    post:
+      summary: お問い合わせ追加
+      operationId: post-contacts-id
+      responses:
+        '200':
+          description: OK
+      description: ユーザが新規にお問い合わせを発行するAPI。
+      security:
+        - ID-Token: []
+    put:
+      summary: お問い合わせ更新
+      operationId: put-contacts-id
+      responses:
+        '200':
+          description: OK
+      description: ユーザが出したお問い合わせの情報を更新する。
+      security:
+        - ID-Token: []
+    delete:
+      summary: お問い合わせ削除
+      operationId: delete-contacts-id
+      responses:
+        '200':
+          description: OK
+      description: ユーザが出したお問い合わせが無事解決し、クローズするときのAPI。
+      security:
+        - ID-Token: []
+  '/site/{id}/domain':
+    get:
+      summary: サイト用ドメイン取得
+      tags: []
+      responses: {}
+      operationId: get-site-domain
+      description: サイトに登録しているドメイン情報を取得するAPI
+      security:
+        - ID-Token: []
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: サイト識別子
+    post:
+      summary: サイト用ドメイン追加
+      operationId: post-site-id-domain
+      responses:
+        '200':
+          description: OK
+      description: |-
+        サイト用ドメインを追加するためのAPI。
+        このAPIによって登録されたドメインがユーザが登録したいサイトを表示するときのドメインとなる。
+      security:
+        - ID-Token: []
+    put:
+      summary: サイト用ドメイン更新
+      operationId: put-site-id-domain
+      responses:
+        '200':
+          description: OK
+      description: サイト用ドメインの情報を更新する。
+      security:
+        - ID-Token: []
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      x-examples:
+        Alice Smith:
+          id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: '1997-10-31'
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
+  securitySchemes:
+    ID-Token:
+      name: Authorization
+      type: apiKey
+      in: header
+x-internal: true
+security:
+  - ID-Token: []
