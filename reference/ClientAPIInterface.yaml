@@ -126,46 +126,133 @@ paths:
       security:
         - ID-Token: []
       description: ユーザが指定したサイトの情報を削除する。
-  /terms/checkpoint:
-    get:
-      summary: 規約同意日時取得
-      tags: []
-      responses: {}
-      operationId: get-terms-checkpoint
-      description: ユーザが最後に規約を参照して同意した日時を取得する。
-      security:
-        - ID-Token: []
-    post:
-      summary: 規約同意日時追加
-      operationId: post-terms-checkpoint
-      responses:
-        '200':
-          description: OK
-      description: |-
-        ユーザが最後に規約に同意した日時を追加する。
-        ユーザ登録時に打鍵される想定。
-      security:
-        - ID-Token: []
-    put:
-      summary: 規約同意日時更新
-      operationId: put-terms-checkpoint
-      responses:
-        '200':
-          description: OK
-      description: |-
-        ユーザが最後に規約に同意した日時を更新する。
-        規約再同意の画面にて、ユーザが規約に同意した際に打鍵される。
-      security:
-        - ID-Token: []
   /contacts:
     get:
       summary: お問い合わせ一覧取得
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: お問い合わせの一覧取得成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: '#/components/schemas/ID'
+                        - $ref: '#/components/schemas/Contact'
+                required:
+                  - data
+              examples:
+                お問い合わせ一覧取得成功:
+                  value:
+                    data:
+                      - id: '165923165886004186925843853365'
+                        category: 登録されたサイトについて
+                        title: サイト更新のタイミングについて
+                        content: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+                      - id: '165923165886004186925843853365'
+                        category: お支払内容
+                        title: 請求金額の不一致について
+                        content: |-
+                          請求金額についてこちらで計算したところ、実際に請求された内容と一致してないように見えます。
+                          お手数ですが、ご確認をお願いできますでしょうか。
+                起票済みのお問い合わせなし:
+                  value:
+                    data: []
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       operationId: get-contacts
       description: ユーザが出したお問い合わせ情報の一覧を取得する。
       security:
         - ID-Token: []
+    post:
+      summary: お問い合わせ新規追加
+      operationId: post-contacts
+      responses:
+        '200':
+          description: お問い合わせ新規追加成功
+          headers: {}
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Message'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/ID'
+                          - $ref: '#/components/schemas/Contact'
+                        description: ユーザが入力したお問い合わせの情報
+                    required:
+                      - data
+              examples:
+                お問い合わせ追加成功:
+                  value:
+                    message:
+                      type: success
+                      display: |-
+                        お問い合わせが受け付けられました。
+                        回答があるまでしばらくお待ちください。
+                    data:
+                      id: '165923165886004186925843853365'
+                      category: 登録されたサイトについて
+                      title: サイト更新のタイミングについて
+                      content: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Message'
+                  - $ref: '#/components/schemas/Error'
+              examples:
+                バリデーションエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        お問い合わせの送信に失敗しました。
+                        入力項目が正しいか再度ご確認ください。
+                    error:
+                      type: validation
+                      detail: '${name}欄の入力は必須になります。'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      description: お問い合わせを新規で追加する。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/Contact'
+              required:
+                - data
+        description: お問い合わせ新規追加する際に必要なユーザ側で入力した情報をリクエストとして送信。
+      x-internal: false
   '/contacts/{id}':
     parameters:
       - schema:
@@ -185,12 +272,12 @@ paths:
     post:
       summary: お問い合わせ追加
       operationId: post-contacts-id
-      responses:
-        '200':
-          description: OK
+      responses: {}
       description: ユーザが新規にお問い合わせを発行するAPI。
       security:
         - ID-Token: []
+      requestBody:
+        $ref: '#/components/requestBodies/Request'
     put:
       summary: お問い合わせ更新
       operationId: put-contacts-id
@@ -247,52 +334,250 @@ paths:
         - ID-Token: []
 components:
   schemas:
-    User:
-      title: User
+    ID:
+      title: ID
+      x-stoplight:
+        id: fyb5d6duohfk8
       type: object
-      description: ''
-      x-examples:
-        Alice Smith:
-          id: 142
-          firstName: Alice
-          lastName: Smith
-          email: alice.smith@gmail.com
-          dateOfBirth: '1997-10-31'
-          emailVerified: true
-          signUpDate: '2019-08-24'
+      description: |-
+        バックエンド側で採番されるユニークなID。  
+        時間順にソートされるようになっている。
+      example: '165923165886004186925843853365'
       properties:
         id:
-          type: integer
-          description: Unique identifier for the given user.
-        firstName:
           type: string
-        lastName:
-          type: string
-        email:
-          type: string
-          format: email
-        dateOfBirth:
-          type: string
-          format: date
-          example: '1997-10-31'
-        emailVerified:
-          type: boolean
-          description: Set to true if the user's email has been verified.
-        createDate:
-          type: string
-          format: date
-          description: The date that the user was created.
+          example: '165923165886004186925843853365'
+          minLength: 30
+          maxLength: 30
+          description: バックエンド側で採番されるタイムID
       required:
         - id
-        - firstName
-        - lastName
-        - email
-        - emailVerified
+    Message:
+      title: Message
+      x-stoplight:
+        id: 7c6032af92ef3
+      type: object
+      description: APIの処理の結果通知メッセージ。
+      x-internal: false
+      x-examples:
+        成功時:
+          message:
+            type: success
+            display: APIの処理が成功しました。
+        失敗時:
+          message:
+            type: failure
+            display: |-
+              お客様のステータスが最新ではございません。
+              お手数ですがページを更新の上再度実施をお願いいたします。
+        モーダル（ユーザ確認）:
+          message:
+            type: modal
+            display: |-
+              しばらくサイトが使えなくなる可能性がございます。
+              それでも実施しますか？
+      properties:
+        message:
+          type: object
+          minProperties: 2
+          maxProperties: 2
+          additionalProperties: false
+          description: ユーザに通知するメッセージ内容
+          required:
+            - type
+            - display
+          properties:
+            type:
+              type: string
+              example: success
+              description: 表示種別。成功時・失敗時・モーダルの３パターン
+            display:
+              type: string
+              example: APIの処理が成功しました。
+              description: 表示するメッセージ内容
+      required:
+        - message
+    Error:
+      title: Error
+      x-stoplight:
+        id: vljze5he4jg20
+      type: object
+      description: APIの処理結果でエラーが発生した際のエラー通知オブジェクト
+      properties:
+        error:
+          type: object
+          required:
+            - type
+            - detail
+          description: APIのエラー結果詳細
+          minProperties: 2
+          maxProperties: 2
+          additionalProperties: false
+          properties:
+            type:
+              type: string
+              example: validation
+              enum:
+                - 'validation,'
+                - buisiness
+                - system
+              description: エラーの種類。
+            detail:
+              type: string
+              description: エラーの詳細説明部分
+              example: '${name}欄の入力は必須になります。'
+      required:
+        - error
+      x-examples:
+        バリデーションエラー:
+          error:
+            type: 'validation,'
+            detail: '${name}欄の入力は必須になります。'
+        業務エラー:
+          error:
+            type: 'buisiness,'
+            detail: 選択されたサイトは既に削除済み
+        システムエラー:
+          error:
+            type: 'system,'
+            detail: システム閉塞による未受付状態
+    Contact:
+      title: Contact
+      x-stoplight:
+        id: kzi8aaozbfwtt
+      type: object
+      description: |-
+        お問い合わせ起票用オブジェクト。  
+        ユーザがお問い合わせ起票時に入力する項目が入っている。
+      x-examples:
+        支払いについてのお問い合わせ:
+          category: お支払い金額について
+          title: 支払金額が計算内容と一致しない件について
+          content: |-
+            支払金額を計算したところ、一致しておりません。
+            計算の根拠をお伺いさせていただきたいのですが、よろしいでしょうか。
+      x-internal: true
+      properties:
+        category:
+          type: string
+          description: |-
+            お問い合わせカテゴリ  
+            用意されたパターンに一致する場合のみ許容
+          example: 登録されたサイトについて
+        title:
+          type: string
+          description: お問い合わせタイトル
+          minLength: 1
+          maxLength: 256
+          example: サイト更新のタイミングについて
+        content:
+          type: string
+          description: お問い合わせ内容
+          minLength: 1
+          maxLength: 2048
+          example: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+      required:
+        - category
+        - title
+        - content
   securitySchemes:
     ID-Token:
       name: Authorization
       type: apiKey
       in: header
+  requestBodies: {}
+  examples: {}
+  responses:
+    NotAuthorized:
+      description: 未ログイン状態・トークンの有効期限切れ状態でのAPIリクエストが実施されたときに返却されるレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            未認証エラー:
+              value:
+                error:
+                  type: system
+                  detail: 未認証状態によるAPI打鍵エラー
+    SystemBlockage:
+      description: システム閉塞時のエラーレスポンス
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Message'
+              - $ref: '#/components/schemas/Error'
+          examples:
+            システム閉塞メッセージ:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    以下の時間帯で現在システムの使用ができません。
+                     2023年3月1日 12:00 ~ 2023年3月1日 15:00
+                    お手数ですが、上記時間外で再度ログインを実施いただくようお願いいたします。
+                error:
+                  type: system
+                  detail: システム閉塞の実施期間中によるエラー
+    SystemError:
+      description: バックエンド側で想定外のシステムエラーが発生した時に表示されるエラーレスポンス
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Message'
+              - $ref: '#/components/schemas/Error'
+          examples:
+            システムエラー:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    想定外のエラーが発生しました。
+                    大変お手数ですが、暫くしてから再度お試しください。
+                    暫くしても解決しない場合はお手数ですが、「お問い合わせ」画面よりお問い合わせください。
+                error:
+                  type: system
+                  detail: 想定外のバックエンドエラー発生
+    TimeoutError:
+      description: サーバー側の処理が遅く、タイムアウトエラーが発生した時のエラーレスポンス
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Message'
+              - $ref: '#/components/schemas/Error'
+          examples:
+            タイムアウトエラー:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    処理に時間がかかっており失敗しました。
+                    お手数おかけしますが、暫くしてから再度お試しください。
+                error:
+                  type: system
+                  detail: サーバーの処理に時間がかかっていることによるタイムアウトエラー
+    TooManyRequestError:
+      description: サービスへのアクセスが込み合っているときのエラーレスポンス
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/Message'
+              - $ref: '#/components/schemas/Error'
+          examples:
+            リクエスト過多:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    現在大変込み合っております。
+                    お手数おかけしますが、暫くしてから再度お試しください。
+                error:
+                  type: system
+                  detail: リクエスト過多によるエラー
 x-internal: true
 security:
   - ID-Token: []

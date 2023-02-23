@@ -1,0 +1,2 @@
+import ruleset from "https://stoplight.io/api/v1/projects/cHJqOjE4Mzk0NA/spectral.js?branch_slug=feature%2FcreateSwagger&token=a48eaa35-c28a-4752-a12c-be5c966cc7e7";
+export default { extends: ruleset };
