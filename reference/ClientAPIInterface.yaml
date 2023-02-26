@@ -594,6 +594,36 @@ paths:
       description: サイト用ドメインの情報を更新する。
       security:
         - ID-Token: []
+  /faq:
+    get:
+      summary: FAQ一覧取得
+      tags: []
+      responses:
+        '200':
+          description: FAQの一覧取得に成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: '#/components/schemas/ID'
+                        - $ref: '#/components/schemas/FAQ'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-faq
+      description: |-
+        Sonic-HostのFAQの一覧情報を取得するAPI  
+        別のドメイン管理にしたほうがいい？Web用のような。
 components:
   schemas:
     ID:
@@ -806,6 +836,35 @@ components:
           description: 既に該当のお問い合わせは解決済みで閉じられているかどうか
       required:
         - closed
+    FAQ:
+      title: FAQ
+      x-stoplight:
+        id: 9jwze9eee6oga
+      type: object
+      description: FAQの情報
+      properties:
+        category:
+          type: string
+          description: FAQのカテゴリ
+          minLength: 1
+          maxLength: 256
+          example: お支払いについて
+        question:
+          type: string
+          minLength: 1
+          maxLength: 256
+          description: FAQの質問
+          example: 支払日はいつになりますか？
+        answer:
+          type: string
+          minLength: 1
+          maxLength: 2048
+          description: FAQに対する回答
+          example: 支払日はサービスを契約された日から３０日単位で割り当てられます。\n例：　２月１４日に契約された場合、支払日は３月２３日、４月２２日、、、となります。
+      required:
+        - category
+        - question
+        - answer
   securitySchemes:
     ID-Token:
       name: Authorization
