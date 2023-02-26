@@ -144,6 +144,7 @@ paths:
                       allOf:
                         - $ref: '#/components/schemas/ID'
                         - $ref: '#/components/schemas/Contact'
+                        - $ref: '#/components/schemas/ContactClosed'
                 required:
                   - data
               examples:
@@ -192,10 +193,13 @@ paths:
                   - type: object
                     properties:
                       data:
-                        allOf:
-                          - $ref: '#/components/schemas/ID'
-                          - $ref: '#/components/schemas/Contact'
                         description: ユーザが入力したお問い合わせの情報
+                        type: array
+                        items:
+                          allOf:
+                            - $ref: '#/components/schemas/ID'
+                            - $ref: '#/components/schemas/Contact'
+                            - $ref: '#/components/schemas/ContactClosed'
                     required:
                       - data
               examples:
@@ -253,6 +257,8 @@ paths:
                 - data
         description: お問い合わせ新規追加する際に必要なユーザ側で入力した情報をリクエストとして送信。
       x-internal: false
+      security:
+        - ID-Token: []
   '/contacts/{id}':
     parameters:
       - schema:
@@ -264,7 +270,36 @@ paths:
     get:
       summary: お問い合わせ詳細取得
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: お問い合わせ詳細取得成功
+          content:
+            application/json:
+              schema:
+                description: お問い合わせに対するメッセージやり取りの内容
+                allOf:
+                  - $ref: '#/components/schemas/ID'
+                  - $ref: '#/components/schemas/Contact'
+                  - $ref: '#/components/schemas/ContactClosed'
+                  - type: object
+                    properties:
+                      replies:
+                        type: array
+                        items:
+                          allOf:
+                            - $ref: '#/components/schemas/ID'
+                            - $ref: '#/components/schemas/ContactReply'
+                            - $ref: '#/components/schemas/CreatedAt'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       operationId: get-contacts-id
       description: ユーザが出したお問い合わせの詳細情報を取得する。
       security:
@@ -272,30 +307,257 @@ paths:
     post:
       summary: お問い合わせ追加
       operationId: post-contacts-id
-      responses: {}
+      responses:
+        '200':
+          description: お問い合わせの返信追加に成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Message'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        required:
+                          - replies
+                        properties:
+                          replies:
+                            type: array
+                            items:
+                              allOf:
+                                - $ref: '#/components/schemas/ID'
+                                - $ref: '#/components/schemas/ContactReply'
+                                - $ref: '#/components/schemas/CreatedAt'
+                    required:
+                      - data
+              examples:
+                お問い合わせ返信追加に成功:
+                  value:
+                    data:
+                      replies:
+                        - content: お問い合わせありがとうございます。\n....
+                          from: admin
+                          createdAt: '2019-08-24T14:15:22Z'
+                    '':
+                      message:
+                        type: success
+                        display: APIの処理が成功しました。
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       description: ユーザが新規にお問い合わせを発行するAPI。
       security:
         - ID-Token: []
       requestBody:
-        $ref: '#/components/requestBodies/Request'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  required:
+                    - replies
+                  properties:
+                    replies:
+                      $ref: '#/components/schemas/ContactReply'
+              required:
+                - data
+            examples:
+              お問い合わせ返信追加依頼:
+                value:
+                  data:
+                    replies:
+                      content: お問い合わせありがとうございます。\n....
+                      from: admin
+        description: お問い合わせ返信の内容を送信
     put:
       summary: お問い合わせ更新
       operationId: put-contacts-id
       responses:
         '200':
-          description: OK
-      description: ユーザが出したお問い合わせの情報を更新する。
+          description: |-
+            お問い合わせ更新完了
+            お問い合わせをクローズ状態に更新
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Message'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/ContactClosed'
+        '400':
+          description: 業務エラーによる更新の失敗
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Message'
+                  - $ref: '#/components/schemas/Error'
+              examples:
+                リソース不一致によるエラー:
+                  value:
+                    message:
+                      type: modal
+                      display: |-
+                        お客様の情報が最新でない可能性がございます。
+                        お手数ですが画面を更新の上、再度お試しください。
+                    error:
+                      type: buisiness
+                      detail: リソース不一致によるエラー
+                      action: formSaveReload
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      description: ユーザが出したお問い合わせが無事解決し、クローズするときのAPI。
       security:
         - ID-Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: '#/components/schemas/ContactClosed'
+                current:
+                  allOf:
+                    - $ref: '#/components/schemas/ID'
+                    - $ref: '#/components/schemas/Contact'
+                    - $ref: '#/components/schemas/ContactClosed'
+                    - type: object
+                      properties:
+                        replies:
+                          type: array
+                          items:
+                            allOf:
+                              - $ref: '#/components/schemas/ID'
+                              - $ref: '#/components/schemas/ContactReply'
+                              - $ref: '#/components/schemas/CreatedAt'
+                      required:
+                        - replies
+                  description: 現在ユーザが認識しているリソース情報
+              required:
+                - data
+                - current
+        description: ''
     delete:
       summary: お問い合わせ削除
       operationId: delete-contacts-id
       responses:
         '200':
-          description: OK
-      description: ユーザが出したお問い合わせが無事解決し、クローズするときのAPI。
+          description: お問い合わせ削除成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Message'
+                  - type: object
+                    properties:
+                      data:
+                        allOf:
+                          - $ref: '#/components/schemas/ID'
+                          - $ref: '#/components/schemas/Contact'
+                          - $ref: '#/components/schemas/ContactClosed'
+                          - type: object
+                            properties:
+                              replies:
+                                type: array
+                                items:
+                                  allOf:
+                                    - $ref: '#/components/schemas/ID'
+                                    - $ref: '#/components/schemas/ContactReply'
+                                    - $ref: '#/components/schemas/CreatedAt'
+                            required:
+                              - replies
+                    required:
+                      - data
+        '400':
+          description: 業務エラーによる削除失敗。
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Message'
+                  - $ref: '#/components/schemas/Error'
+              examples:
+                リソース不一致による失敗:
+                  value:
+                    message:
+                      type: modal
+                      display: |-
+                        お客様の情報が最新でない可能性がございます。
+                        お手数ですが画面を更新の上、再度お試しください。
+                    error:
+                      type: buisiness
+                      detail: リソース不一致によるエラー
+                      action: formSaveReload
+                未クローズ状態での削除依頼エラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        未クローズ状態のお問い合わせに対して削除依頼が発行されました。
+                        お手数ですが、先にクローズ処理をお願いいたします。
+                    error:
+                      type: buisiness
+                      detail: 未クローズ状態のお問い合わせに対して削除依頼
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      description: |-
+        ユーザが出したお問い合わせがクローズされており、不要になった際にユーザ側から削除する。
+        削除することで画面に表示されるお問い合わせが整理される。
       security:
         - ID-Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  allOf:
+                    - $ref: '#/components/schemas/ID'
+                    - $ref: '#/components/schemas/Contact'
+                    - $ref: '#/components/schemas/ContactClosed'
+                    - type: object
+                      properties:
+                        replies:
+                          type: array
+                          items:
+                            allOf:
+                              - $ref: '#/components/schemas/ID'
+                              - $ref: '#/components/schemas/ContactReply'
+                              - $ref: '#/components/schemas/CreatedAt'
+                      required:
+                        - replies
+              required:
+                - current
   '/site/{id}/domain':
     get:
       summary: サイト用ドメイン取得
@@ -397,37 +659,27 @@ components:
               description: 表示するメッセージ内容
       required:
         - message
+    CreatedAt:
+      title: CreatedAt
+      x-stoplight:
+        id: b2zmgyj660xsb
+      type: object
+      description: 生成日時を示す。
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+          minLength: 20
+          maxLength: 20
+          description: 該当の項目が生成された日時
+      required:
+        - createdAt
     Error:
       title: Error
       x-stoplight:
         id: vljze5he4jg20
       type: object
       description: APIの処理結果でエラーが発生した際のエラー通知オブジェクト
-      properties:
-        error:
-          type: object
-          required:
-            - type
-            - detail
-          description: APIのエラー結果詳細
-          minProperties: 2
-          maxProperties: 2
-          additionalProperties: false
-          properties:
-            type:
-              type: string
-              example: validation
-              enum:
-                - 'validation,'
-                - buisiness
-                - system
-              description: エラーの種類。
-            detail:
-              type: string
-              description: エラーの詳細説明部分
-              example: '${name}欄の入力は必須になります。'
-      required:
-        - error
       x-examples:
         バリデーションエラー:
           error:
@@ -441,6 +693,42 @@ components:
           error:
             type: 'system,'
             detail: システム閉塞による未受付状態
+        リソース不一致:
+          error:
+            type: 'buisiness,'
+            detail: クライアント側のリソースが最新ではない
+            action: formSaveReload
+      properties:
+        error:
+          type: object
+          description: APIのエラー結果詳細
+          minProperties: 2
+          maxProperties: 2
+          additionalProperties: false
+          required:
+            - type
+            - detail
+          properties:
+            type:
+              type: string
+              example: validation
+              enum:
+                - 'validation,'
+                - buisiness
+                - system
+              description: エラーの種類。
+            detail:
+              type: string
+              description: エラーの詳細説明部分
+              example: '${name}欄の入力は必須になります。'
+            action:
+              type: string
+              description: クライアント側に何かしらのアクションを要求する場合の内容
+              enum:
+                - formSaveReload
+              example: formSaveReload
+      required:
+        - error
     Contact:
       title: Contact
       x-stoplight:
@@ -480,13 +768,60 @@ components:
         - category
         - title
         - content
+    ContactReply:
+      title: ContactReply
+      x-stoplight:
+        id: 5ocji5zvb6y8y
+      type: object
+      description: お知らせ通知に対する返信内容を示す。
+      properties:
+        content:
+          type: string
+          description: 返信内容のメッセージ
+          minLength: 1
+          maxLength: 2048
+          example: お問い合わせありがとうございます。\n....
+        from:
+          type: string
+          description: 返信者
+          enum:
+            - customer
+            - admin
+          example: admin
+      required:
+        - content
+        - from
+    ContactClosed:
+      title: ContactClosed
+      x-stoplight:
+        id: m2hw3xl7tgl2e
+      type: object
+      description: |-
+        お問い合わせを閉じる際に必要となる情報
+        将来的にはお問い合わせに対する評価情報もここに格納する想定
+      properties:
+        closed:
+          type: boolean
+          default: false
+          description: 既に該当のお問い合わせは解決済みで閉じられているかどうか
+      required:
+        - closed
   securitySchemes:
     ID-Token:
       name: Authorization
       type: apiKey
       in: header
   requestBodies: {}
-  examples: {}
+  examples:
+    ResourceMismatchError:
+      value:
+        description: Example shared example
+        type: object
+        properties:
+          id:
+            type: string
+        required:
+          - id
   responses:
     NotAuthorized:
       description: 未ログイン状態・トークンの有効期限切れ状態でのAPIリクエストが実施されたときに返却されるレスポンス
