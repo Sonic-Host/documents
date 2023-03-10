@@ -1,0 +1,148 @@
+openapi: 3.0.0
+x-stoplight:
+  id: jsr5myjfpqpd9
+info:
+  title: publicAPIInterface
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /faq:
+    get:
+      summary: FAQ一覧取得
+      tags: []
+      responses:
+        '200':
+          description: FAQの一覧取得に成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: rfiy6egwkajx8
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: 5i52ame9t9qik
+                    - $ref: '#/components/schemas/FAQ'
+                      x-stoplight:
+                        id: rul10l0apy502
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-faq
+      description: 'Sonic-HostのFAQの一覧情報を取得するAPI '
+components:
+  schemas:
+    FAQ:
+      title: FAQ
+      x-stoplight:
+        id: gwmk54eac4pfu
+      type: object
+      description: FAQの情報
+      properties:
+        category:
+          type: string
+          x-stoplight:
+            id: cjackzme9r0hb
+          description: FAQのカテゴリ
+          minLength: 1
+          maxLength: 256
+          example: お支払いについて
+        question:
+          type: string
+          x-stoplight:
+            id: 0ofrw84bqcp1t
+          description: FAQの質問
+          minLength: 1
+          maxLength: 256
+          example: 支払日はいつになりますか？
+        answer:
+          type: string
+          x-stoplight:
+            id: k98zrzs8nujya
+          description: FAQに対する回答
+          minLength: 1
+          maxLength: 2048
+          example: 支払日はサービスを契約された日から３０日単位で割り当てられます。\n例：　２月１４日に契約された場合、支払日は３月２３日、４月２２日、、、となります。
+      required:
+        - category
+        - question
+        - answer
+  responses:
+    SystemBlockage:
+      description: システム閉塞時のエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/SystemBlockageResponse.yaml
+          examples:
+            システム閉塞メッセージ:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    以下の時間帯で現在システムの使用ができません。
+                     2023年3月1日 12:00 ~ 2023年3月1日 15:00
+                    お手数ですが、上記時間外で再度ログインを実施いただくようお願いいたします。
+                error:
+                  type: system
+                  detail: システム閉塞の実施期間中によるエラー
+    SystemError:
+      description: バックエンド側で想定外のシステムエラーが発生した時に表示されるエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/SystemErrorResponse.yaml
+          examples:
+            システムエラー:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    想定外のエラーが発生しました。
+                    大変お手数ですが、暫くしてから再度お試しください。
+                    暫くしても解決しない場合はお手数ですが、「お問い合わせ」画面よりお問い合わせください。
+                error:
+                  type: system
+                  detail: 想定外のバックエンドエラー発生
+    TimeoutError:
+      description: サーバー側の処理が遅く、タイムアウトエラーが発生した時のエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/TiemoutErrorResponse.yaml
+          examples:
+            タイムアウトエラー:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    処理に時間がかかっており失敗しました。
+                    お手数おかけしますが、暫くしてから再度お試しください。
+                error:
+                  type: system
+                  detail: サーバーの処理に時間がかかっていることによるタイムアウトエラー
+    TooManyRequestError:
+      description: サービスへのアクセスが込み合っているときのエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/TooManyRequestErrorResponse.yaml
+          examples:
+            リクエスト過多:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    現在大変込み合っております。
+                    お手数おかけしますが、暫くしてから再度お試しください。
+                error:
+                  type: system
+                  detail: リクエスト過多によるエラー

@@ -18,7 +18,36 @@ paths:
     get:
       summary: お知らせ通知一覧取得
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: お知らせの一覧の取得に成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: hnea2xcyqcqkn
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: 88903upkherc5
+                    - $ref: '#/components/schemas/Notification'
+                      x-stoplight:
+                        id: 8ro2phmqlsa7i
+                    - $ref: ../models/CreatedAt.yaml
+                      x-stoplight:
+                        id: bvcu1975nkd4i
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       operationId: get-notifications
       security:
         - ID-Token: []
@@ -36,11 +65,22 @@ paths:
       tags: []
       responses:
         '200':
-          description: User Found
+          description: |-
+            お知らせの詳細情報の取得。
+            使うかな？
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                allOf:
+                  - $ref: ../models/ID.yaml
+                    x-stoplight:
+                      id: dk0bl8v3jel1a
+                  - $ref: '#/components/schemas/Notification'
+                    x-stoplight:
+                      id: pa3dc8gl90rtn
+                  - $ref: ../models/CreatedAt.yaml
+                    x-stoplight:
+                      id: r93bobimsiguk
               examples:
                 Get User Alice Smith:
                   value:
@@ -52,8 +92,16 @@ paths:
                     emailVerified: true
                     signUpDate: '2019-08-24'
           headers: {}
-        '404':
-          description: User Not Found
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       operationId: get-notifications-id
       description: 管理者から通知されたお知らせなどを取得する。
       security:
@@ -63,24 +111,175 @@ paths:
       operationId: delete-notifications-id
       responses:
         '200':
-          description: OK
+          description: お知らせ情報削除完了
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - type: object
+                    x-stoplight:
+                      id: 9d6sfw9muak50
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: bji41ol6ecq0o
+                        allOf:
+                          - $ref: ../models/ID.yaml
+                            x-stoplight:
+                              id: biqmf7fjm7ce0
+                          - $ref: '#/components/schemas/Notification'
+                            x-stoplight:
+                              id: vu9kselr4nw1q
+                          - $ref: ../models/CreatedAt.yaml
+                            x-stoplight:
+                              id: ovode1hxqyr28
+                    required:
+                      - data
+              examples:
+                お知らせ削除完了:
+                  value:
+                    message:
+                      type: success
+                      display: お知らせの削除が完了しました
+                    data:
+                      id: '165923165886004186925843853365'
+                      title: 管理画面の新バージョンのお知らせ
+                      content: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
+                      isRead: false
+                      createdAt: '2019-08-24T14:15:22Z'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       security:
         - ID-Token: []
       description: ユーザが選択したお知らせ詳細を削除する。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  x-stoplight:
+                    id: zeqfxxhfyn3mn
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: inajmovqwmfd0
+                    - $ref: '#/components/schemas/Notification'
+                      x-stoplight:
+                        id: hvptewht88jc9
+                    - $ref: ../models/CreatedAt.yaml
+                      x-stoplight:
+                        id: l65xyub6dqxqi
+              required:
+                - current
+        description: 削除するお知らせ情報
     put:
       summary: お知らせ通知詳細更新
       operationId: put-notifications-id
       responses:
         '200':
-          description: OK
+          description: お知らせの既読状態の更新完了
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - x-stoplight:
+                      id: 2q22fz6gkeehf
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/NotificationRead'
+                        x-stoplight:
+                          id: np5p1ndesiot3
+                    required:
+                      - data
+                type: object
+              examples:
+                既読状態の更新に成功:
+                  value:
+                    data:
+                      isRead: true
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemError'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       security:
         - ID-Token: []
       description: ユーザが選択したお知らせ詳細情報の既読情報を更新する。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  x-stoplight:
+                    id: nd6y06n6ilc4o
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: dn0q10gm46ia5
+                    - $ref: '#/components/schemas/Notification'
+                      x-stoplight:
+                        id: v775l6laj8rnx
+                    - $ref: ../models/CreatedAt.yaml
+                      x-stoplight:
+                        id: 128vae18gprfm
+                  description: 現在クライアント側で認識しているお知らせ状態
+                data:
+                  $ref: '#/components/schemas/NotificationRead'
+                  x-stoplight:
+                    id: xuxdq1o373zsa
+              required:
+                - current
+                - data
+        description: ''
   /site:
     get:
       summary: サイト一覧取得
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: ユーザに紐づくサイト一覧を取得
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: 3odtnu4a9x592
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: ztskpt31kf60j
+                    - $ref: '#/components/schemas/Site'
+                      x-stoplight:
+                        id: irqd2tsbr2z9t
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       operationId: get-site
       description: ユーザが登録したサイトのリスト情報を返却する。
   '/site/{id}':
@@ -94,13 +293,33 @@ paths:
     get:
       summary: サイト情報取得
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: サイトの詳細情報取得
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/ID.yaml
+                  - $ref: '#/components/schemas/Site'
+                    x-stoplight:
+                      id: 65ed86n5l83n1
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       operationId: get-site-id
       description: ユーザが登録した特定のサイトに関する詳細情報を取得する。
       security:
         - ID-Token: []
     post:
-      summary: サイト追加
+      summary: サイト仮登録
       operationId: post-site-id
       responses:
         '200':
@@ -142,7 +361,7 @@ paths:
                     type: array
                     items:
                       allOf:
-                        - $ref: '#/components/schemas/ID'
+                        - $ref: ../models/ID.yaml
                         - $ref: '#/components/schemas/Contact'
                         - $ref: '#/components/schemas/ContactClosed'
                 required:
@@ -189,7 +408,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Message'
+                  - $ref: ../models/Message.yaml
                   - type: object
                     properties:
                       data:
@@ -197,7 +416,7 @@ paths:
                         type: array
                         items:
                           allOf:
-                            - $ref: '#/components/schemas/ID'
+                            - $ref: ../models/ID.yaml
                             - $ref: '#/components/schemas/Contact'
                             - $ref: '#/components/schemas/ContactClosed'
                     required:
@@ -221,8 +440,8 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Message'
-                  - $ref: '#/components/schemas/Error'
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
               examples:
                 バリデーションエラー:
                   value:
@@ -278,7 +497,7 @@ paths:
               schema:
                 description: お問い合わせに対するメッセージやり取りの内容
                 allOf:
-                  - $ref: '#/components/schemas/ID'
+                  - $ref: ../models/ID.yaml
                   - $ref: '#/components/schemas/Contact'
                   - $ref: '#/components/schemas/ContactClosed'
                   - type: object
@@ -287,9 +506,9 @@ paths:
                         type: array
                         items:
                           allOf:
-                            - $ref: '#/components/schemas/ID'
+                            - $ref: ../models/ID.yaml
                             - $ref: '#/components/schemas/ContactReply'
-                            - $ref: '#/components/schemas/CreatedAt'
+                            - $ref: ../models/CreatedAt.yaml
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -314,7 +533,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Message'
+                  - $ref: ../models/Message.yaml
                   - type: object
                     properties:
                       data:
@@ -326,9 +545,9 @@ paths:
                             type: array
                             items:
                               allOf:
-                                - $ref: '#/components/schemas/ID'
+                                - $ref: ../models/ID.yaml
                                 - $ref: '#/components/schemas/ContactReply'
-                                - $ref: '#/components/schemas/CreatedAt'
+                                - $ref: ../models/CreatedAt.yaml
                     required:
                       - data
               examples:
@@ -391,7 +610,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Message'
+                  - $ref: ../models/Message.yaml
                   - type: object
                     properties:
                       data:
@@ -402,8 +621,8 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Message'
-                  - $ref: '#/components/schemas/Error'
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
               examples:
                 リソース不一致によるエラー:
                   value:
@@ -439,7 +658,7 @@ paths:
                   $ref: '#/components/schemas/ContactClosed'
                 current:
                   allOf:
-                    - $ref: '#/components/schemas/ID'
+                    - $ref: ../models/ID.yaml
                     - $ref: '#/components/schemas/Contact'
                     - $ref: '#/components/schemas/ContactClosed'
                     - type: object
@@ -448,9 +667,9 @@ paths:
                           type: array
                           items:
                             allOf:
-                              - $ref: '#/components/schemas/ID'
+                              - $ref: ../models/ID.yaml
                               - $ref: '#/components/schemas/ContactReply'
-                              - $ref: '#/components/schemas/CreatedAt'
+                              - $ref: ../models/CreatedAt.yaml
                       required:
                         - replies
                   description: 現在ユーザが認識しているリソース情報
@@ -468,12 +687,12 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Message'
+                  - $ref: ../models/Message.yaml
                   - type: object
                     properties:
                       data:
                         allOf:
-                          - $ref: '#/components/schemas/ID'
+                          - $ref: ../models/ID.yaml
                           - $ref: '#/components/schemas/Contact'
                           - $ref: '#/components/schemas/ContactClosed'
                           - type: object
@@ -482,9 +701,9 @@ paths:
                                 type: array
                                 items:
                                   allOf:
-                                    - $ref: '#/components/schemas/ID'
+                                    - $ref: ../models/ID.yaml
                                     - $ref: '#/components/schemas/ContactReply'
-                                    - $ref: '#/components/schemas/CreatedAt'
+                                    - $ref: ../models/CreatedAt.yaml
                             required:
                               - replies
                     required:
@@ -495,8 +714,8 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Message'
-                  - $ref: '#/components/schemas/Error'
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
               examples:
                 リソース不一致による失敗:
                   value:
@@ -542,7 +761,7 @@ paths:
               properties:
                 current:
                   allOf:
-                    - $ref: '#/components/schemas/ID'
+                    - $ref: ../models/ID.yaml
                     - $ref: '#/components/schemas/Contact'
                     - $ref: '#/components/schemas/ContactClosed'
                     - type: object
@@ -551,13 +770,14 @@ paths:
                           type: array
                           items:
                             allOf:
-                              - $ref: '#/components/schemas/ID'
+                              - $ref: ../models/ID.yaml
                               - $ref: '#/components/schemas/ContactReply'
-                              - $ref: '#/components/schemas/CreatedAt'
+                              - $ref: ../models/CreatedAt.yaml
                       required:
                         - replies
               required:
                 - current
+        description: ''
   '/site/{id}/domain':
     get:
       summary: サイト用ドメイン取得
@@ -594,171 +814,8 @@ paths:
       description: サイト用ドメインの情報を更新する。
       security:
         - ID-Token: []
-  /faq:
-    get:
-      summary: FAQ一覧取得
-      tags: []
-      responses:
-        '200':
-          description: FAQの一覧取得に成功
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      allOf:
-                        - $ref: '#/components/schemas/ID'
-                        - $ref: '#/components/schemas/FAQ'
-        '429':
-          $ref: '#/components/responses/TooManyRequestError'
-        '500':
-          $ref: '#/components/responses/SystemError'
-        '503':
-          $ref: '#/components/responses/SystemBlockage'
-        '504':
-          $ref: '#/components/responses/TimeoutError'
-      operationId: get-faq
-      description: |-
-        Sonic-HostのFAQの一覧情報を取得するAPI  
-        別のドメイン管理にしたほうがいい？Web用のような。
 components:
   schemas:
-    ID:
-      title: ID
-      x-stoplight:
-        id: fyb5d6duohfk8
-      type: object
-      description: |-
-        バックエンド側で採番されるユニークなID。  
-        時間順にソートされるようになっている。
-      example: '165923165886004186925843853365'
-      properties:
-        id:
-          type: string
-          example: '165923165886004186925843853365'
-          minLength: 30
-          maxLength: 30
-          description: バックエンド側で採番されるタイムID
-      required:
-        - id
-    Message:
-      title: Message
-      x-stoplight:
-        id: 7c6032af92ef3
-      type: object
-      description: APIの処理の結果通知メッセージ。
-      x-internal: false
-      x-examples:
-        成功時:
-          message:
-            type: success
-            display: APIの処理が成功しました。
-        失敗時:
-          message:
-            type: failure
-            display: |-
-              お客様のステータスが最新ではございません。
-              お手数ですがページを更新の上再度実施をお願いいたします。
-        モーダル（ユーザ確認）:
-          message:
-            type: modal
-            display: |-
-              しばらくサイトが使えなくなる可能性がございます。
-              それでも実施しますか？
-      properties:
-        message:
-          type: object
-          minProperties: 2
-          maxProperties: 2
-          additionalProperties: false
-          description: ユーザに通知するメッセージ内容
-          required:
-            - type
-            - display
-          properties:
-            type:
-              type: string
-              example: success
-              description: 表示種別。成功時・失敗時・モーダルの３パターン
-            display:
-              type: string
-              example: APIの処理が成功しました。
-              description: 表示するメッセージ内容
-      required:
-        - message
-    CreatedAt:
-      title: CreatedAt
-      x-stoplight:
-        id: b2zmgyj660xsb
-      type: object
-      description: 生成日時を示す。
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-          minLength: 20
-          maxLength: 20
-          description: 該当の項目が生成された日時
-      required:
-        - createdAt
-    Error:
-      title: Error
-      x-stoplight:
-        id: vljze5he4jg20
-      type: object
-      description: APIの処理結果でエラーが発生した際のエラー通知オブジェクト
-      x-examples:
-        バリデーションエラー:
-          error:
-            type: 'validation,'
-            detail: '${name}欄の入力は必須になります。'
-        業務エラー:
-          error:
-            type: 'buisiness,'
-            detail: 選択されたサイトは既に削除済み
-        システムエラー:
-          error:
-            type: 'system,'
-            detail: システム閉塞による未受付状態
-        リソース不一致:
-          error:
-            type: 'buisiness,'
-            detail: クライアント側のリソースが最新ではない
-            action: formSaveReload
-      properties:
-        error:
-          type: object
-          description: APIのエラー結果詳細
-          minProperties: 2
-          maxProperties: 2
-          additionalProperties: false
-          required:
-            - type
-            - detail
-          properties:
-            type:
-              type: string
-              example: validation
-              enum:
-                - 'validation,'
-                - buisiness
-                - system
-              description: エラーの種類。
-            detail:
-              type: string
-              description: エラーの詳細説明部分
-              example: '${name}欄の入力は必須になります。'
-            action:
-              type: string
-              description: クライアント側に何かしらのアクションを要求する場合の内容
-              enum:
-                - formSaveReload
-              example: formSaveReload
-      required:
-        - error
     Contact:
       title: Contact
       x-stoplight:
@@ -836,35 +893,148 @@ components:
           description: 既に該当のお問い合わせは解決済みで閉じられているかどうか
       required:
         - closed
-    FAQ:
-      title: FAQ
+    Notification:
+      title: Notification
       x-stoplight:
-        id: 9jwze9eee6oga
+        id: yv0tv1wj5lq7w
+      description: お知らせ内容
+      allOf:
+        - type: object
+          properties:
+            title:
+              type: string
+              x-stoplight:
+                id: n1juyzehcn6pb
+              minLength: 1
+              maxLength: 256
+              example: 管理画面の新バージョンのお知らせ
+            content:
+              type: string
+              x-stoplight:
+                id: wgsovt51wydld
+              minLength: 1
+              maxLength: 2048
+              example: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
+          required:
+            - title
+            - content
+        - $ref: '#/components/schemas/NotificationRead'
+          x-stoplight:
+            id: 348z4ca7dmonq
+    NotificationRead:
+      title: NotificationRead
+      x-stoplight:
+        id: m0enoxi1bv8tt
       type: object
-      description: FAQの情報
+      description: お知らせが既読かどうか
       properties:
-        category:
-          type: string
-          description: FAQのカテゴリ
-          minLength: 1
-          maxLength: 256
-          example: お支払いについて
-        question:
-          type: string
-          minLength: 1
-          maxLength: 256
-          description: FAQの質問
-          example: 支払日はいつになりますか？
-        answer:
-          type: string
-          minLength: 1
-          maxLength: 2048
-          description: FAQに対する回答
-          example: 支払日はサービスを契約された日から３０日単位で割り当てられます。\n例：　２月１４日に契約された場合、支払日は３月２３日、４月２２日、、、となります。
+        isRead:
+          type: boolean
+          x-stoplight:
+            id: henkmz7gf5x8p
+          default: false
+          description: Trueであれば、お知らせは既読
       required:
-        - category
-        - question
-        - answer
+        - isRead
+    Site:
+      title: Site
+      x-stoplight:
+        id: vy62orgisqgbf
+      type: object
+      description: ユーザが登録したサイト情報
+      properties:
+        name:
+          type: string
+          x-stoplight:
+            id: 6l8pnwtgmebe7
+          description: サイト名
+          minLength: 1
+          maxLength: 32
+        domain:
+          type: string
+          x-stoplight:
+            id: ga6zvr3clqkpv
+          description: 登録ドメイン
+          minLength: 1
+          maxLength: 63
+        optimization:
+          type: object
+          x-stoplight:
+            id: as58bfukixbwo
+          description: 最適化設定
+          required:
+            - css
+            - image
+          properties:
+            css:
+              type: boolean
+              x-stoplight:
+                id: yv9mh1069agjt
+              description: CSS最適化設定
+              default: true
+            image:
+              type: boolean
+              x-stoplight:
+                id: 7jy70mcpnbnv5
+              description: 画像最適化設定
+              default: true
+      required:
+        - name
+        - domain
+        - optimization
+      x-examples: {}
+    SubDomain:
+      title: SubDomain
+      x-stoplight:
+        id: k4f1zkgolifkv
+      type: object
+      description: |-
+        サブドメイン情報を格納。
+        ドメインはサイト側で管理。
+      properties:
+        nameServers:
+          type: array
+          x-stoplight:
+            id: 8vr8r4t798tan
+          minItems: 4
+          maxItems: 4
+          uniqueItems: true
+          description: ドメインに紐づけるネームサーバーのIPアドレス達
+          items:
+            x-stoplight:
+              id: bs2o5h6zc5xcz
+            type: string
+            minLength: 4
+            maxLength: 15
+            example: 24.32.128.3
+        services:
+          type: object
+          x-stoplight:
+            id: 4rw3cusewf4hd
+          required:
+            - site
+            - mail
+          description: 各サービスで使用するサブドメイン
+          properties:
+            site:
+              type: string
+              x-stoplight:
+                id: 2okoxtxfh29a5
+              description: サイト用サブドメイン
+              minLength: 1
+              maxLength: 63
+              example: blog
+            mail:
+              type: string
+              x-stoplight:
+                id: pa835fqf1j87m
+              description: メール用サブドメイン
+              minLength: 1
+              maxLength: 63
+              example: mail
+      required:
+        - nameServers
+        - services
   securitySchemes:
     ID-Token:
       name: Authorization
@@ -887,7 +1057,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Error'
+            $ref: ../models/NotAuthorizedResponse.yaml
           examples:
             未認証エラー:
               value:
@@ -899,9 +1069,7 @@ components:
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: '#/components/schemas/Message'
-              - $ref: '#/components/schemas/Error'
+            $ref: ../models/SystemBlockageResponse.yaml
           examples:
             システム閉塞メッセージ:
               value:
@@ -919,9 +1087,7 @@ components:
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: '#/components/schemas/Message'
-              - $ref: '#/components/schemas/Error'
+            $ref: ../models/SystemErrorResponse.yaml
           examples:
             システムエラー:
               value:
@@ -939,9 +1105,7 @@ components:
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: '#/components/schemas/Message'
-              - $ref: '#/components/schemas/Error'
+            $ref: ../models/TiemoutErrorResponse.yaml
           examples:
             タイムアウトエラー:
               value:
@@ -958,9 +1122,7 @@ components:
       content:
         application/json:
           schema:
-            allOf:
-              - $ref: '#/components/schemas/Message'
-              - $ref: '#/components/schemas/Error'
+            $ref: ../models/TooManyRequestErrorResponse.yaml
           examples:
             リクエスト過多:
               value:
