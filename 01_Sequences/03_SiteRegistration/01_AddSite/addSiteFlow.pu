@@ -45,18 +45,27 @@ device -> device : 入力内容確認画面表示
 user -> device : 「確定して次へ」押下
 device -> api ++ : サイト情報仮登録API
 api -> api  : サイト情報を一時登録
-api -> stripe ++ : Stripeで作成するProductsの登録
+api -> stripe ++ : MetaDataをもとに、\n合致するproductの検索
 api <-- stripe --
+api -> api : Paymentsテーブルに\nProductのキー（支払い期間ごとに複数）と\nサイトのキーを紐づけて保管
 device <-- api -- 
 device -> device : 支払いプラン情報画面表示
-device -> api ++ : 支払いプラン情報取得API
+device -> api ++ : 支払いプラン情報取得API\nサイトIDをパスパラで使用
+api -> api : サイトIDに紐づくProductのキーたちを取得
+api -> strpe ++ : Productキーに紐づく商品情報を検索
+api <- strpe --
+rnote right of api
+    １か月ごと、３年契約など
+    契約形態を選べるのが理想
+end note
 device <-- api -- : 支払いプラン情報
 user -> device : 支払い情報入力押下
-device -> api ++ : 支払い情報登録開始要求
+device -> api ++ : 支払い情報登録開始要求\nproductsのキーとサイトID
 api -> stripe ++ : プラン情報取得
 api <-- stripe -- : プラン情報
 api -> stripe ++ : セッション生成
 api <-- stripe -- : セッション情報\n(セッションとリダイレクトURL)
+api -> api : セッション情報をPaymentsテーブルに保管
 device <-- api -- : リダイレクトURL\n(301)
 device -> stripe ++ : リダイレクト
 device <-- stripe ++-- : プラン登録画面表示
@@ -65,6 +74,9 @@ device -> stripe ++ : プラン登録API
 device <-- stripe -- 
 alt プラン登録に成功した場合
     device -> api ++ : プラン登録結果API
+    api -> api : セッションIDをもとにチェック
+    api -> stripe ++ : セッションIDをもとに\nstripeにチェック
+    api <-- stripe --
     api -> api : プラン結果登録\nカード情報（ID）登録
     api -> api : 仮登録した内容を確定
     device <-- api -- : 成功画面へのリダイレクト\n(301)
