@@ -66,7 +66,8 @@ api <-- stripe -- : プラン情報
 api -> stripe ++ : セッション生成
 api <-- stripe -- : セッション情報\n(セッションとリダイレクトURL)
 api -> api : セッション情報をPaymentsテーブルに保管
-device <-- api -- : リダイレクトURL\n(301)
+device <-- api -- : リダイレクト先のSessionURL
+device -> device : レスポンスを元にリダイレクト実行
 device -> stripe ++ : リダイレクト
 device <-- stripe ++-- : プラン登録画面表示
 user -> device : カード情報入力
