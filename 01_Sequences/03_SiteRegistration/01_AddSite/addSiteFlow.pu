@@ -44,10 +44,10 @@ device -> device : 入力内容確認画面表示
 
 user -> device : 「確定して次へ」押下
 device -> api ++ : サイト情報仮登録API
-api -> api  : サイト情報を一時登録
+api -> api  : サイト情報を一時登録\ndeletedAtを24時間後に設定
 api -> stripe ++ : MetaDataをもとに、\n合致するproductの検索
 api <-- stripe --
-api -> api : Paymentsテーブルに\nProductのキー（支払い期間ごとに複数）と\nサイトのキーを紐づけて保管
+api -> api : Paymentsテーブルに\nProductのキー（支払い期間ごとに複数）と\nサイトのキーを紐づけて保管\ndeletedAtをサイトと合わせて設定
 device <-- api -- 
 device -> device : 支払いプラン情報画面表示
 device -> api ++ : 支払いプラン情報取得API\nサイトIDをパスパラで使用
@@ -79,6 +79,7 @@ alt プラン登録に成功した場合
     api <-- stripe --
     api -> api : プラン結果登録\nカード情報（ID）登録
     api -> api : 仮登録した内容を確定
+    api -> api : deletedAtを削除
     device <-- api -- : 成功画面へのリダイレクト\n(301)
     device -> device : プラン登録成功画面表示\n(実際にはCDNに対してリダイレクト)
 else プラン登録に失敗した場合
