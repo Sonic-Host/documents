@@ -282,6 +282,79 @@ paths:
           $ref: '#/components/responses/TimeoutError'
       operationId: get-site
       description: ユーザが登録したサイトのリスト情報を返却する。
+      parameters: []
+      security:
+        - ID-Token: []
+    post:
+      summary: サイト仮登録
+      operationId: post-site
+      responses:
+        '200':
+          description: サイトの仮登録に成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/ID.yaml
+                  - $ref: '#/components/schemas/Site'
+                    x-stoplight:
+                      id: hsdrgr9o3k18z
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      description: |-
+        サイトを登録するための仮登録を実施。  
+        サイトに紐づくサブドメインも登録される。  
+        本登録は支払い設定が完了した時点となる。  
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  type: array
+                  x-stoplight:
+                    id: janid4yvfwqqt
+                  items:
+                    x-stoplight:
+                      id: jlx6d0kzc5x7z
+                    allOf:
+                      - $ref: ../models/ID.yaml
+                        x-stoplight:
+                          id: w7un45szr823n
+                      - $ref: '#/components/schemas/Site'
+                        x-stoplight:
+                          id: lp5x9dhikoj51
+                data:
+                  $ref: '#/components/schemas/Site'
+                  x-stoplight:
+                    id: e8vfkutjq58dl
+                subData:
+                  type: object
+                  x-stoplight:
+                    id: bvuxuu10kn8uw
+                  required:
+                    - domain
+                  properties:
+                    domain:
+                      $ref: '#/components/schemas/subDomainServices'
+                      x-stoplight:
+                        id: o78atkeau6na6
+              required:
+                - current
+                - data
+                - subData
+        description: ''
+      security:
+        - ID-Token: []
   '/site/{id}':
     parameters:
       - schema:
@@ -316,15 +389,6 @@ paths:
           $ref: '#/components/responses/TimeoutError'
       operationId: get-site-id
       description: ユーザが登録した特定のサイトに関する詳細情報を取得する。
-      security:
-        - ID-Token: []
-    post:
-      summary: サイト仮登録
-      operationId: post-site-id
-      responses:
-        '200':
-          description: OK
-      description: ユーザが新たにサイトを登録する。
       security:
         - ID-Token: []
     put:
@@ -814,6 +878,138 @@ paths:
       description: サイト用ドメインの情報を更新する。
       security:
         - ID-Token: []
+  '/site/{id}/payments/plans':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: サイトを識別するID
+    get:
+      summary: サイト登録プラン一覧取得
+      tags: []
+      responses:
+        '200':
+          description: プラン一覧取得成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PaymentPlans'
+                    x-stoplight:
+                      id: zsqrqpawyvae9
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-site-id-payments-plans
+      description: ''
+      security:
+        - ID-Token: []
+  '/site/{id}/payments':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: サイトを識別するID
+    get:
+      summary: 支払いプラン登録結果確認
+      tags: []
+      responses:
+        '301':
+          description: |-
+            支払い登録結果確認完了。
+            リダイレクトを実施して、ユーザに管理画面から支払い登録の結果がどうなったかを表示
+          headers:
+            Location:
+              schema:
+                type: string
+              description: 支払い結果へのリダイレクト先
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-site-id-payments
+      description: |-
+        ユーザがStripeにて支払いプランの登録に成功したかどうかを連携するためのAPI。
+        先に支払い登録要求APIが打鍵されて、Stripeからのリダイレクトで本APIが打鍵される仕組み。  
+
+        トークンは存在しないが、代わりにセッションIDで検証を実施する。
+      parameters:
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 1024
+          in: query
+          name: sessionId
+          description: Stripeにて発行されたセッションID
+          required: true
+        - schema:
+            type: boolean
+            example: 'true'
+          in: query
+          name: succeed
+          description: 支払い登録に成功したかどうか
+          required: true
+    post:
+      summary: 支払い情報登録開始要求
+      operationId: post-site-id-payments
+      responses:
+        '200':
+          description: 登録開始要求成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: olimwbhk7n528
+                    required:
+                      - sessionUrl
+                    properties:
+                      sessionUrl:
+                        type: string
+                        x-stoplight:
+                          id: v91pwggiavdd8
+                        description: リダイレクト先のSessionURL
+                        minLength: 1
+                        maxLength: 1024
+                        example: 'https://checkout.stripe.com/c/pay/cs_test_a18h9o7bJI3OKqqDvVGS4aLHHn5SI7hFRkbjfrvVv2vhCbZ84ZLBSnzyH3#fidkdWxOYHwnPyd1blpxYHZxWjA0T2lWV1xPTjc3YVdwUXxINGMxNlxAR3A0a01uUjxmakxvQDQ8YkdWb29wXVFTR2FsVF9gVDJNb0tSNHRrQWh1cjBMSGRdaHx3V0lBbG1USTJTPWdjMXBdNTVETzZLMkFGMScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl'
+                required:
+                  - data
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      security:
+        - ID-Token: []
+      description: |-
+        サイトを登録する際に支払いを開始するためのAPI.
+        本APIでStripeと接続するためのセッションが払い出される。
+        セッションの有効期限は90分なので、ユーザは90分以内に決済登録を実施する必要がある。
 components:
   schemas:
     Contact:
@@ -942,6 +1138,16 @@ components:
         id: vy62orgisqgbf
       type: object
       description: ユーザが登録したサイト情報
+      x-examples:
+        サイト仮登録成功:
+          name: RANGE LIFE
+          domain:
+            custom: false
+            value: range-life.com
+          optimization:
+            css: true
+            image: true
+          paymentEnabled: false
       properties:
         name:
           type: string
@@ -951,12 +1157,31 @@ components:
           minLength: 1
           maxLength: 32
         domain:
-          type: string
+          type: object
           x-stoplight:
             id: ga6zvr3clqkpv
-          description: 登録ドメイン
-          minLength: 1
-          maxLength: 63
+          description: 登録ドメイン情報
+          minProperties: 2
+          maxProperties: 2
+          additionalProperties: false
+          required:
+            - custom
+            - value
+          properties:
+            custom:
+              type: boolean
+              x-stoplight:
+                id: 1mk3d9nuxe6fs
+              default: false
+              description: ユーザ設定のカスタムドメインかどうか
+            value:
+              type: string
+              x-stoplight:
+                id: y6urvn4oir5cn
+              minLength: 1
+              maxLength: 63
+              example: sonic-host.com
+              description: ドメインの実際の値
         optimization:
           type: object
           x-stoplight:
@@ -978,11 +1203,17 @@ components:
                 id: 7jy70mcpnbnv5
               description: 画像最適化設定
               default: true
+        paymentEnabled:
+          type: boolean
+          x-stoplight:
+            id: o5y0xry5nk1zt
+          description: 支払い状況により有効かどうか
+          default: false
       required:
         - name
         - domain
         - optimization
-      x-examples: {}
+        - paymentEnabled
     SubDomain:
       title: SubDomain
       x-stoplight:
@@ -1008,33 +1239,103 @@ components:
             maxLength: 15
             example: 24.32.128.3
         services:
-          type: object
+          $ref: '#/components/schemas/subDomainServices'
           x-stoplight:
             id: 4rw3cusewf4hd
-          required:
-            - site
-            - mail
-          description: 各サービスで使用するサブドメイン
-          properties:
-            site:
-              type: string
-              x-stoplight:
-                id: 2okoxtxfh29a5
-              description: サイト用サブドメイン
-              minLength: 1
-              maxLength: 63
-              example: blog
-            mail:
-              type: string
-              x-stoplight:
-                id: pa835fqf1j87m
-              description: メール用サブドメイン
-              minLength: 1
-              maxLength: 63
-              example: mail
       required:
         - nameServers
         - services
+    subDomainServices:
+      title: subDomainServices
+      x-stoplight:
+        id: m27r8wr5wm32m
+      type: object
+      properties:
+        site:
+          type: string
+          x-stoplight:
+            id: 8s5anp29286t2
+          description: サイト用サブドメイン
+          minLength: 1
+          maxLength: 63
+          example: blog
+        mail:
+          type: string
+          x-stoplight:
+            id: ab6garkkr1bul
+          description: メール用サブドメイン
+          minLength: 1
+          maxLength: 63
+          example: mail
+      required:
+        - site
+        - mail
+      description: |-
+        サイトで使用する各種サービスのサブドメイン。
+        サイトで保管されているドメインにプラスで、このサブドメインをくっつける。
+    PaymentProductID:
+      title: PaymentProductID
+      x-stoplight:
+        id: xiph65cksu314
+      type: string
+      description: サイトを支払うためのStripeのProduct文字列
+      minLength: 1
+      maxLength: 128
+      example: prod_MuO0wWYoWlVLOT
+    PaymentPlans:
+      title: PaymentPlans
+      x-stoplight:
+        id: biogryai85usi
+      type: object
+      description: |-
+        サイトを支払うためのプランの選択肢。
+        支払い期間ごとに金額を調整する。
+      properties:
+        products:
+          type: array
+          x-stoplight:
+            id: v12bb71mk5img
+          description: 支払いプラン情報
+          items:
+            x-stoplight:
+              id: 0552wi8y4gb67
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/PaymentProductID'
+                x-stoplight:
+                  id: 7zdm2zrj7a8d4
+              name:
+                type: string
+                x-stoplight:
+                  id: vjpznjmu7pl52
+                description: 支払いプラン名
+                minLength: 1
+                maxLength: 64
+                example: Sonic-Host 定期契約\n自前ドメイン方式　６か月契約
+              price:
+                type: string
+                x-stoplight:
+                  id: 19zuquwe8mmzb
+                description: 金額
+                example: 6000円
+                minLength: 1
+                maxLength: 32
+              paymentPeriod:
+                type: string
+                x-stoplight:
+                  id: g3yks2n1ewjal
+                description: 支払い期間
+                example: ６か月ごと
+                minLength: 1
+                maxLength: 32
+            required:
+              - id
+              - name
+              - price
+              - paymentPeriod
+      required:
+        - products
   securitySchemes:
     ID-Token:
       name: Authorization
