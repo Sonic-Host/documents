@@ -1349,6 +1349,112 @@ paths:
               required:
                 - current
         description: ''
+  /user:
+    delete:
+      summary: 解約
+      operationId: delete-user
+      responses:
+        '200':
+          description: OK
+      description: Sonic-Host解約を実行する。
+      security:
+        - ID-Token: []
+  /term:
+    get:
+      summary: 利用規約ステータス取得
+      tags: []
+      responses:
+        '200':
+          description: 利用規約ステータス取得成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Term'
+                    x-stoplight:
+                      id: j8fn9qn90ki8a
+              examples:
+                利用規約ステータス取得成功:
+                  value:
+                    data:
+                      needTermCheck: false
+                      lastCheckedAt: '2019-08-24T14:15:22Z'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-term
+      description: ユーザの利用規約確認ステータスがどのような状態かを取得する。
+      security:
+        - ID-Token: []
+    put:
+      summary: 利用規約チェックステータス更新
+      operationId: put-term
+      responses:
+        '200':
+          description: 利用規約チェックステータス更新成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - type: object
+                    x-stoplight:
+                      id: 89pjkduq5m1xz
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Term'
+                        x-stoplight:
+                          id: t4jypxz4jptqj
+                    required:
+                      - data
+              examples:
+                利用規約確認ステータス更新成功:
+                  value:
+                    message:
+                      type: success
+                      display: 最新の利用規約がチェックされたことを確認しました。
+                    data:
+                      needTermCheck: false
+                      lastCheckedAt: '2019-08-24T14:15:22Z'
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      description: 利用規約チェックステータス更新
+      security:
+        - ID-Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  $ref: '#/components/schemas/Term'
+                  x-stoplight:
+                    id: 1vq8jcw125i5l
+                data:
+                  $ref: '#/components/schemas/Term'
+                  x-stoplight:
+                    id: o7j7mbtrfr3yz
+              required:
+                - current
+                - data
 components:
   schemas:
     Contact:
@@ -1692,6 +1798,32 @@ components:
           example: sonic-host.com
       required:
         - domain
+    Term:
+      title: Term
+      x-stoplight:
+        id: gpukxrfbi19rb
+      description: 規約ステータスを格納する。
+      allOf:
+        - properties:
+            needTermCheck:
+              type: boolean
+              x-stoplight:
+                id: lg3zp5011xtv8
+              description: 利用規約再同意必要かどうか
+              default: false
+            lastCheckedAt:
+              type: string
+              x-stoplight:
+                id: w77z1zvx9jdmy
+              description: 最後に利用規約に同意した日時
+              format: date-time
+              example: '2019-08-24T14:15:22Z'
+              minLength: 20
+              maxLength: 20
+          required:
+            - needTermCheck
+            - lastCheckedAt
+      type: object
   securitySchemes:
     ID-Token:
       name: Authorization
