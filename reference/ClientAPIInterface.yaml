@@ -24,20 +24,27 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  x-stoplight:
-                    id: hnea2xcyqcqkn
-                  allOf:
-                    - $ref: ../models/ID.yaml
+                type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: hnea2xcyqcqkn
+                    type: array
+                    items:
                       x-stoplight:
-                        id: 88903upkherc5
-                    - $ref: '#/components/schemas/Notification'
-                      x-stoplight:
-                        id: 8ro2phmqlsa7i
-                    - $ref: ../models/CreatedAt.yaml
-                      x-stoplight:
-                        id: bvcu1975nkd4i
+                        id: 5l9t8lh2l8o64
+                      allOf:
+                        - $ref: ../models/ID.yaml
+                          x-stoplight:
+                            id: d1nw8pz5juul2
+                        - $ref: '#/components/schemas/Notification'
+                          x-stoplight:
+                            id: 9rnidvvxr03n5
+                        - $ref: ../models/CreatedAt.yaml
+                          x-stoplight:
+                            id: cuxkmrzlzyzzt
+                required:
+                  - data
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -71,16 +78,23 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: ../models/ID.yaml
+                type: object
+                properties:
+                  data:
                     x-stoplight:
-                      id: dk0bl8v3jel1a
-                  - $ref: '#/components/schemas/Notification'
-                    x-stoplight:
-                      id: pa3dc8gl90rtn
-                  - $ref: ../models/CreatedAt.yaml
-                    x-stoplight:
-                      id: r93bobimsiguk
+                      id: 82vpvi41zb7vc
+                    allOf:
+                      - $ref: ../models/ID.yaml
+                        x-stoplight:
+                          id: 4nv5hwdlu5syu
+                      - $ref: '#/components/schemas/Notification'
+                        x-stoplight:
+                          id: v2p1j81b5sn38
+                      - $ref: ../models/CreatedAt.yaml
+                        x-stoplight:
+                          id: ddp26jnzk8jj7
+                required:
+                  - data
               examples:
                 Get User Alice Smith:
                   value:
@@ -192,17 +206,23 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - x-stoplight:
-                      id: 2q22fz6gkeehf
-                    properties:
-                      data:
-                        $ref: '#/components/schemas/NotificationRead'
-                        x-stoplight:
-                          id: np5p1ndesiot3
-                    required:
-                      - data
                 type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: hzhbzpgat0azz
+                    allOf:
+                      - $ref: ../models/ID.yaml
+                        x-stoplight:
+                          id: q4i5ejai6orv8
+                      - $ref: '#/components/schemas/Notification'
+                        x-stoplight:
+                          id: u5mm4fz9iamwn
+                      - $ref: ../models/CreatedAt.yaml
+                        x-stoplight:
+                          id: e8uxcmzglj89r
+                required:
+                  - data
               examples:
                 既読状態の更新に成功:
                   value:
@@ -249,6 +269,46 @@ paths:
                 - current
                 - data
         description: ''
+  /domains:
+    get:
+      summary: 使用可能ドメイン一覧取得
+      tags: []
+      responses:
+        '200':
+          description: ドメイン一覧取得成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: gtmn5ovm96rwc
+                    allOf:
+                      - $ref: ../models/ID.yaml
+                        x-stoplight:
+                          id: d1ogizywg4xak
+                      - $ref: '#/components/schemas/Domain'
+                        x-stoplight:
+                          id: skv71e7jbj35c
+                required:
+                  - data
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-domains
+      description: |-
+        サイト登録時に使用可能なSonic-Host側から提供されているドメインの一覧。
+        そのドメインのサブドメインをサイト用などに登録することができる。
+      security:
+        - ID-Token: []
   /site:
     get:
       summary: サイト一覧取得
@@ -259,17 +319,24 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  x-stoplight:
-                    id: 3odtnu4a9x592
-                  allOf:
-                    - $ref: ../models/ID.yaml
+                type: object
+                properties:
+                  data:
+                    x-stoplight:
+                      id: 3odtnu4a9x592
+                    type: array
+                    items:
                       x-stoplight:
-                        id: ztskpt31kf60j
-                    - $ref: '#/components/schemas/Site'
-                      x-stoplight:
-                        id: irqd2tsbr2z9t
+                        id: 4tzp944pe0h7t
+                      allOf:
+                        - $ref: ../models/ID.yaml
+                          x-stoplight:
+                            id: ahqo95jueoa88
+                        - $ref: '#/components/schemas/Site'
+                          x-stoplight:
+                            id: dqoba06hhsus9
+                required:
+                  - data
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -295,10 +362,41 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: ../models/ID.yaml
-                  - $ref: '#/components/schemas/Site'
+                  - type: object
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: x5ufcqgy5lzdw
+                        allOf:
+                          - $ref: ../models/ID.yaml
+                            x-stoplight:
+                              id: 5mxxlpd2199nr
+                          - $ref: '#/components/schemas/Site'
+                            x-stoplight:
+                              id: 2hstv2tp11rp5
+                    required:
+                      - data
+                  - $ref: ../models/Message.yaml
                     x-stoplight:
-                      id: hsdrgr9o3k18z
+                      id: hkp5hjyud2q0w
+              examples:
+                サイト仮登録成功:
+                  value:
+                    data:
+                      id: '165923165886004186925843853365'
+                      name: string
+                      domain:
+                        custom: false
+                        value: sonic-host.com
+                      optimization:
+                        css: true
+                        image: true
+                      paymentEnabled: false
+                    message:
+                      type: success
+                      display: |-
+                        サイトの仮登録に成功しました。
+                        引き続き決済情報の登録をお願いいたします。
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -372,11 +470,20 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: ../models/ID.yaml
-                  - $ref: '#/components/schemas/Site'
+                type: object
+                properties:
+                  data:
                     x-stoplight:
-                      id: 65ed86n5l83n1
+                      id: vap8fppurfe8f
+                    allOf:
+                      - $ref: ../models/ID.yaml
+                        x-stoplight:
+                          id: 69vbfw0yeb26n
+                      - $ref: '#/components/schemas/Site'
+                        x-stoplight:
+                          id: m9zesxyyrl35w
+                required:
+                  - data
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -396,19 +503,351 @@ paths:
       operationId: put-site-id
       responses:
         '200':
-          description: OK
+          description: サイト情報更新成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                    x-stoplight:
+                      id: p667scvjgayro
+                  - type: object
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: l72m2pkc6dqsl
+                        allOf:
+                          - $ref: ../models/ID.yaml
+                            x-stoplight:
+                              id: qob2orlz57mtl
+                          - $ref: '#/components/schemas/Site'
+                            x-stoplight:
+                              id: wl9npl72x1f47
+              examples:
+                サイト情報の更新完了:
+                  value:
+                    message:
+                      type: success
+                      display: サイト情報の更新が完了しました。
+                    data:
+                      id: '165923165886004186925843853365'
+                      name: string
+                      domain:
+                        isCustom: false
+                        value: sonic-host.com
+                      optimization:
+                        css: true
+                        image: true
+                      paymentEnabled: false
+                ドメイン更新:
+                  value:
+                    message:
+                      type: success
+                      display: |-
+                        サイト情報の更新が完了しました。
+                        ドメイン変更は適用されるまでしばらくお待ちください。
+                    data:
+                      id: '165923165886004186925843853365'
+                      name: string
+                      domain:
+                        isCustom: true
+                        value: sonic-host2.com
+                      optimization:
+                        css: true
+                        image: true
+                      paymentEnabled: false
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          description: Too Many Requests
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       description: ユーザが指定したサイトの情報を更新する。
       security:
         - ID-Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  x-stoplight:
+                    id: v4ithnuqvk7kx
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: 8j6kr2uv20rse
+                    - $ref: '#/components/schemas/Site'
+                      x-stoplight:
+                        id: 7ivpeaa40p4uf
+                data:
+                  $ref: '#/components/schemas/Site'
+                  x-stoplight:
+                    id: selav7ycl0upn
+              required:
+                - current
     delete:
       summary: サイト削除
       operationId: delete-site-id
       responses:
         '200':
-          description: OK
+          description: サイト情報削除（解約）完了。
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - type: object
+                    x-stoplight:
+                      id: k1rokwlu6lxuq
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: fwqeh010ypmgy
+                        allOf:
+                          - $ref: ../models/ID.yaml
+                            x-stoplight:
+                              id: 9l3ltoq1e86lp
+                          - $ref: '#/components/schemas/Site'
+                            x-stoplight:
+                              id: f3gjdeypvgnr6
+                    required:
+                      - data
+              examples:
+                サイト削除完了:
+                  value:
+                    message:
+                      type: success
+                      display: APIの処理が成功しました。
+                    data:
+                      id: '165923165886004186925843853365'
+                      name: string
+                      domain:
+                        isCustom: false
+                        value: sonic-host.com
+                      optimization:
+                        css: true
+                        image: true
+                      paymentEnabled: false
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       security:
         - ID-Token: []
       description: ユーザが指定したサイトの情報を削除する。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  x-stoplight:
+                    id: ldpdi1je57vek
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: 1rl5t1vj8d0rg
+                    - $ref: '#/components/schemas/Site'
+                      x-stoplight:
+                        id: 1usw4fzmnnkxs
+              required:
+                - current
+  '/site/{id}/domain':
+    get:
+      summary: サイト用ドメイン取得
+      tags: []
+      responses: {}
+      operationId: get-site-domain
+      description: サイトに登録しているドメイン情報を取得するAPI
+      security:
+        - ID-Token: []
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: サイト識別子
+    post:
+      summary: サイト用ドメイン追加
+      operationId: post-site-id-domain
+      responses:
+        '200':
+          description: OK
+      description: |-
+        サイト用ドメインを追加するためのAPI。
+        このAPIによって登録されたドメインがユーザが登録したいサイトを表示するときのドメインとなる。
+      security:
+        - ID-Token: []
+    put:
+      summary: サイト用ドメイン更新
+      operationId: put-site-id-domain
+      responses:
+        '200':
+          description: OK
+      description: サイト用ドメインの情報を更新する。
+      security:
+        - ID-Token: []
+  '/site/{id}/payments':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: サイトを識別するID
+    get:
+      summary: 支払いプラン登録結果確認
+      tags: []
+      responses:
+        '301':
+          description: |-
+            支払い登録結果確認完了。
+            リダイレクトを実施して、ユーザに管理画面から支払い登録の結果がどうなったかを表示
+          headers:
+            Location:
+              schema:
+                type: string
+              description: 支払い結果へのリダイレクト先
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-site-id-payments
+      description: |-
+        ユーザがStripeにて支払いプランの登録に成功したかどうかを連携するためのAPI。
+        先に支払い登録要求APIが打鍵されて、Stripeからのリダイレクトで本APIが打鍵される仕組み。  
+
+        トークンは存在しないが、代わりにセッションIDで検証を実施する。
+      parameters:
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 1024
+          in: query
+          name: sessionId
+          description: Stripeにて発行されたセッションID
+          required: true
+        - schema:
+            type: boolean
+            example: 'true'
+          in: query
+          name: succeed
+          description: 支払い登録に成功したかどうか
+          required: true
+        - schema:
+            type: boolean
+            example: 'false'
+          in: query
+          name: canceled
+          description: キャンセルされたかどうか
+          required: true
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 128
+            example: 決済時にエラーが発生しました。\n暫くしてから再度お試しください。
+          in: query
+          name: message
+          description: エラー時に設定されるメッセージ
+    post:
+      summary: 支払い情報登録開始要求
+      operationId: post-site-id-payments
+      responses:
+        '200':
+          description: 登録開始要求成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: olimwbhk7n528
+                    required:
+                      - sessionUrl
+                    properties:
+                      sessionUrl:
+                        type: string
+                        x-stoplight:
+                          id: v91pwggiavdd8
+                        description: リダイレクト先のSessionURL
+                        minLength: 1
+                        maxLength: 1024
+                        example: 'https://checkout.stripe.com/c/pay/cs_test_a18h9o7bJI3OKqqDvVGS4aLHHn5SI7hFRkbjfrvVv2vhCbZ84ZLBSnzyH3#fidkdWxOYHwnPyd1blpxYHZxWjA0T2lWV1xPTjc3YVdwUXxINGMxNlxAR3A0a01uUjxmakxvQDQ8YkdWb29wXVFTR2FsVF9gVDJNb0tSNHRrQWh1cjBMSGRdaHx3V0lBbG1USTJTPWdjMXBdNTVETzZLMkFGMScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl'
+                required:
+                  - data
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      security:
+        - ID-Token: []
+      description: |-
+        サイトを登録する際に支払いを開始するためのAPI.
+        本APIでStripeと接続するためのセッションが払い出される。
+        セッションの有効期限は90分なので、ユーザは90分以内に決済登録を実施する必要がある。
+  '/site/{id}/payments/plans':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: サイトを識別するID
+    get:
+      summary: サイト登録プラン一覧取得
+      tags: []
+      responses:
+        '200':
+          description: プラン一覧取得成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PaymentPlans'
+                    x-stoplight:
+                      id: zsqrqpawyvae9
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-site-id-payments-plans
+      description: ''
+      security:
+        - ID-Token: []
   /contacts:
     get:
       summary: お問い合わせ一覧取得
@@ -842,174 +1281,6 @@ paths:
               required:
                 - current
         description: ''
-  '/site/{id}/domain':
-    get:
-      summary: サイト用ドメイン取得
-      tags: []
-      responses: {}
-      operationId: get-site-domain
-      description: サイトに登録しているドメイン情報を取得するAPI
-      security:
-        - ID-Token: []
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: サイト識別子
-    post:
-      summary: サイト用ドメイン追加
-      operationId: post-site-id-domain
-      responses:
-        '200':
-          description: OK
-      description: |-
-        サイト用ドメインを追加するためのAPI。
-        このAPIによって登録されたドメインがユーザが登録したいサイトを表示するときのドメインとなる。
-      security:
-        - ID-Token: []
-    put:
-      summary: サイト用ドメイン更新
-      operationId: put-site-id-domain
-      responses:
-        '200':
-          description: OK
-      description: サイト用ドメインの情報を更新する。
-      security:
-        - ID-Token: []
-  '/site/{id}/payments/plans':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: サイトを識別するID
-    get:
-      summary: サイト登録プラン一覧取得
-      tags: []
-      responses:
-        '200':
-          description: プラン一覧取得成功
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/PaymentPlans'
-                    x-stoplight:
-                      id: zsqrqpawyvae9
-        '401':
-          $ref: '#/components/responses/NotAuthorized'
-        '429':
-          $ref: '#/components/responses/TooManyRequestError'
-        '500':
-          $ref: '#/components/responses/SystemError'
-        '503':
-          $ref: '#/components/responses/SystemBlockage'
-        '504':
-          $ref: '#/components/responses/TimeoutError'
-      operationId: get-site-id-payments-plans
-      description: ''
-      security:
-        - ID-Token: []
-  '/site/{id}/payments':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: サイトを識別するID
-    get:
-      summary: 支払いプラン登録結果確認
-      tags: []
-      responses:
-        '301':
-          description: |-
-            支払い登録結果確認完了。
-            リダイレクトを実施して、ユーザに管理画面から支払い登録の結果がどうなったかを表示
-          headers:
-            Location:
-              schema:
-                type: string
-              description: 支払い結果へのリダイレクト先
-        '429':
-          $ref: '#/components/responses/TooManyRequestError'
-        '500':
-          $ref: '#/components/responses/SystemError'
-        '503':
-          $ref: '#/components/responses/SystemBlockage'
-        '504':
-          $ref: '#/components/responses/TimeoutError'
-      operationId: get-site-id-payments
-      description: |-
-        ユーザがStripeにて支払いプランの登録に成功したかどうかを連携するためのAPI。
-        先に支払い登録要求APIが打鍵されて、Stripeからのリダイレクトで本APIが打鍵される仕組み。  
-
-        トークンは存在しないが、代わりにセッションIDで検証を実施する。
-      parameters:
-        - schema:
-            type: string
-            minLength: 1
-            maxLength: 1024
-          in: query
-          name: sessionId
-          description: Stripeにて発行されたセッションID
-          required: true
-        - schema:
-            type: boolean
-            example: 'true'
-          in: query
-          name: succeed
-          description: 支払い登録に成功したかどうか
-          required: true
-    post:
-      summary: 支払い情報登録開始要求
-      operationId: post-site-id-payments
-      responses:
-        '200':
-          description: 登録開始要求成功
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    x-stoplight:
-                      id: olimwbhk7n528
-                    required:
-                      - sessionUrl
-                    properties:
-                      sessionUrl:
-                        type: string
-                        x-stoplight:
-                          id: v91pwggiavdd8
-                        description: リダイレクト先のSessionURL
-                        minLength: 1
-                        maxLength: 1024
-                        example: 'https://checkout.stripe.com/c/pay/cs_test_a18h9o7bJI3OKqqDvVGS4aLHHn5SI7hFRkbjfrvVv2vhCbZ84ZLBSnzyH3#fidkdWxOYHwnPyd1blpxYHZxWjA0T2lWV1xPTjc3YVdwUXxINGMxNlxAR3A0a01uUjxmakxvQDQ8YkdWb29wXVFTR2FsVF9gVDJNb0tSNHRrQWh1cjBMSGRdaHx3V0lBbG1USTJTPWdjMXBdNTVETzZLMkFGMScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl'
-                required:
-                  - data
-        '401':
-          $ref: '#/components/responses/NotAuthorized'
-        '429':
-          $ref: '#/components/responses/TooManyRequestError'
-        '500':
-          $ref: '#/components/responses/SystemError'
-        '503':
-          $ref: '#/components/responses/SystemBlockage'
-        '504':
-          $ref: '#/components/responses/TimeoutError'
-      security:
-        - ID-Token: []
-      description: |-
-        サイトを登録する際に支払いを開始するためのAPI.
-        本APIでStripeと接続するためのセッションが払い出される。
-        セッションの有効期限は90分なので、ユーザは90分以内に決済登録を実施する必要がある。
 components:
   schemas:
     Contact:
@@ -1165,10 +1436,10 @@ components:
           maxProperties: 2
           additionalProperties: false
           required:
-            - custom
+            - isCustom
             - value
           properties:
-            custom:
+            isCustom:
               type: boolean
               x-stoplight:
                 id: 1mk3d9nuxe6fs
@@ -1336,6 +1607,23 @@ components:
               - paymentPeriod
       required:
         - products
+    Domain:
+      title: Domain
+      x-stoplight:
+        id: y5yglbsr7mnga
+      type: object
+      description: ドメイン情報を構成するモデル
+      properties:
+        domain:
+          type: string
+          x-stoplight:
+            id: 8hy00hlc80yww
+          description: ドメイン名
+          minLength: 1
+          maxLength: 64
+          example: sonic-host.com
+      required:
+        - domain
   securitySchemes:
     ID-Token:
       name: Authorization
