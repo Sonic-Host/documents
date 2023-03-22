@@ -665,11 +665,32 @@ paths:
                         id: 1usw4fzmnnkxs
               required:
                 - current
-  '/site/{id}/domain':
+  '/site/{id}/subDomain':
     get:
-      summary: サイト用ドメイン取得
+      summary: サイト用サブドメイン取得
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: サイト用ドメイン取得成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/SubDomain'
+                    x-stoplight:
+                      id: ze8i5qi5obyhr
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       operationId: get-site-domain
       description: サイトに登録しているドメイン情報を取得するAPI
       security:
@@ -681,26 +702,73 @@ paths:
         in: path
         required: true
         description: サイト識別子
-    post:
-      summary: サイト用ドメイン追加
-      operationId: post-site-id-domain
-      responses:
-        '200':
-          description: OK
-      description: |-
-        サイト用ドメインを追加するためのAPI。
-        このAPIによって登録されたドメインがユーザが登録したいサイトを表示するときのドメインとなる。
-      security:
-        - ID-Token: []
     put:
-      summary: サイト用ドメイン更新
+      summary: サイト用サブドメイン更新
       operationId: put-site-id-domain
       responses:
         '200':
-          description: OK
+          description: サイト用サブドメイン更新成功
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - type: object
+                    x-stoplight:
+                      id: ktm10f8r692rb
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/SubDomain'
+                        x-stoplight:
+                          id: 5s348t0mig9at
+                    required:
+                      - data
+              examples:
+                サイト用サブドメイン更新成功:
+                  value:
+                    message:
+                      type: success
+                      display: サブドメインの更新に成功しました。
+                    data:
+                      nameServers:
+                        - 24.32.128.3
+                        - 24.32.128.3
+                        - 24.32.128.3
+                        - 24.32.128.3
+                      services:
+                        site: blog
+                        mail: mail
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       description: サイト用ドメインの情報を更新する。
       security:
         - ID-Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current:
+                  $ref: '#/components/schemas/SubDomain'
+                  x-stoplight:
+                    id: mwcw9wdh59fe3
+                data:
+                  $ref: '#/components/schemas/subDomainServices'
+                  x-stoplight:
+                    id: xl0gjxg1rkheb
+              required:
+                - current
+                - data
+        description: サブドメインを変更するため、dataとしてはサブドメイン名が入力されることを想定。
   '/site/{id}/payments':
     parameters:
       - schema:
