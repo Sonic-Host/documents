@@ -1355,7 +1355,19 @@ paths:
       operationId: delete-user
       responses:
         '200':
-          description: OK
+          description: |-
+            解約成功。
+            解約に成功したため、特に返却するレスポンスはなし。
+        '401':
+          $ref: '#/components/responses/NotAuthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
       description: Sonic-Host解約を実行する。
       security:
         - ID-Token: []
