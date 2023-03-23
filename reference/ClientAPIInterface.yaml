@@ -1887,14 +1887,14 @@ components:
         description: クライアント側で保持しているリソース情報とバックエンド側のリソース情報が不一致のエラー。
         type: object
         allOf:
-          - $ref: ./Message.yaml
-          - $ref: ./Error.yaml
+          - $ref: ../models/Message.yaml
+          - $ref: ../models/Error.yaml
     NotExistIdError:
       value:
         description: IDが存在しない場合のエラー
         allOf:
-          - $ref: ./Message.yaml
-          - $ref: ./Error.yaml
+          - $ref: ../models/Message.yaml
+          - $ref: ../models/Error.yaml
   responses:
     NotAuthorized:
       description: 未ログイン状態・トークンの有効期限切れ状態でのAPIリクエストが実施されたときに返却されるレスポンス
