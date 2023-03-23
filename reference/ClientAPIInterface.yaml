@@ -264,6 +264,8 @@ paths:
                   $ref: '#/components/examples/NotExistIdError'
                 リソース情報不一致エラー:
                   $ref: '#/components/examples/ResourceMismatchError'
+                Example 1:
+                  $ref: '#/components/examples/Sample'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1895,6 +1897,15 @@ components:
         allOf:
           - $ref: ../models/Message.yaml
           - $ref: ../models/Error.yaml
+    Sample:
+      value:
+        description: Example shared example
+        type: object
+        properties:
+          id:
+            type: string
+        required:
+          - id
   responses:
     NotAuthorized:
       description: 未ログイン状態・トークンの有効期限切れ状態でのAPIリクエストが実施されたときに返却されるレスポンス
