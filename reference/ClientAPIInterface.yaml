@@ -107,7 +107,22 @@ paths:
                       content: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
                       isRead: true
                       createdAt: '2019-08-24T14:15:22Z'
+                Example 1:
+                  $ref: '#/components/examples/NotExistIdError'
           headers: {}
+        '400':
+          description: バックエンドでの業務エラー
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: 7t298isofxeya
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -234,6 +249,21 @@ paths:
                       content: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
                       isRead: true
                       createdAt: '2019-08-24T14:15:22Z'
+        '400':
+          description: バックエンドでの業務エラー
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: mp28dma2k33qj
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                リソース情報不一致エラー:
+                  $ref: '#/components/examples/ResourceMismatchError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1854,13 +1884,17 @@ components:
   examples:
     ResourceMismatchError:
       value:
-        description: Example shared example
+        description: クライアント側で保持しているリソース情報とバックエンド側のリソース情報が不一致のエラー。
         type: object
-        properties:
-          id:
-            type: string
-        required:
-          - id
+        allOf:
+          - $ref: ./Message.yaml
+          - $ref: ./Error.yaml
+    NotExistIdError:
+      value:
+        description: IDが存在しない場合のエラー
+        allOf:
+          - $ref: ./Message.yaml
+          - $ref: ./Error.yaml
   responses:
     NotAuthorized:
       description: 未ログイン状態・トークンの有効期限切れ状態でのAPIリクエストが実施されたときに返却されるレスポンス
