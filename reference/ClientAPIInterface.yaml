@@ -10,6 +10,9 @@ info:
   contact:
     name: Hayato Takahashi
     email: hayato.takahashi.b@gmail.com
+    url: 'https://github.com/HayatoTakahashi129'
+  license:
+    name: Sonic-Host
 servers:
   - url: 'http://localhost:8000'
     description: Local
@@ -96,15 +99,14 @@ paths:
                 required:
                   - data
               examples:
-                Get User Alice Smith:
+                お知らせ詳細取得成功:
                   value:
-                    id: 142
-                    firstName: Alice
-                    lastName: Smith
-                    email: alice.smith@gmail.com
-                    dateOfBirth: '1997-10-31'
-                    emailVerified: true
-                    signUpDate: '2019-08-24'
+                    data:
+                      id: '165923165886004186925843853365'
+                      title: 管理画面の新バージョンのお知らせ
+                      content: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
+                      isRead: true
+                      createdAt: '2019-08-24T14:15:22Z'
           headers: {}
         '401':
           $ref: '#/components/responses/NotAuthorized'
@@ -224,10 +226,14 @@ paths:
                 required:
                   - data
               examples:
-                既読状態の更新に成功:
+                既読状態の更新成功:
                   value:
                     data:
+                      id: '165923165886004186925843853365'
+                      title: 管理画面の新バージョンのお知らせ
+                      content: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
                       isRead: true
+                      createdAt: '2019-08-24T14:15:22Z'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -386,7 +392,7 @@ paths:
                       id: '165923165886004186925843853365'
                       name: string
                       domain:
-                        custom: false
+                        isCustom: false
                         value: sonic-host.com
                       optimization:
                         css: true
@@ -731,9 +737,9 @@ paths:
                       display: サブドメインの更新に成功しました。
                     data:
                       nameServers:
-                        - 24.32.128.3
-                        - 24.32.128.3
-                        - 24.32.128.3
+                        - 24.32.128.0
+                        - 24.32.128.1
+                        - 24.32.128.2
                         - 24.32.128.3
                       services:
                         site: blog
@@ -815,14 +821,14 @@ paths:
           required: true
         - schema:
             type: boolean
-            example: 'true'
+            example: true
           in: query
           name: succeed
           description: 支払い登録に成功したかどうか
           required: true
         - schema:
             type: boolean
-            example: 'false'
+            example: false
           in: query
           name: canceled
           description: キャンセルされたかどうか
@@ -945,12 +951,14 @@ paths:
                         category: 登録されたサイトについて
                         title: サイト更新のタイミングについて
                         content: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+                        closed: false
                       - id: '165923165886004186925843853365'
                         category: お支払内容
                         title: 請求金額の不一致について
                         content: |-
                           請求金額についてこちらで計算したところ、実際に請求された内容と一致してないように見えます。
                           お手数ですが、ご確認をお願いできますでしょうか。
+                        closed: true
                 起票済みのお問い合わせなし:
                   value:
                     data: []
@@ -1001,10 +1009,11 @@ paths:
                         お問い合わせが受け付けられました。
                         回答があるまでしばらくお待ちください。
                     data:
-                      id: '165923165886004186925843853365'
-                      category: 登録されたサイトについて
-                      title: サイト更新のタイミングについて
-                      content: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+                      - id: '165923165886004186925843853365'
+                        category: 登録されたサイトについて
+                        title: サイト更新のタイミングについて
+                        content: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+                        closed: false
         '400':
           description: Bad Request
           content:
@@ -1126,13 +1135,13 @@ paths:
                   value:
                     data:
                       replies:
-                        - content: お問い合わせありがとうございます。\n....
+                        - id: '165923165886004186925843853365'
+                          content: お問い合わせありがとうございます。\n....
                           from: admin
                           createdAt: '2019-08-24T14:15:22Z'
-                    '':
-                      message:
-                        type: success
-                        display: APIの処理が成功しました。
+                    message:
+                      type: success
+                      display: APIの処理が成功しました。
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
