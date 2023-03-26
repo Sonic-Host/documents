@@ -48,6 +48,25 @@ paths:
                             id: cuxkmrzlzyzzt
                 required:
                   - data
+              examples:
+                お知らせ一覧通知取得成功:
+                  value:
+                    data:
+                      - id: '165923165886004186925843853365'
+                        title: 管理画面の新バージョンのお知らせ
+                        content: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
+                        isRead: false
+                        createdAt: '2019-08-24T14:15:22Z'
+                      - id: '165923165886004186925842853365'
+                        title: サイトリニューアル
+                        content: |-
+                          サイトがリニューアルされました。
+                          見やすくなった当サイトをご覧ください。
+                        isRead: true
+                        createdAt: '2019-08-22T14:15:22Z'
+                お知らせなし:
+                  value:
+                    data: []
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -107,8 +126,6 @@ paths:
                       content: 管理画面の新バージョンがリリースされました。\n以下の修正が実施されております。\n・軽微なバグの修正
                       isRead: true
                       createdAt: '2019-08-24T14:15:22Z'
-                Example 1:
-                  $ref: '#/components/examples/NotExistIdError'
           headers: {}
         '400':
           description: バックエンドでの業務エラー
@@ -213,6 +230,11 @@ paths:
                         id: l65xyub6dqxqi
               required:
                 - current
+            examples:
+              リソース不一致エラー:
+                $ref: '#/components/examples/ResourceMismatchError'
+              IDが存在しない場合のエラー:
+                $ref: '#/components/examples/NotExistIdError'
         description: 削除するお知らせ情報
     put:
       summary: お知らせ通知詳細更新
@@ -264,8 +286,26 @@ paths:
                   $ref: '#/components/examples/NotExistIdError'
                 リソース情報不一致エラー:
                   $ref: '#/components/examples/ResourceMismatchError'
-                Example 1:
-                  $ref: '#/components/examples/Sample'
+                バリデーションエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        問題が発生しました。
+                        お手数ですが、画面を更新後、再度お試しください。
+                    error:
+                      type: validation
+                      detail: '${isRead}欄の入力は必須になります。'
+                既に既読済み:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        問題が発生しました。
+                        お手数ですが、画面を更新後、再度お試しください。
+                    error:
+                      type: validation
+                      detail: '${isRead}欄はtrueのみです。'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -322,15 +362,30 @@ paths:
                   data:
                     x-stoplight:
                       id: gtmn5ovm96rwc
-                    allOf:
-                      - $ref: ../models/ID.yaml
-                        x-stoplight:
-                          id: d1ogizywg4xak
-                      - $ref: '#/components/schemas/Domain'
-                        x-stoplight:
-                          id: skv71e7jbj35c
+                    type: array
+                    items:
+                      x-stoplight:
+                        id: e83zqls9pxhkm
+                      allOf:
+                        - $ref: ../models/ID.yaml
+                          x-stoplight:
+                            id: uzzi7oiky7tw3
+                        - $ref: '#/components/schemas/Domain'
+                          x-stoplight:
+                            id: cf4ykht9wfeo6
                 required:
                   - data
+              examples:
+                ドメイン一覧取得成功:
+                  value:
+                    data:
+                      - id: '165923165886004186925843853365'
+                        domain: sonic-host.com
+                      - id: '165923165886004186925843853366'
+                        domain: sample-yeah.com
+                使用可能ドメインなし:
+                  value:
+                    data: []
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -375,6 +430,31 @@ paths:
                             id: dqoba06hhsus9
                 required:
                   - data
+              examples:
+                ユーザのサイト一覧取得:
+                  value:
+                    data:
+                      - id: '165923165886004186925843853365'
+                        name: RAGE LIFE
+                        domain:
+                          isCustom: true
+                          value: range-life.com
+                        optimization:
+                          css: true
+                          image: true
+                        paymentEnabled: true
+                      - id: '165923165886004286925843853365'
+                        name: SAMPLE SITE
+                        domain:
+                          isCustom: false
+                          value: sample.sonic-host.com
+                        optimization:
+                          css: false
+                          image: false
+                        paymentEnabled: false
+                ユーザのサイトなし:
+                  value:
+                    data: []
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -422,10 +502,10 @@ paths:
                   value:
                     data:
                       id: '165923165886004186925843853365'
-                      name: string
+                      name: RANGE LIFE
                       domain:
                         isCustom: false
-                        value: sonic-host.com
+                        value: sample.sonic-host.com
                       optimization:
                         css: true
                         image: true
@@ -435,6 +515,39 @@ paths:
                       display: |-
                         サイトの仮登録に成功しました。
                         引き続き決済情報の登録をお願いいたします。
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: znsnutof6tupd
+              examples:
+                バリデーションエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        入力項目が不適切なものがあります。
+                        再度ご確認の上お試しください。
+                    error:
+                      type: validation
+                      detail: '${name}欄の入力は必須になります。'
+                リソース不一致エラー:
+                  $ref: '#/components/examples/ResourceMismatchError'
+                既にサイトドメインは使用済み:
+                  value:
+                    message:
+                      type: failure
+                      message: |-
+                        ご登録をお試しいただいたドメインは既に使用されています。
+                        別のドメインをご入力ください。
+                    error:
+                      type: buisiness
+                      detail: 登録ドメイン重複エラー
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -522,6 +635,32 @@ paths:
                           id: m9zesxyyrl35w
                 required:
                   - data
+              examples:
+                サイト情報取得成功:
+                  value:
+                    data:
+                      id: '165923165886004186925843853365'
+                      name: string
+                      domain:
+                        isCustom: false
+                        value: sonic-host.com
+                      optimization:
+                        css: true
+                        image: true
+                      paymentEnabled: false
+        '400':
+          description: 業務エラーが発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: 8twlj3v466g6e
+              examples:
+                IDが存在しない場合:
+                  $ref: '#/components/examples/NotExistIdError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -594,6 +733,41 @@ paths:
                         css: true
                         image: true
                       paymentEnabled: false
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: ycl2bt9srhjq8
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                バリデーションエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        入力項目が不適切なものがあります。
+                        再度ご確認の上お試しください。
+                    error:
+                      type: validation
+                      detail: '${name}欄の入力は必須になります。'
+                リソース不一致エラー:
+                  $ref: '#/components/examples/ResourceMismatchError'
+                既にサイトドメインは使用されている場合のエラー:
+                  value:
+                    message:
+                      type: failure
+                      message: |-
+                        ご登録をお試しいただいたドメインは既に使用されています。
+                        別のドメインをご入力ください。
+                    error:
+                      type: buisiness
+                      detail: 登録ドメイン重複エラー
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -672,6 +846,21 @@ paths:
                         css: true
                         image: true
                       paymentEnabled: false
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: iyhf6agqos6uz
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                リソース不一致エラー:
+                  $ref: '#/components/examples/ResourceMismatchError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -719,6 +908,19 @@ paths:
                     $ref: '#/components/schemas/SubDomain'
                     x-stoplight:
                       id: ze8i5qi5obyhr
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: 8j6a424eppxdf
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -776,6 +978,33 @@ paths:
                       services:
                         site: blog
                         mail: mail
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                    x-stoplight:
+                      id: iwgtjze597gi5
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: qm1ll3gow8n3n
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                リソース不一致エラー:
+                  $ref: '#/components/examples/ResourceMismatchError'
+                バリデーションエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        入力項目が不適切なものがあります。
+                        再度ご確認の上お試しください。
+                    error:
+                      type: validation
+                      detail: '${services.site}欄の入力は必須になります。'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -828,6 +1057,50 @@ paths:
               schema:
                 type: string
               description: 支払い結果へのリダイレクト先
+        '400':
+          description: 業務エラー
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: n88kl10x35ugm
+              examples:
+                バリデーションエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        入力項目が不適切なものがあります。
+                        再度ご確認の上お試しください。
+                    error:
+                      type: validation
+                      detail: '${sessionId}欄の入力は必須になります。'
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                SessionIdが存在しない もしくは 使用済みの場合のエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        不正な入力を検知しました。
+                        お手数ですが、ご登録状況をご確認の上、再度実施を願いいたします
+                    error:
+                      type: buisiness
+                      detail: SessionIdが不正で利用できません。
+                既に本人が支払い済み:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        既に支払い登録済みを確認しております。
+                        引き続きSonic-Hostをご利用ください。
+                      action: home
+                    error:
+                      type: buisiness
+                      detail: SessionIdに紐づくサイトが既に支払い済み
         '429':
           $ref: '#/components/responses/TooManyRequestError'
         '500':
@@ -873,6 +1146,8 @@ paths:
           in: query
           name: message
           description: エラー時に設定されるメッセージ
+      security:
+        - ID-Token: []
     post:
       summary: 支払い情報登録開始要求
       operationId: post-site-id-payments
@@ -901,6 +1176,30 @@ paths:
                         example: 'https://checkout.stripe.com/c/pay/cs_test_a18h9o7bJI3OKqqDvVGS4aLHHn5SI7hFRkbjfrvVv2vhCbZ84ZLBSnzyH3#fidkdWxOYHwnPyd1blpxYHZxWjA0T2lWV1xPTjc3YVdwUXxINGMxNlxAR3A0a01uUjxmakxvQDQ8YkdWb29wXVFTR2FsVF9gVDJNb0tSNHRrQWh1cjBMSGRdaHx3V0lBbG1USTJTPWdjMXBdNTVETzZLMkFGMScpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl'
                 required:
                   - data
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: n3d4h265by4dp
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                既に支払い登録済み:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        既に支払い登録済みです。
+                        引き続きSonic-Hostをご利用ください。
+                      action: home
+                    error:
+                      type: buisiness
+                      detail: 既に支払い登録済みのサイトに対して再度支払い登録要求を実施。
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -940,6 +1239,36 @@ paths:
                     $ref: '#/components/schemas/PaymentPlans'
                     x-stoplight:
                       id: zsqrqpawyvae9
+              examples:
+                自前ドメインプラン返却成功:
+                  value:
+                    data:
+                      products:
+                        - id: prod_MuO0wWYoWlVLOG
+                          name: Sonic-Host 定期契約\n自前ドメイン方式　1か月契約
+                          price: 1200円
+                          paymentPeriod: 1か月ごと
+                Sonic-Hostドメイン利用方式プラン返却成功:
+                  value:
+                    data:
+                      products:
+                        - id: prod_MuO0wWYoWlVLOH
+                          name: Sonic-Host 定期契約\nSonic-Hostドメイン利用方式　1か月契約
+                          price: 1000円
+                          paymentPeriod: 1か月ごと
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: c6gmc256eruvr
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -951,7 +1280,7 @@ paths:
         '504':
           $ref: '#/components/responses/TimeoutError'
       operationId: get-site-id-payments-plans
-      description: ''
+      description: 支払い期間ごとに異なる支払いプランを返却する。
       security:
         - ID-Token: []
   /contacts:
@@ -1121,6 +1450,32 @@ paths:
                             - $ref: ../models/ID.yaml
                             - $ref: '#/components/schemas/ContactReply'
                             - $ref: ../models/CreatedAt.yaml
+              examples:
+                お問い合わせ詳細取得成功:
+                  value:
+                    id: '165923165886004186925843853365'
+                    category: 登録されたサイトについて
+                    title: サイト更新のタイミングについて
+                    content: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+                    closed: false
+                    replies:
+                      - id: '165923165886004186925843853365'
+                        content: お問い合わせありがとうございます。\n....
+                        from: admin
+                        createdAt: '2019-08-24T14:15:22Z'
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: 9t092lqddjc97
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1174,6 +1529,39 @@ paths:
                     message:
                       type: success
                       display: APIの処理が成功しました。
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: 0khguqblywyeu
+              examples:
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                既に解決済みのお問い合わせに対して返信:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        こちらのお問い合わせは既に解決済みです。
+                        お手数ですが、別のお問い合わせをご起票ください。
+                    error:
+                      type: buisiness
+                      detail: 既に解決済みのお問い合わせに対して返信
+                バリデーションエラー:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        入力項目が不適切なものがあります。
+                        再度ご確認の上お試しください。
+                    error:
+                      type: validation
+                      detail: '${replies.content}欄の入力は必須になります。'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1227,6 +1615,14 @@ paths:
                     properties:
                       data:
                         $ref: '#/components/schemas/ContactClosed'
+              examples:
+                お問い合わせ解決済み変更完了:
+                  value:
+                    message:
+                      type: success
+                      display: お問い合わせを解決済みに変更しました。
+                    data:
+                      closed: true
         '400':
           description: 業務エラーによる更新の失敗
           content:
@@ -1237,16 +1633,20 @@ paths:
                   - $ref: ../models/Error.yaml
               examples:
                 リソース不一致によるエラー:
+                  $ref: '#/components/examples/ResourceMismatchError'
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
+                バリデーションエラー:
                   value:
                     message:
-                      type: modal
+                      type: failure
                       display: |-
-                        お客様の情報が最新でない可能性がございます。
-                        お手数ですが画面を更新の上、再度お試しください。
-                    error:
-                      type: buisiness
-                      detail: リソース不一致によるエラー
+                        既に解決済みのお問い合わせです。
+                        お手数ですが、再度画面を更新の上ご確認ください。
                       action: formSaveReload
+                    error:
+                      type: validation
+                      detail: '${closed}欄はtrueである必要があります。'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1320,6 +1720,23 @@ paths:
                               - replies
                     required:
                       - data
+              examples:
+                お問い合わせ削除完了:
+                  value:
+                    message:
+                      type: success
+                      display: お問い合わせの削除が完了しました。
+                    data:
+                      id: '165923165886004186925843853365'
+                      category: 登録されたサイトについて
+                      title: サイト更新のタイミングについて
+                      content: サイトが更新されるタイミングはいつでしょうか。\nまだ更新されてないように見えます。
+                      closed: false
+                      replies:
+                        - id: '165923165886004186925843853365'
+                          content: お問い合わせありがとうございます。\n....
+                          from: admin
+                          createdAt: '2019-08-24T14:15:22Z'
         '400':
           description: 業務エラーによる削除失敗。
           content:
@@ -1330,26 +1747,19 @@ paths:
                   - $ref: ../models/Error.yaml
               examples:
                 リソース不一致による失敗:
-                  value:
-                    message:
-                      type: modal
-                      display: |-
-                        お客様の情報が最新でない可能性がございます。
-                        お手数ですが画面を更新の上、再度お試しください。
-                    error:
-                      type: buisiness
-                      detail: リソース不一致によるエラー
-                      action: formSaveReload
+                  $ref: '#/components/examples/ResourceMismatchError'
                 未クローズ状態での削除依頼エラー:
                   value:
                     message:
                       type: failure
                       display: |-
-                        未クローズ状態のお問い合わせに対して削除依頼が発行されました。
-                        お手数ですが、先にクローズ処理をお願いいたします。
+                        未解決状態のお問い合わせに対して削除依頼が発行されました。
+                        お手数ですが、先に解決済みの処理をお願いいたします。
                     error:
                       type: buisiness
                       detail: 未クローズ状態のお問い合わせに対して削除依頼
+                IDが存在しない場合のエラー:
+                  $ref: '#/components/examples/NotExistIdError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1399,6 +1809,27 @@ paths:
           description: |-
             解約成功。
             解約に成功したため、特に返却するレスポンスはなし。
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: 5hc72qj9g6c55
+              examples:
+                未解約済みのサイトあり:
+                  value:
+                    message:
+                      type: modal
+                      display: |-
+                        未解約済みのサイトがあります。
+                        大変お手数ですが、先に契約されているサイトをすべてご解約いただくようお願いいたします。
+                    error:
+                      type: buisiness
+                      detail: 未解約のサイトあり。
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1409,10 +1840,12 @@ paths:
           $ref: '#/components/responses/SystemBlockage'
         '504':
           $ref: '#/components/responses/TimeoutError'
-      description: Sonic-Host解約を実行する。
+      description: |-
+        Sonic-Host解約を実行する。
+        パスワード入力もさせたほうがいい？
       security:
         - ID-Token: []
-  /term:
+  /termStatus:
     get:
       summary: 利用規約ステータス取得
       tags: []
@@ -1478,6 +1911,29 @@ paths:
                     data:
                       needTermCheck: false
                       lastCheckedAt: '2019-08-24T14:15:22Z'
+        '400':
+          description: 業務エラー発生
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ../models/Message.yaml
+                  - $ref: ../models/Error.yaml
+                    x-stoplight:
+                      id: 0pvp2cboobn7l
+              examples:
+                既に最新の規約確認状態:
+                  value:
+                    message:
+                      type: failure
+                      display: |-
+                        既に最新の規約をご確認いただいております。
+                        お手数ですが、画面を更新の上再度ご確認ください。
+                    error:
+                      type: validation
+                      detail: '${needTermCheck}欄はtrueである必要があります。'
+                リソース不一致エラー:
+                  $ref: '#/components/examples/ResourceMismatchError'
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1508,6 +1964,7 @@ paths:
               required:
                 - current
                 - data
+    parameters: []
 components:
   schemas:
     Contact:
@@ -1886,26 +2343,24 @@ components:
   examples:
     ResourceMismatchError:
       value:
-        description: クライアント側で保持しているリソース情報とバックエンド側のリソース情報が不一致のエラー。
-        type: object
-        allOf:
-          - $ref: ../models/Message.yaml
-          - $ref: ../models/Error.yaml
+        message:
+          type: modal
+          display: ''
+        error:
+          type: buisiness
+          detail: 存在しないIDへアクセスした場合
+          action: return
     NotExistIdError:
       value:
-        description: IDが存在しない場合のエラー
-        allOf:
-          - $ref: ../models/Message.yaml
-          - $ref: ../models/Error.yaml
-    Sample:
-      value:
-        description: Example shared example
-        type: object
-        properties:
-          id:
-            type: string
-        required:
-          - id
+        message:
+          type: modal
+          display: |-
+            存在しないリソースへのアクセスを検知しました。
+            お手数ですが、前の画面に戻り再度お選びください。
+        error:
+          type: buisiness
+          detail: 存在しないIDへアクセスした場合
+          action: return
   responses:
     NotAuthorized:
       description: 未ログイン状態・トークンの有効期限切れ状態でのAPIリクエストが実施されたときに返却されるレスポンス
