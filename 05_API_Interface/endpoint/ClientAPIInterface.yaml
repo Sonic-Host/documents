@@ -1200,6 +1200,17 @@ paths:
                     error:
                       type: buisiness
                       detail: 既に支払い登録済みのサイトに対して再度支払い登録要求を実施。
+                存在しないプロダクトキー:
+                  value:
+                    message:
+                      type: modal
+                      display: |-
+                        問題が発生しました。
+                        お手数ですが、画面を再度更新の上、プランを再度お選びください。
+                      action: formSaveReload
+                    error:
+                      type: buisiness
+                      detail: 既に支払い登録済みのサイトに対して再度支払い登録要求を実施。
         '401':
           $ref: '#/components/responses/NotAuthorized'
         '429':
@@ -1216,6 +1227,30 @@ paths:
         サイトを登録する際に支払いを開始するためのAPI.
         本APIでStripeと接続するためのセッションが払い出される。
         セッションの有効期限は90分なので、ユーザは90分以内に決済登録を実施する必要がある。
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  x-stoplight:
+                    id: th3mfir681ki4
+                  required:
+                    - productKey
+                  properties:
+                    productKey:
+                      type: string
+                      x-stoplight:
+                        id: 1h95w9avvc06n
+                      description: ユーザが選択したStripeプロダクトキー
+                      minLength: 1
+                      maxLength: 128
+                      example: prod_MuO0wWYoWlVLOG
+              required:
+                - data
+        description: ユーザが選択したプロダクトキーを連携
   '/site/{id}/payments/plans':
     parameters:
       - schema:
@@ -1239,6 +1274,8 @@ paths:
                     $ref: '#/components/schemas/PaymentPlans'
                     x-stoplight:
                       id: zsqrqpawyvae9
+                required:
+                  - data
               examples:
                 自前ドメインプラン返却成功:
                   value:
