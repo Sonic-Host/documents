@@ -1048,15 +1048,64 @@ paths:
       summary: 支払いプラン登録結果確認
       tags: []
       responses:
-        '301':
+        '200':
           description: |-
             支払い登録結果確認完了。
-            リダイレクトを実施して、ユーザに管理画面から支払い登録の結果がどうなったかを表示
+            ユーザに管理画面から支払い登録の結果がどうなったかを表示
           headers:
             Location:
               schema:
                 type: string
               description: 支払い結果へのリダイレクト先
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 47yscf37ndyw6
+                    required:
+                      - succeed
+                      - canceled
+                    properties:
+                      succeed:
+                        type: boolean
+                        x-stoplight:
+                          id: 13we72f93owq5
+                        description: クエリパラメータで渡した情報がそのまま帰ってくる
+                        default: true
+                      canceled:
+                        type: boolean
+                        x-stoplight:
+                          id: m9d1gxved3uht
+                        description: クエリパラメータで渡した情報がそのまま帰ってくる
+                        default: false
+                      message:
+                        type: string
+                        x-stoplight:
+                          id: 9c3gwvp0ul6yl
+                        description: クエリパラメータで渡した情報がそのまま帰ってくる
+                required:
+                  - data
+              examples:
+                登録成功:
+                  value:
+                    data:
+                      succeed: true
+                      canceled: false
+                登録失敗:
+                  value:
+                    data:
+                      succeed: false
+                      canceled: false
+                      message: Stripeからのエラーメッセージ
+                キャンセル:
+                  value:
+                    data:
+                      succeed: false
+                      canceled: true
         '400':
           description: 業務エラー
           content:
