@@ -1,0 +1,27 @@
+openapi: 3.0.0
+x-stoplight:
+  id: lqw6ha5hhidxm
+info:
+  title: Sonic-Host マスター管理画面用API
+  version: '1.0'
+  description: |-
+    マスター管理画面から使用されるAPI群を定義する。  
+    管理画面は基本的にユーザが使用するクライアントアプリを指すことが多いので、マスター管理画面と呼ぶ。
+  contact:
+    name: Hayato Takahashi
+    url: 'https://github.com/HayatoTakahashi129'
+    email: hayato.takahashi.b@gmail.com
+  license:
+    name: Sonic-Host
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas: {}
+  securitySchemes:
+    ID-Token:
+      name: Authorization
+      type: apiKey
+      in: header
+security:
+  - ID-Token: []

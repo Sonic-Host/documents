@@ -2,8 +2,17 @@ openapi: 3.0.0
 x-stoplight:
   id: jsr5myjfpqpd9
 info:
-  title: publicAPIInterface
+  title: Sonic-Host 公開ドメイン用API
   version: '1.0'
+  description: |-
+    認証を必要としない、どこからでも打鍵可能となるAPI群。  
+    一部Webhookなど特定のサーバーから打鍵されることを想定しているものもあるが、IPアドレス制御をかける。
+  license:
+    name: Sonic-Host
+  contact:
+    name: Hayato Takahashi
+    url: 'https://github.com/HayatoTakahashi129'
+    email: hayato.takahashi.b@gmail.com
 servers:
   - url: 'http://localhost:3000'
 paths:
