@@ -20,11 +20,13 @@ user -> device : 設定・その他を選択\nサイドメニューより
 device -> device : 設定・その他画面を表示
 user -> device : お問い合わせへ遷移を選択
 device -> device : お問い合わせ画面を表示
+device -> api ++ : お問い合わせ一覧取得API \n/contacts GET
+device <-- api --
 user -> device : お問い合わせを追加を押下
 device -> device : お問い合わせ入力画面を表示
 user -> device : 問い合わせカテゴリ\nお問い合わせ内容を入力
 user -> device : 送信押下
-device -> api ++ : お問い合わせ送信API
+device -> api ++ : お問い合わせ新規追加API \n/contacts POST
 api -> dynamo ++ : お問い合わせを追加
 api <- dynamo --
 device <- api --
@@ -51,15 +53,18 @@ adminApp -> adminApp : お問い合わせ返信完了画面表示
 
 user -> device : お問い合わせ選択
 device -> device : お問い合わせ画面表示
+device -> api ++ : お問い合わせ一覧取得API \n/contacts GET
+device <-- api --
 user -> device : お問い合わせ選択
 device -> device : お問い合わせ詳細表示\n(アコーディオン開く)
+device -> api ++ : お問い合わせ詳細取得API
+device <-- api --
+device -> device : 返信情報を表示
 alt 追加で返信したい場合
-    user -> device : 全部見る押下
-    device -> device : お問い合わせ詳細画面表示
     user -> device : 返信する押下
     user -> device : 返信内容入力   
     user -> device : 送信ボタン押下
-    device -> api ++ : お問い合わせ送信API
+    device -> api ++ : お問い合わせ返信追加API \n/contacts/{id} POST
     api -> dynamo ++ : お問い合わせ返信追加
     api <-- dynamo -- 
     device <-- api --
@@ -71,7 +76,7 @@ else お問い合わせを削除する場合
         どうだったかの結果を入力させたい
     end note
     user -> device : OK押下
-    device -> api ++ : お問い合わせ終了API送信
+    device -> api ++ : お問い合わせ削除API \n/contacts/{id} DELETE
     api -> dynamo ++ : お問い合わせ終了フラグON
     api <-- dynamo --
     device <-- api --
