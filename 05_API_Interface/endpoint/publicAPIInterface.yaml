@@ -38,6 +38,82 @@ paths:
           $ref: '#/components/responses/TimeoutError'
       operationId: get-faq
       description: 'Sonic-HostのFAQの一覧情報を取得するAPI '
+  /term:
+    get:
+      summary: 利用規約取得
+      tags: []
+      responses:
+        '200':
+          description: 利用規約取得成功
+          content:
+            text/html:
+              schema:
+                type: string
+                description: 利用規約のHTMLテキスト文
+        '429':
+          description: Too Many Requests
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-term
+      description: |-
+        Sonic-Hostの利用規約を取得するAPI  
+        S3に格納された利用規約を取得する。  
+        本APIは１時間のキャッシュが働くため、即時反映されない可能性あり。
+  /stripe/webhook:
+    post:
+      summary: Stripe専用Webhook通知取得
+      operationId: post-stripe-webhook
+      responses:
+        '200':
+          description: Webhook通知成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    x-stoplight:
+                      id: ufkd9nwtln9ar
+                    description: 結果を返却
+                    default: success
+                    example: success
+                    minLength: 7
+                    maxLength: 7
+                required:
+                  - result
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      description: |-
+        Stripeから発生されるWebhook通知を取得するAPI。  
+        ユーザがサブスクリプションの登録に成功したとき用に確認する。
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: STRIPE_SIGNATURE
+          description: Stripeから発せられる検証用の署名値
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+        description: |-
+          StripeAPIのWebhook通知で来る内容  
+          https://stripe.com/docs/api/events/object  
+          詳しくは上記を参照
 components:
   schemas:
     FAQ:
