@@ -35,3 +35,16 @@ PlantUML については [workFlow](./.github/workflows/plantuml-diagram.yaml) �
 ### サンプル
 
 クライアントアプリの画面遷移図は[こちら](./02_screenTransition/01_clientApplication/Readme.md)
+
+## API 仕様書
+
+[stoplight](https://sonic-host.stoplight.io/studio/documents:develop) で作成した OpenAPI の Yaml ファイルを API 仕様書とする。  
+API 仕様書を元に`workflow`で`API-GW`にて直接読み込みが可能となる Swagger ファイルを生成する。
+
+### サンプル
+
+作成された API 仕様書については以下の通り
+
+- [クライアントアプリ用](./05_API_Interface/endpoint/ClientAPIInterface.yaml)
+- [公開ドメイン用](./05_API_Interface/endpoint/publicAPIInterface.yaml)
+- [管理画面用](./05_API_Interface/endpoint/AdminAPIInterface.yaml)
