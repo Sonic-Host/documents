@@ -1,0 +1,16 @@
+title: CreatedAt
+x-stoplight:
+  id: 3m3lfkhmbvcd3
+type: object
+description: データの生成日時を示す。
+properties:
+  createdAt:
+    type: string
+    description: 該当の項目が生成された日時
+    format: date-time
+    minLength: 20
+    maxLength: 20
+    x-stoplight:
+      id: 8juq0e0b1dnai
+required:
+  - createdAt

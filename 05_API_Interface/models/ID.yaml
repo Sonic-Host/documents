@@ -1,0 +1,19 @@
+title: ID
+x-stoplight:
+  id: ehpspcgicgklv
+x-tags:
+  - model
+  - common
+type: object
+description: |-
+  バックエンド側で採番されるユニークなID。  
+  時間順にソートされるようになっている。
+properties:
+  id:
+    type: string
+    description: バックエンド側で採番されるタイムID
+    minLength: 30
+    maxLength: 30
+    example: '165923165886004186925843853365'
+required:
+  - id

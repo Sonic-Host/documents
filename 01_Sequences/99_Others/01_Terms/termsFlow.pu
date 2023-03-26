@@ -14,5 +14,7 @@ user -> device : 設定・その他を選択\n(サイドメニューより)
 device -> device : 画面を表示
 user -> device : 規約へ遷移選択
 device -> device : 利用規約画面を表示
-device -> cdn ++: 利用規約取得
+device -> cdn ++: 利用規約取得API \n/term GET \n公開ドメイン
 device <-- cdn -- : 利用規約
+device -> device : 利用規約を表示
+

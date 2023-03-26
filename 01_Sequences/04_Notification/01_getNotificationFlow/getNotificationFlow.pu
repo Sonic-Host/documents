@@ -31,14 +31,14 @@ rnote right of device #GreenYellow
 end note
 user -> device : お知らせアイコン押下
 device -> device : お知らせ一覧表示
-device -> api ++ : お知らせ一覧取得API
+device -> api ++ : お知らせ通知一覧取得API \n/notifications GET
 api -> dynamo ++ : お知らせ一覧取得
 api <-- dynamo --
 device <-- api --
 user -> device : お知らせ押下
 device -> device : お知らせ内容表示\n(アコーディオン表示)
 alt ユーザが未読のお知らせの場合
-    device -> api ++ : お知らせ既読API
+    device -> api ++ : お知らせ通知詳細更新API \n/notifications/{id} PUT
     api -> dynamo ++ : お知らせを既読に変更
     api <-- dynamo --
     device <-- api --

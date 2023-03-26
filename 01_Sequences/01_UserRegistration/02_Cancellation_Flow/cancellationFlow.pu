@@ -6,6 +6,7 @@ actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
 participant "SonicHost API\n(CDN/API-Gateway)" as api
 participant "認証基盤\n(Cognito)" as cognito
+participant "決済サービス\n(Stripe)" as stripe
 
 
 user -> device ++: HOME画面表示
@@ -19,13 +20,9 @@ device -> device : ユーザ登録状況画面表示
 user -> device : 解約押下
 device -> device : 解約確認画面表示
 user -> device : 解約押下
-device -> api ++ : 解約API
-loop 登録サイト毎にループ
-    rnote right of api
-        サイト削除フローの
-        サイト削除APIを参考
-    end note
-end
+device -> api ++ : 解約API \n /user DELETE
+api -> stripe ++ : クレカ情報などユーザの情報を削除
+api <-- stripe --
 api -> api : ユーザ登録情報削除
 api -> cognito : ユーザ削除\n(トークン無効化)
 device <-- api --

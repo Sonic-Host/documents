@@ -30,7 +30,7 @@ user -> device : 設定・その他を選択\nサイドメニューより
 device -> device : 設定・その他画面を表示
 user -> device : FAQを選択
 device -> device : FAQ画面を表示
-device -> api ++ : FAQ一覧取得API打鍵
+device -> api ++ : FAQ一覧取得API \n/faq GET\n公開ドメイン
 api -> dynamo ++ : FAQ一覧取得
 api <-- dynamo --
 device <-- api --

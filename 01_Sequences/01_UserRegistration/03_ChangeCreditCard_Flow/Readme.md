@@ -7,4 +7,4 @@
 
 ## シーケンス
 
-![支払い方法変更委](./changecreditCardFlow.svg)
+![支払い方法変更委](./changeCreditCardFlow.svg)

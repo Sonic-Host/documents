@@ -1,0 +1,23 @@
+{
+  "exclude": [],
+  "formats": {
+    "openapi": {
+      "rootDir": "05_API_Interface/endpoint",
+      "include": [
+        "**"
+      ]
+    },
+    "json_schema": {
+      "rootDir": "05_API_Interface/models",
+      "include": [
+        "**"
+      ]
+    },
+    "markdown": {
+      "rootDir": "05_API_Interface/docs"
+    },
+    "image": {
+      "rootDir": "05_API_Interface/assets/images"
+    }
+  }
+}

@@ -6,6 +6,7 @@ actor "ユーザ" as user
 participant "クライアント端末\n(PCまたはスマホ)" as device
 participant "SonicHost API\n(CDN/API-Gateway)" as api
 participant "決済サービス\n(Stripe)" as stripe
+participant "CDN\n(CloudFront)" as static
 
 
 user -> device ++: コンテンツ更新画面表示
@@ -32,7 +33,7 @@ end note
 alt 自前ドメイン方式の場合
     user -> device : ドメイン名入力
 else Sonic Hostサブドメイン方式の場合
-    device -> api ++ : ドメイン一覧取得API
+    device -> api ++ : 使用可能ドメイン一覧取得API \n /domains GET  
     device <-- api -- 
     user -> device : ドメイン選択
     user -> device : サブドメイン入力
@@ -43,36 +44,53 @@ user -> device : 「確認へ」押下
 device -> device : 入力内容確認画面表示
 
 user -> device : 「確定して次へ」押下
-device -> api ++ : サイト情報仮登録API
-api -> api  : サイト情報を一時登録
-api -> stripe ++ : Stripeで作成するProductsの登録
+device -> api ++ : サイト仮登録API \n /site POST
+api -> api  : サイト情報を一時登録\ndeletedAtを24時間後に設定
+api -> stripe ++ : MetaDataをもとに、\n合致するproductの検索
 api <-- stripe --
+api -> api : Paymentsテーブルに\nProductのキー（支払い期間ごとに複数）と\nサイトのキーを紐づけて保管\ndeletedAtをサイトと合わせて設定
 device <-- api -- 
 device -> device : 支払いプラン情報画面表示
-device -> api ++ : 支払いプラン情報取得API
+device -> api ++ : サイト登録プラン一覧取得API\n/site/{id}/payments/plans GET
+api -> api : サイトIDに紐づくProductのキーたちを取得
+api -> stripe ++ : Productキーに紐づく商品情報を検索
+api <- stripe --
+rnote right of api
+    １か月ごと、３年契約など
+    契約形態を選べるのが理想
+end note
 device <-- api -- : 支払いプラン情報
 user -> device : 支払い情報入力押下
-device -> api ++ : 支払い情報登録開始要求
+device -> api ++ : 支払い情報登録開始要求\n/site/{id}/payments POST
 api -> stripe ++ : プラン情報取得
 api <-- stripe -- : プラン情報
 api -> stripe ++ : セッション生成
 api <-- stripe -- : セッション情報\n(セッションとリダイレクトURL)
-device <-- api -- : リダイレクトURL\n(301)
+api -> api : セッション情報をPaymentsテーブルに保管
+device <-- api -- : リダイレクト先のSessionURL
+device -> device : レスポンスを元にリダイレクト実行
 device -> stripe ++ : リダイレクト
 device <-- stripe ++-- : プラン登録画面表示
 user -> device : カード情報入力
 device -> stripe ++ : プラン登録API
 device <-- stripe -- 
+device -> static ++ : リダイレクトで管理画面取得
+device <-- static -- : 管理画面表示
+deactivate device 
 alt プラン登録に成功した場合
-    device -> api ++ : プラン登録結果API
+    device -> api ++ : 支払いプラン登録結果確認API \n/site/{id}/payments GET
+    api -> api : セッションIDをもとにチェック
+    api -> stripe ++ : セッションIDをもとに\nstripeにチェック
+    api <-- stripe --
     api -> api : プラン結果登録\nカード情報（ID）登録
     api -> api : 仮登録した内容を確定
-    device <-- api -- : 成功画面へのリダイレクト\n(301)
-    device -> device : プラン登録成功画面表示\n(実際にはCDNに対してリダイレクト)
+    api -> api : deletedAtを削除
+    device <-- api -- : 成功情報\n(200)
+    device -> deivce : 成功画面表示
 else プラン登録に失敗した場合
-    device -> api ++ : プラン登録結果API\n(クエリパラメータで失敗を連携)
-    device <-- api -- : 失敗画面へのリダイレクト\n(301)
-    device -> device : プラン登録失敗画面表示
+    device -> api ++ : 支払いプラン登録結果確認API \n/site/{id}/payments GET\n(クエリパラメータで失敗を連携)
+    device <-- api -- : 失敗情報\n(200)
+    device -> device : 失敗画面表示
     user -> device : 「再度プランを選択」を押下
     device -> device : プラン登録画面表示
     rnote right of device 
@@ -85,5 +103,14 @@ rnote right of device #SkyBlue
     ネームサーバ設定確認中の場合は、
     確認中であることをコンテンツ更新画面で表示
 end note
+
+== 非同期でStripeから通信される ==
+
+stripe -> api ++ : Stripe専用Webhhok通知取得API\n/stripe/webhook POST\n公開ドメイン
+api -> api : 決済情報が更新されてなかった場合、更新
+alt 決済情報を更新した場合
+    api -> api : ユーザにお知らせ＆メール通知
+end
+stripe <-- api --
 
 @enduml

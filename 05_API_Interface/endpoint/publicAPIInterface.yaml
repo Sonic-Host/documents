@@ -1,0 +1,233 @@
+openapi: 3.0.0
+x-stoplight:
+  id: jsr5myjfpqpd9
+info:
+  title: Sonic-Host 公開ドメイン用API
+  version: '1.0'
+  description: |-
+    認証を必要としない、どこからでも打鍵可能となるAPI群。  
+    一部Webhookなど特定のサーバーから打鍵されることを想定しているものもあるが、IPアドレス制御をかける。
+  license:
+    name: Sonic-Host
+  contact:
+    name: Hayato Takahashi
+    url: 'https://github.com/HayatoTakahashi129'
+    email: hayato.takahashi.b@gmail.com
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /faq:
+    get:
+      summary: FAQ一覧取得
+      tags: []
+      responses:
+        '200':
+          description: FAQの一覧取得に成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: rfiy6egwkajx8
+                  allOf:
+                    - $ref: ../models/ID.yaml
+                      x-stoplight:
+                        id: 5i52ame9t9qik
+                    - $ref: '#/components/schemas/FAQ'
+                      x-stoplight:
+                        id: rul10l0apy502
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-faq
+      description: 'Sonic-HostのFAQの一覧情報を取得するAPI '
+  /term:
+    get:
+      summary: 利用規約取得
+      tags: []
+      responses:
+        '200':
+          description: 利用規約取得成功
+          content:
+            text/html:
+              schema:
+                type: string
+                description: 利用規約のHTMLテキスト文
+        '429':
+          description: Too Many Requests
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      operationId: get-term
+      description: |-
+        Sonic-Hostの利用規約を取得するAPI  
+        S3に格納された利用規約を取得する。  
+        本APIは１時間のキャッシュが働くため、即時反映されない可能性あり。
+  /stripe/webhook:
+    post:
+      summary: Stripe専用Webhook通知取得
+      operationId: post-stripe-webhook
+      responses:
+        '200':
+          description: Webhook通知成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    x-stoplight:
+                      id: ufkd9nwtln9ar
+                    description: 結果を返却
+                    default: success
+                    example: success
+                    minLength: 7
+                    maxLength: 7
+                required:
+                  - result
+        '429':
+          $ref: '#/components/responses/TooManyRequestError'
+        '500':
+          $ref: '#/components/responses/SystemError'
+        '503':
+          $ref: '#/components/responses/SystemBlockage'
+        '504':
+          $ref: '#/components/responses/TimeoutError'
+      description: |-
+        Stripeから発生されるWebhook通知を取得するAPI。  
+        ユーザがサブスクリプションの登録に成功したとき用に確認する。
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: STRIPE_SIGNATURE
+          description: Stripeから発せられる検証用の署名値
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+        description: |-
+          StripeAPIのWebhook通知で来る内容  
+          https://stripe.com/docs/api/events/object  
+          詳しくは上記を参照
+components:
+  schemas:
+    FAQ:
+      title: FAQ
+      x-stoplight:
+        id: gwmk54eac4pfu
+      type: object
+      description: FAQの情報
+      properties:
+        category:
+          type: string
+          x-stoplight:
+            id: cjackzme9r0hb
+          description: FAQのカテゴリ
+          minLength: 1
+          maxLength: 256
+          example: お支払いについて
+        question:
+          type: string
+          x-stoplight:
+            id: 0ofrw84bqcp1t
+          description: FAQの質問
+          minLength: 1
+          maxLength: 256
+          example: 支払日はいつになりますか？
+        answer:
+          type: string
+          x-stoplight:
+            id: k98zrzs8nujya
+          description: FAQに対する回答
+          minLength: 1
+          maxLength: 2048
+          example: 支払日はサービスを契約された日から３０日単位で割り当てられます。\n例：　２月１４日に契約された場合、支払日は３月２３日、４月２２日、、、となります。
+      required:
+        - category
+        - question
+        - answer
+  responses:
+    SystemBlockage:
+      description: システム閉塞時のエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/SystemBlockageResponse.yaml
+          examples:
+            システム閉塞メッセージ:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    以下の時間帯で現在システムの使用ができません。
+                     2023年3月1日 12:00 ~ 2023年3月1日 15:00
+                    お手数ですが、上記時間外で再度ログインを実施いただくようお願いいたします。
+                error:
+                  type: system
+                  detail: システム閉塞の実施期間中によるエラー
+    SystemError:
+      description: バックエンド側で想定外のシステムエラーが発生した時に表示されるエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/SystemErrorResponse.yaml
+          examples:
+            システムエラー:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    想定外のエラーが発生しました。
+                    大変お手数ですが、暫くしてから再度お試しください。
+                    暫くしても解決しない場合はお手数ですが、「お問い合わせ」画面よりお問い合わせください。
+                error:
+                  type: system
+                  detail: 想定外のバックエンドエラー発生
+    TimeoutError:
+      description: サーバー側の処理が遅く、タイムアウトエラーが発生した時のエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/TiemoutErrorResponse.yaml
+          examples:
+            タイムアウトエラー:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    処理に時間がかかっており失敗しました。
+                    お手数おかけしますが、暫くしてから再度お試しください。
+                error:
+                  type: system
+                  detail: サーバーの処理に時間がかかっていることによるタイムアウトエラー
+    TooManyRequestError:
+      description: サービスへのアクセスが込み合っているときのエラーレスポンス
+      content:
+        application/json:
+          schema:
+            $ref: ../models/TooManyRequestErrorResponse.yaml
+          examples:
+            リクエスト過多:
+              value:
+                message:
+                  type: modal
+                  display: |-
+                    現在大変込み合っております。
+                    お手数おかけしますが、暫くしてから再度お試しください。
+                error:
+                  type: system
+                  detail: リクエスト過多によるエラー
