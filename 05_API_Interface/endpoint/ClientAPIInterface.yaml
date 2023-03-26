@@ -1577,7 +1577,7 @@ paths:
       security:
         - ID-Token: []
     post:
-      summary: お問い合わせ追加
+      summary: お問い合わせ返信追加
       operationId: post-contacts-id
       responses:
         '200':
@@ -1658,7 +1658,7 @@ paths:
           $ref: '#/components/responses/SystemBlockage'
         '504':
           $ref: '#/components/responses/TimeoutError'
-      description: ユーザが新規にお問い合わせを発行するAPI。
+      description: ユーザが新規にお問い合わせに対する返信を発行するAPI。
       security:
         - ID-Token: []
       requestBody:
